@@ -49,11 +49,11 @@ jobs:
         with:
           name: node-app
       
-      - name: 'Deploy to Azure Web App'
+            - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'fabric-api-elliott-win'
           slot-name: 'Production'
-          package: .
+          package: fabric-api
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E0D19E1F11A243DEB7F5145ADEF51484 }}
