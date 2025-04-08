@@ -5,10 +5,11 @@ const express = require('express');
 const cors = require('cors');
 const { Connection, Request } = require('tedious');
 const axios = require('axios');
+
 console.log('👀 FABRIC_TENANT_ID:', process.env.FABRIC_TENANT_ID);
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000; // ✅ safer default than 8080
 
 app.use(cors());
 app.use(express.json());
