@@ -8,7 +8,7 @@ body {
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
-  color: #fff; /* optional: ensures white text on dark bg */
+  color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -99,7 +99,6 @@ button, input, select {
   font-size: 0.95rem;
   min-width: 180px;
 }
-
 
 /* 🌀 Tailwind Utility: fade-in animation */
 @layer utilities {

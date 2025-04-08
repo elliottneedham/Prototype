@@ -1,4 +1,3 @@
-// pages/_app.tsx
 import React from 'react';
 import type { AppProps } from 'next/app';
 import '../styles/global.css';
@@ -20,7 +19,8 @@ const inter = Inter({
 const msalInstance = new PublicClientApplication(msalConfig);
 
 if (typeof window !== 'undefined') {
-  msalInstance.initialize()
+  msalInstance
+    .initialize()
     .then(() => msalInstance.handleRedirectPromise())
     .catch((err) => {
       console.error("❌ MSAL init or redirect failed:", err);

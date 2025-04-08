@@ -14,9 +14,9 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "types": ["@types/three"],
-    "baseUrl": ".",                               // ✅ Required for path aliases
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]                              // ✅ Maps "@/something" to project root
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

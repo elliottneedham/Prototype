@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import AnimatedBackground from '../components/AnimatedBackground';
 import FilterBar from '../components/FilterBar';
 import dynamic from 'next/dynamic';
-const UKMap = dynamic(() => import('../components/UKMap'), { ssr: false });
-import NoRChart from '../components/Schoollevelprofile/NoRChart';
+import Bot from '../components/Bot';
 import styles from '../styles/SchoolProfile.module.css';
+
+// Dynamically import UKMap with no SSR
+const UKMap = dynamic(() => import('../components/UKMap'), { ssr: false });
+
+// Lazy load NoRChart (could be dynamically imported too)
+const NoRChart = dynamic(() => import('../components/Schoollevelprofile/NoRChart'), {
+  ssr: false,
+  loading: () => <div>Loading NoRChart...</div>,
+});
 
 const SchoolProfile = () => {
   const [showFilters, setShowFilters] = useState(true);
@@ -40,20 +48,19 @@ const SchoolProfile = () => {
             <h3>Pane {index + 1}</h3>
 
             {index === 0 || index === 1 ? (
-  <div className={styles.ukMapContainer}>
-    <UKMap />
-  </div>
-) : index === 2 ? (
-  <React.Suspense fallback={<div>Loading NoRChart...</div>}>
-    <NoRChart />
-  </React.Suspense>
-) : null}
-
-
+              <div className={styles.ukMapContainer}>
+                <UKMap />
+              </div>
+            ) : index === 2 ? (
+              <Suspense fallback={<div>Loading NoRChart...</div>}>
+                <NoRChart />
+              </Suspense>
+            ) : null}
           </div>
         ))}
       </div>
 
+      <Bot />
     </>
   );
 };
