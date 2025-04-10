@@ -1,4 +1,4 @@
-console.log("🌐 Server file started");
+console.log("🌐 Server file started like a boss");
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
