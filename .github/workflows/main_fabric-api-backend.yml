@@ -12,11 +12,11 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read # Required for actions/checkout
-
     environment:
       name: production
+    permissions:
+      id-token: write
+      contents: read  # Required for actions/checkout
 
     steps:
       - name: Checkout repository
