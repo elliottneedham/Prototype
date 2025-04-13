@@ -26,7 +26,15 @@ module.exports = function getNoRData() {
       const request = new Request(
         `SELECT Year, Pupils 
          FROM [dbo].[School_Level_Data_Historic_Actual_and_Projection_NoR] 
-         WHERE URN = '100225' AND Yr_Group = 'Total'
+         WHERE URN = '100225'
+           AND Diocese__name_ = 'Diocese of Shrewsbury'
+           AND Rationalised_School_Type = '02 - Mainstream - Primary'
+           AND Phase <> 'Totals'
+           AND Yr_Group NOT IN (
+             'Early Years Total', 'Post 16 Total',
+             'Primary Total', 'Secondary Total', 'Total'
+           )
+           AND Year NOT IN (202829, 202930)
          ORDER BY Year`,
         (err) => {
           if (err) return reject(err);
@@ -45,7 +53,11 @@ module.exports = function getNoRData() {
         });
       });
 
-      request.on('requestCompleted', () => resolve(results));
+      request.on('requestCompleted', () => {
+        console.log('✅ Fetched rows:', results.length);
+        resolve(results);
+      });
+
       connection.execSql(request);
     });
 
