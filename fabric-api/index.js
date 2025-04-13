@@ -19,6 +19,23 @@ app.get('/test', (req, res) => {
   res.send('Test route is working');
 });
 
+// ✅ Add this route underneath the /test route
+app.get('/api/nor', async (req, res) => {
+  try {
+    // TEMPORARY MOCK — Replace this with real Fabric query later
+    const fakeData = [
+      { Date: '2022', Value: 450 },
+      { Date: '2023', Value: 470 },
+      { Date: '2024', Value: 490 },
+    ];
+
+    res.json(fakeData);
+  } catch (error) {
+    console.error('❌ Error in /api/nor:', error);
+    res.status(500).json({ error: 'Something went wrong fetching NoR data' });
+  }
+});
+
 // 🧠 Your SQL/data logic routes can go here...
 
 // ✅ Listen
