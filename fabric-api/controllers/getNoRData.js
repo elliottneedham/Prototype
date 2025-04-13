@@ -24,9 +24,9 @@ module.exports = function getNoRData() {
       if (err) return reject(err);
 
       const request = new Request(
-        `SELECT TOP 100 Year, Pupils 
+        `SELECT Year, Pupils 
          FROM [dbo].[School_Level_Data_Historic_Actual_and_Projection_NoR] 
-         WHERE Actual_Projection_Historic = 'Actual' AND Yr_Group = 'Total'
+         WHERE URN = '100225' AND Yr_Group = 'Total'
          ORDER BY Year`,
         (err) => {
           if (err) return reject(err);
