@@ -1,9 +1,10 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import AnimatedBackground from '../components/AnimatedBackground';
 import FilterBar from '../components/FilterBar';
 import dynamic from 'next/dynamic';
 import Bot from '../components/Bot';
 import styles from '../styles/SchoolProfile.module.css';
+import { getFabricData } from '../lib/getFabricData'; // ⬅️ NEW
 
 // Dynamically import UKMap with no SSR
 const UKMap = dynamic(() => import('../components/UKMap'), { ssr: false });
@@ -16,6 +17,11 @@ const NoRChart = dynamic(() => import('../components/Schoollevelprofile/NoRChart
 
 const SchoolProfile = () => {
   const [showFilters, setShowFilters] = useState(true);
+  const [fabricData, setFabricData] = useState<any>(null); // ⬅️ NEW
+
+  useEffect(() => {
+    getFabricData().then(setFabricData);
+  }, []);
 
   return (
     <>
@@ -53,7 +59,7 @@ const SchoolProfile = () => {
               </div>
             ) : index === 2 ? (
               <Suspense fallback={<div>Loading NoRChart...</div>}>
-                <NoRChart />
+                <NoRChart data={fabricData} /> {/* ⬅️ Pass data here */}
               </Suspense>
             ) : null}
           </div>
