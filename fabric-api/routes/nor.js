@@ -5,7 +5,7 @@ const getNoRData = require('../controllers/getNoRData');
 router.get('/', async (req, res) => {
   try {
     console.log('🟢 Hitting /api/nor route');
-    const data = await getNoRData();
+    const data = await getNoRData(); // now it’s a standalone function
     res.json(data);
   } catch (error) {
     console.error('❌ Error fetching NoR data:', error);

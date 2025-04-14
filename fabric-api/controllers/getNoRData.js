@@ -1,60 +1,51 @@
 const { Connection, Request } = require('tedious');
+const getAccessToken = require('../utils/getAccessToken');
 
-const config = {
-  server: process.env.FABRIC_SERVER,
-  authentication: {
-    type: 'azure-active-directory-msi-app-service',
+const getNoRData = async () => {
+  const accessToken = await getAccessToken();
+
+  const config = {
+    server: process.env.FABRIC_DATABASE_URL,
     options: {
-      clientId: process.env.FABRIC_CLIENT_ID,
+      database: process.env.FABRIC_DATABASE_NAME,
+      encrypt: true,
     },
-  },
-  options: {
-    database: process.env.FABRIC_DATABASE,
-    encrypt: true,
-    trustServerCertificate: false,
-  },
-};
+    authentication: {
+      type: 'azure-active-directory-access-token',
+      options: {
+        token: accessToken,
+      },
+    },
+  };
 
-module.exports = function getNoRData() {
   return new Promise((resolve, reject) => {
     const connection = new Connection(config);
     const results = [];
 
-    connection.on('connect', (err) => {
-      if (err) return reject(err);
+    connection.on('connect', err => {
+      if (err) {
+        console.error('❌ Connection failed:', err);
+        return reject(new Error('SQL connection failed'));
+      }
 
-      const request = new Request(
-        `SELECT Year, Pupils 
-         FROM [dbo].[School_Level_Data_Historic_Actual_and_Projection_NoR] 
-         WHERE URN = '100225'
-           AND Diocese__name_ = 'Diocese of Shrewsbury'
-           AND Rationalised_School_Type = '02 - Mainstream - Primary'
-           AND Phase <> 'Totals'
-           AND Yr_Group NOT IN (
-             'Early Years Total', 'Post 16 Total',
-             'Primary Total', 'Secondary Total', 'Total'
-           )
-           AND Year NOT IN (202829, 202930)
-         ORDER BY Year`,
-        (err) => {
-          if (err) return reject(err);
-          connection.close();
+      const query = `SELECT TOP 10 * FROM school_level_data_historic_actual_and_projection_NoR`;
+      const request = new Request(query, (err) => {
+        if (err) {
+          console.error('❌ Query failed:', err);
+          return reject(new Error('Query execution failed'));
         }
-      );
+      });
 
-      request.on('row', (columns) => {
+      request.on('row', columns => {
         const row = {};
-        columns.forEach((column) => {
-          row[column.metadata.colName] = column.value;
+        columns.forEach(col => {
+          row[col.metadata.colName] = col.value;
         });
-        results.push({
-          Date: row.Year,
-          Value: row.Pupils,
-        });
+        results.push(row);
       });
 
       request.on('requestCompleted', () => {
-        console.log('✅ Fetched rows:', results.length);
+        connection.close();
         resolve(results);
       });
 
@@ -64,3 +55,5 @@ module.exports = function getNoRData() {
     connection.connect();
   });
 };
+
+module.exports = getNoRData;
