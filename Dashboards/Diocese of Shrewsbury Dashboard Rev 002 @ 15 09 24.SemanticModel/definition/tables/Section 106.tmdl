@@ -1,0 +1,152 @@
+table 'Section 106'
+	excludeFromModelRefresh
+	lineageTag: 75076ede-2c63-435b-bcae-67de81388261
+
+	measure sumofuniqueS106 = sumx(distinct('Section 106'[Unique Reference & Value]),FIRSTNONBLANK('Section 106'[Amount],0))
+		formatString: 0
+		lineageTag: 1f48fc5d-9824-481a-9809-a22c74a4c93f
+
+	measure countofuniqueS106 = Countx(distinct('Section 106'[Unique Reference & Value]),FIRSTNONBLANK('Section 106'[Amount],0))
+		formatString: 0
+		lineageTag: d3ee2416-7414-4574-a5e1-1f53020ad552
+
+	column 'DoS - S106 Allocations with comments - Rev 001 @ 06 09 24.xlsx'
+		dataType: string
+		lineageTag: d0fd1322-212d-4c64-96e0-bff1db878a45
+		summarizeBy: none
+		sourceColumn: DoS - S106 Allocations with comments - Rev 001 @ 06 09 24.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Authority'
+		dataType: string
+		lineageTag: efdc0200-daef-44c5-bac7-243009b9e8d2
+		summarizeBy: none
+		sourceColumn: Planning Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 289e3dc1-3939-4173-8043-5034b70ea193
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: 00c37280-8fe7-4456-8dfb-d18beadae4f5
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column UKPRN
+		dataType: string
+		lineageTag: 30fe81da-6769-40d3-bc15-39738054eea0
+		summarizeBy: none
+		sourceColumn: UKPRN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Reference'
+		dataType: string
+		lineageTag: a019997a-6e64-448c-a102-b14ae434769b
+		summarizeBy: none
+		sourceColumn: Planning Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Construction Stage'
+		dataType: string
+		lineageTag: 9883842b-f8a2-47e3-a00b-77b8d2db31dd
+		summarizeBy: none
+		sourceColumn: Construction Stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column Layer
+		dataType: string
+		lineageTag: c8ab8eba-7387-43d9-b441-bf17bb3f93b3
+		summarizeBy: none
+		sourceColumn: Layer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unique Reference'
+		dataType: string
+		lineageTag: 995c14b0-6796-4b6b-9d57-7ae170f45ff5
+		summarizeBy: none
+		sourceColumn: Unique Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Count of Matches'
+		dataType: string
+		lineageTag: 1e1004ef-9287-4cf3-a7f1-162bd5ccf123
+		summarizeBy: none
+		sourceColumn: Count of Matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comments '
+		dataType: string
+		lineageTag: ad5ad580-9a7e-4fad-8f4b-692b374e7094
+		summarizeBy: none
+		sourceColumn: "Comments "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contribution Type'
+		dataType: string
+		lineageTag: 499b1dbd-a8e2-4a44-94c3-6d5854b188cb
+		summarizeBy: none
+		sourceColumn: Contribution Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: int64
+		formatString: "£"#,0;-"£"#,0;"£"#,0
+		lineageTag: 9f4b4cce-34fe-4055-b785-535684c271ad
+		summarizeBy: none
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column 'Unique Reference & Value'
+		dataType: string
+		lineageTag: 54c58722-db31-42d2-b07d-428ed05c1d6f
+		summarizeBy: none
+		sourceColumn: Unique Reference & Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Section 106' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "DoS - S106 Allocations with comments - Rev 001 @ 06 09 24.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (9)", each #"Transform File (9)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (9)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (9)", Table.ColumnNames(#"Transform File (9)"(#"Sample File (9)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type text}, {"Column3", type text}, {"Column4", type any}, {"Column5", type any}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",2),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Amount", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Column16", "Column2"}),
+				    #"Removed Bottom Rows" = Table.RemoveLastN(#"Removed Columns",1),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Bottom Rows",{{"Uniue Reference & Value", "Unique Reference & Value"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

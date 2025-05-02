@@ -1,0 +1,254 @@
+table Cost_Avoidance_New
+	lineageTag: c3cba4d7-6036-40de-8e5d-065c186b2729
+
+	measure Capital_Spend = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS3"
+			
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			
+			RETURN
+			    IF(
+			        (FCS1 && ECS1Blank) || (FCS2 && ECS2Blank) || (FCS3 && ECS3Blank),
+			        BLANK(),
+			        SUM(Cost_Avoidance_New[Cumulative_Construction_Cost])
+			    )
+			```
+		lineageTag: fe78768d-2630-4b20-a695-779579b4dc10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Cost_Avoidance_Exlcuding = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS3"
+			
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			
+			RETURN
+			    IF(
+			        (FCS1 && ECS1Blank) || (FCS2 && ECS2Blank) || (FCS3 && ECS3Blank),
+			        BLANK(),
+			        SUM(Cost_Avoidance_New[Cost_Avoidance_Against_Benchmark])
+			    )
+			```
+		lineageTag: e31c44bc-c4e8-4c1e-b692-3914cea64628
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Revenue_Spend = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Cost_Avoidance_New[Commissioning_Strategy]) = "Forecast - CS3"
+			
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			
+			RETURN
+			    IF(
+			        (FCS1 && ECS1Blank) || (FCS2 && ECS2Blank) || (FCS3 && ECS3Blank),
+			        BLANK(),
+			        SUM(Cost_Avoidance_New[Cumulative_Total_Cost])
+			    )
+			```
+		lineageTag: a0b500ed-f1e0-4a4d-8590-94206a290074
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Cumulative = [Capital_Spend] + [Revenue_Spend]
+		lineageTag: aa4ea983-dc3d-46d7-b354-2cb9089018fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sheet
+		dataType: string
+		lineageTag: 3bfe1f38-dc2b-49f6-8efa-0b51a02657d7
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: 6dadee89-5b0c-49d0-9d3e-5deef9e11ea9
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 921c7448-98bd-4553-b949-2b64558c2be8
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commissioning_Strategy
+		dataType: string
+		lineageTag: 2ae77f9b-2f59-4530-8aad-5443b022457c
+		summarizeBy: none
+		sourceColumn: Commissioning_Strategy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reduction_to_Independent
+		dataType: string
+		lineageTag: d74329d3-7d9d-4fe1-94ce-0454bbedc311
+		summarizeBy: none
+		sourceColumn: Reduction_to_Independent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Construction_Type
+		dataType: string
+		lineageTag: 911b5f44-ebfa-436e-aa52-9d42241902a5
+		summarizeBy: none
+		sourceColumn: Construction_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ce066a6-283f-4913-9e43-312162d64fdb
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cumulative_Construction_Cost
+		dataType: double
+		lineageTag: 9219e302-1e09-48cb-be71-3a82b84e783e
+		summarizeBy: sum
+		sourceColumn: Cumulative_Construction_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Total_Cost
+		dataType: double
+		lineageTag: 41af326c-7603-48d3-b204-7c260b9891d9
+		summarizeBy: sum
+		sourceColumn: Cumulative_Total_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Scenario
+		dataType: string
+		lineageTag: d97cfbb0-6b6c-44ee-a5e3-0bc19eaea1b9
+		summarizeBy: none
+		sourceColumn: Scenario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Revenue_and_Capital
+		dataType: double
+		lineageTag: 892d0d35-365d-448f-b9d8-cbb76c2c0709
+		summarizeBy: sum
+		sourceColumn: Benchmark_Revenue_and_Capital
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cost_Avoidance_Against_Benchmark
+		dataType: double
+		lineageTag: 11d7be70-8b44-4cc3-8f70-3293671be06b
+		summarizeBy: sum
+		sourceColumn: Cost_Avoidance_Against_Benchmark
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Cost_Avoidance_New = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Cost_Avoidance_New = Source{[Schema="dbo",Item="Cost_Avoidance_New"]}[Data]
+				in
+				    dbo_Cost_Avoidance_New
+

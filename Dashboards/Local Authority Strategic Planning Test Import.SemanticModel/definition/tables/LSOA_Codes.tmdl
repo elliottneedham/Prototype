@@ -1,0 +1,20 @@
+table LSOA_Codes
+	lineageTag: 2096e9bd-39ab-477c-a875-f74acab0e080
+
+	column LSOA_2021_Code
+		dataType: string
+		lineageTag: 9e03feaf-7925-41de-a625-163fd1181da1
+		summarizeBy: none
+		sourceColumn: LSOA_2021_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LSOA_Codes = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_LSOA_Codes = Source{[Schema="dbo",Item="LSOA_Codes"]}[Data]
+				in
+				    dbo_LSOA_Codes
+

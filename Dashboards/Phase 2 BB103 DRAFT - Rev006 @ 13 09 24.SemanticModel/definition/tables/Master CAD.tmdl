@@ -1,0 +1,282 @@
+table 'Master CAD'
+	lineageTag: c65a4ab2-61fe-4690-82a6-2db190325326
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: c1c6006a-0f92-4588-9aef-b5261de4b735
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ELEVATION
+		dataType: double
+		lineageTag: 115aa2b4-62df-4ddc-96a0-a950dfbd8330
+		summarizeBy: none
+		sourceColumn: ELEVATION
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Position_Z
+		dataType: double
+		lineageTag: ea02aaf8-961c-4a57-99f9-5725fd7e0fa2
+		summarizeBy: none
+		sourceColumn: Position_Z
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Contents
+		dataType: string
+		lineageTag: b945e17e-f6be-4a81-8088-d08cb0305c67
+		summarizeBy: none
+		sourceColumn: Contents
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXTSTRING
+		dataType: string
+		lineageTag: 3162fe09-52ab-442c-b3ab-a4d6a74f3238
+		summarizeBy: none
+		sourceColumn: TEXTSTRING
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXT_SIZE
+		dataType: double
+		lineageTag: 0848f15b-a6e8-459b-94d0-31526cedc256
+		summarizeBy: none
+		sourceColumn: TEXT_SIZE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TEXT_ANGLE
+		dataType: double
+		lineageTag: 9db84257-40a4-488d-8500-c85ad0b26594
+		summarizeBy: none
+		sourceColumn: TEXT_ANGLE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Custom
+		dataType: string
+		lineageTag: a70428c8-42cb-4f78-b5b8-34d511ef88a6
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: bb888f87-73f2-4204-b21b-97a4d90e6515
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Room Number'
+		dataType: string
+		lineageTag: a4989ef4-4946-4368-b96b-ffe799300b41
+		summarizeBy: none
+		sourceColumn: Room Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Floor
+		dataType: string
+		lineageTag: fa561878-8d62-4c3e-8d44-166bd84cbcea
+		summarizeBy: none
+		sourceColumn: Floor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Key Column'
+		dataType: string
+		lineageTag: 9cc96cf3-5264-4294-9c1c-fe3089a53102
+		summarizeBy: none
+		sourceColumn: Key Column
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Source.Name'
+		dataType: string
+		lineageTag: 2b08d093-2e82-4fb0-80ff-d381e0053e9e
+		summarizeBy: none
+		sourceColumn: Rooms.Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.School Name'
+		dataType: string
+		lineageTag: e6f808e5-9410-4ffe-a779-eec487ef0cd1
+		summarizeBy: none
+		sourceColumn: Rooms.School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.URN'
+		dataType: string
+		lineageTag: 3a902ee1-5ec6-46e4-bf2f-f1865fc4a6db
+		summarizeBy: none
+		sourceColumn: Rooms.URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Block Name'
+		dataType: string
+		lineageTag: d99f084b-4ce8-4999-8f60-643624184eed
+		summarizeBy: none
+		sourceColumn: Rooms.Block Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Floor'
+		dataType: string
+		lineageTag: ad80dd48-d67b-473c-b2e3-7566538b74c9
+		summarizeBy: none
+		sourceColumn: Rooms.Floor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.LA Room Nr'
+		dataType: string
+		lineageTag: fa56ee0a-d247-4f7b-aae9-8bc8a5a08ccb
+		summarizeBy: none
+		sourceColumn: Rooms.LA Room Nr
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.School Room Nr'
+		dataType: string
+		lineageTag: 507529c5-e58a-48d2-8389-8eed63228b51
+		summarizeBy: none
+		sourceColumn: Rooms.School Room Nr
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Original Name (as Supplied by LA/School)'
+		dataType: string
+		lineageTag: 5ed27b87-057b-42ca-8d2e-85399ec9f7ad
+		summarizeBy: none
+		sourceColumn: Rooms.Original Name (as Supplied by LA/School)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Room Type'
+		dataType: string
+		lineageTag: eabef72f-dc97-45bd-a031-a915a3346025
+		summarizeBy: none
+		sourceColumn: Rooms.Room Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Room Use'
+		dataType: string
+		lineageTag: e566f2c7-a97d-4368-9cc2-9bcdd68da4ba
+		summarizeBy: none
+		sourceColumn: Rooms.Room Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Phase'
+		dataType: string
+		lineageTag: 82b9aa4c-d160-40a3-813d-54a7b6699a6c
+		summarizeBy: none
+		sourceColumn: Rooms.Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Used by Others'
+		dataType: string
+		lineageTag: 6e9a29ae-7ecf-48d2-a006-845e6471e283
+		summarizeBy: none
+		sourceColumn: Rooms.Used by Others
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Out of Use'
+		dataType: string
+		lineageTag: 3b9f588a-3b1c-4476-9427-bd96045fa1b7
+		summarizeBy: none
+		sourceColumn: Rooms.Out of Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Used by Other or Out of Use'
+		dataType: string
+		lineageTag: 4b4fe022-0b90-4f91-92dc-274d35f653b5
+		summarizeBy: none
+		sourceColumn: Rooms.Used by Other or Out of Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.In Temp Accom'
+		dataType: string
+		lineageTag: 0c14b2b6-b224-4fcf-8881-34af9ad73ecf
+		summarizeBy: none
+		sourceColumn: Rooms.In Temp Accom
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Area (m²)'
+		dataType: string
+		lineageTag: 01bcc9b0-9c86-45fe-88e1-df625e316d50
+		summarizeBy: none
+		sourceColumn: Rooms.Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rooms.Room Type Sort Order'
+		dataType: double
+		lineageTag: 0b55a515-46dd-47e3-a47b-4a21b5cf4fa8
+		summarizeBy: none
+		sourceColumn: Rooms.Room Type Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Rooms.Key Column'
+		dataType: string
+		lineageTag: 05af8ce6-08ce-422c-a5b3-9070309c252b
+		summarizeBy: none
+		sourceColumn: Rooms.Key Column
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master CAD' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master CAD (All CADs) - Joined.csv")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (8)", each #"Transform File (8)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (8)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (8)", Table.ColumnNames(#"Transform File (8)"(#"Sample File (8)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"ELEVATION", type number}, {"Position_Z", type number}, {"Contents", type text}, {"TEXTSTRING", type text}, {"TEXT_SIZE", type number}, {"TEXT_ANGLE", type number}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Custom", each if [ELEVATION] = [Position_Z] then "Yes" else "No"),
+				    #"Sorted Rows" = Table.Sort(#"Added Custom",{{"Custom", Order.Ascending}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Sorted Rows", each ([Custom] = "Yes")),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Filtered Rows1", "URN", each Text.BeforeDelimiter([Contents], "\"), type text),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Inserted Text Before Delimiter", "Room Number", each Text.BetweenDelimiters([Contents], "P", "\"), type text),
+				    #"Added Conditional Column" = Table.AddColumn(#"Inserted Text Between Delimiters", "Floor", each if [ELEVATION] = 6 then "First Floor" else if [ELEVATION] = 0 then "Basement" else if [ELEVATION] = 1.5 then "Mezzanine" else if [ELEVATION] = 3 then "Ground Floor" else null, type text),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Added Conditional Column", "Key Column", each Text.Combine({[URN], " - ", [Room Number]}), type text),
+				    #"Merged Queries" = Table.NestedJoin(#"Inserted Merged Column", {"Key Column"}, Rooms, {"Key Column"}, "Rooms", JoinKind.LeftOuter),
+				    #"Expanded Rooms" = Table.ExpandTableColumn(#"Merged Queries", "Rooms", {"Source.Name", "School Name", "URN", "Block Name", "Floor", "LA Room Nr", "School Room Nr", "Original Name (as Supplied by LA/School)", "Room Type", "Room Use", "Phase", "Used by Others", "Out of Use", "Used by Other or Out of Use", "In Temp Accom", "Area (m²)", "Room Type Sort Order", "Key Column"}, {"Rooms.Source.Name", "Rooms.School Name", "Rooms.URN", "Rooms.Block Name", "Rooms.Floor", "Rooms.LA Room Nr", "Rooms.School Room Nr", "Rooms.Original Name (as Supplied by LA/School)", "Rooms.Room Type", "Rooms.Room Use", "Rooms.Phase", "Rooms.Used by Others", "Rooms.Out of Use", "Rooms.Used by Other or Out of Use", "Rooms.In Temp Accom", "Rooms.Area (m²)", "Rooms.Room Type Sort Order", "Rooms.Key Column"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Expanded Rooms",{{"Rooms.Room Type Sort Order", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

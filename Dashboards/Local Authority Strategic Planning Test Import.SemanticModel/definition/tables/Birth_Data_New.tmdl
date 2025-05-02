@@ -1,0 +1,239 @@
+table Birth_Data_New
+	lineageTag: 61790330-de59-477c-9d8d-f218f2b5caa6
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a46868c-db6b-4370-8752-dd5a1e6a88cb
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Local_Authority_code
+		dataType: string
+		lineageTag: df3f8747-dd81-4341-91ec-9d7c465c982b
+		summarizeBy: none
+		sourceColumn: Local_Authority_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA_code
+		dataType: string
+		lineageTag: 32a7d35e-00a8-431c-a852-343b9f34bcc2
+		summarizeBy: none
+		sourceColumn: LSOA_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA_name
+		dataType: string
+		lineageTag: 1b65330a-29d3-42cb-9657-629d78b15b20
+		summarizeBy: none
+		sourceColumn: LSOA_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_of_mother_at_birth__years__24_and_under
+		dataType: double
+		lineageTag: 24d9307f-8e09-4b21-b639-f0f612db41b1
+		summarizeBy: sum
+		sourceColumn: Age_of_mother_at_birth__years__24_and_under
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Age_of_mother_at_birth__years__25_to_34
+		dataType: double
+		lineageTag: 1933e6d4-41eb-4a56-bf59-3aff6eaac54d
+		summarizeBy: sum
+		sourceColumn: Age_of_mother_at_birth__years__25_to_34
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Age_of_mother_at_birth__years__35_and_over
+		dataType: double
+		lineageTag: 9504608a-bef6-41ac-9c0e-663e5cf79ab4
+		summarizeBy: sum
+		sourceColumn: Age_of_mother_at_birth__years__35_and_over
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Local_Authority_Name
+		dataType: string
+		lineageTag: be25ea36-2ab9-4bf7-9fad-cf4b04880b18
+		summarizeBy: none
+		sourceColumn: Local_Authority_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Births
+		dataType: double
+		lineageTag: 4bd4bb85-a919-482b-8056-8db3617e8c81
+		summarizeBy: sum
+		sourceColumn: Total_Births
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LAD23CD
+		dataType: string
+		lineageTag: 997d5e08-2e86-4f70-8387-3fdedddb44d1
+		summarizeBy: none
+		sourceColumn: LAD23CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAD23NM
+		dataType: string
+		lineageTag: 22b7dd6f-108b-4179-a571-ac7fbc7f9462
+		summarizeBy: none
+		sourceColumn: LAD23NM
+
+		annotation SummarizationSetBy = Automatic
+
+	column PCON25CD
+		dataType: string
+		lineageTag: 8108f481-f05e-4840-8f5c-21a165de2762
+		summarizeBy: none
+		sourceColumn: PCON25CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column PCON25NM
+		dataType: string
+		lineageTag: 25a18cdf-a07b-409c-97cc-983d36c860a1
+		summarizeBy: none
+		sourceColumn: PCON25NM
+
+		annotation SummarizationSetBy = Automatic
+
+	column WD23CD
+		dataType: string
+		lineageTag: f7535b9c-9611-4227-ae1c-2bde53fb18d3
+		summarizeBy: none
+		sourceColumn: WD23CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column WD23NM
+		dataType: string
+		lineageTag: 74c8d924-2072-473b-abc6-42d4d0611112
+		summarizeBy: none
+		sourceColumn: WD23NM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Diocese
+		dataType: string
+		lineageTag: 934f875d-5a6a-491f-b65f-96e3aa8a6b77
+		summarizeBy: none
+		sourceColumn: Catholic_Diocese
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Deanery
+		dataType: string
+		lineageTag: 5e630faa-d65d-4104-9576-6069fc277604
+		summarizeBy: none
+		sourceColumn: Catholic_Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Parish
+		dataType: string
+		lineageTag: e0493a3e-f467-4dc7-aad2-d7a82ccff5de
+		summarizeBy: none
+		sourceColumn: Catholic_Parish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Planning_Area_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: 34981045-c595-4c6c-8598-632b2f8bb2c1
+		summarizeBy: count
+		sourceColumn: Primary_Planning_Area_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Planning_Area_Name
+		dataType: string
+		lineageTag: 2b782e74-96ea-4563-993c-706caa08164d
+		summarizeBy: none
+		sourceColumn: Primary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Area_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: 7329a07b-d3bc-45a0-be57-326eb6a2075b
+		summarizeBy: count
+		sourceColumn: Secondary_Planning_Area_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Area_Name
+		dataType: string
+		lineageTag: 0edd3f9d-ea2a-4a3f-91ec-34449013a9ca
+		summarizeBy: none
+		sourceColumn: Secondary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: 772296f6-1372-47d7-8332-1c365356e4d9
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		lineageTag: 401e8c2c-ee18-4f0d-a43e-3a99982321fa
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Easting
+		dataType: double
+		lineageTag: 82989646-268a-4143-bfc9-219ef349f2fe
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Northing
+		dataType: double
+		lineageTag: cc7ba9de-0630-4b2e-b790-b5f386ffa40f
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Birth_Data_New = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Birth_Data_New = Source{[Schema="dbo",Item="Birth_Data_New"]}[Data]
+				in
+				    dbo_Birth_Data_New
+

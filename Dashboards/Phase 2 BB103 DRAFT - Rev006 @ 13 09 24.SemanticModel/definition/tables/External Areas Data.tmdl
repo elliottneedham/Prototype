@@ -1,0 +1,170 @@
+table 'External Areas Data'
+	lineageTag: 67c5996d-67c9-40a0-b7d6-ecef142da6fa
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 4e989b68-d99b-4681-a366-3a6b67f2f153
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 250acdd2-f136-4c63-a236-90b73b6a9bb2
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: ccff22ff-2bda-4303-a502-cb0b0c6dc34b
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 0614e874-8a34-4af3-a8fb-c2d9cb707764
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 4b1d5615-9cd1-4bba-a2db-a5dfee23de56
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: 0de7cb71-74f4-4113-be9f-a37b7706b3af
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: 0f3ae45b-4dc5-48f0-8c8a-5cb4ca2fa7fb
+		summarizeBy: none
+		sourceColumn: Position
+		sortByColumn: Custom
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Type'
+		dataType: string
+		lineageTag: c6a348d3-32bd-40e8-9c56-af6bfceafe33
+		summarizeBy: none
+		sourceColumn: External Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: double
+		lineageTag: c5f0a245-a61d-4cf7-86d1-e02d0c6017e9
+		summarizeBy: sum
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Actual Areas'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c8337d0-1173-434a-9fb5-bc5fc8b96d7e
+		summarizeBy: sum
+		sourceColumn: Actual Areas
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Area Code'
+		dataType: string
+		lineageTag: 4d16567e-de21-4977-aea2-c60d504b03f2
+		summarizeBy: none
+		sourceColumn: External Area Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link Key'
+		dataType: string
+		lineageTag: 87f70d09-000a-4ef3-b238-5bc7ac860f95
+		summarizeBy: none
+		sourceColumn: Link Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Differnece =
+			
+			VAR CurrentURN = 'External Areas Data'[URN]
+			VAR CurrentKey = 'External Areas Data'[External Type]
+			VAR CurrentPosition = 'External Areas Data'[Position]
+			VAR CurrentAreaValue = 'External Areas Data'[Value]
+			
+			VAR ActualValue =
+			    CALCULATE(
+			        MAX('External Areas Data'[Value]),
+			        FILTER(
+			            'External Areas Data',
+			            'External Areas Data'[URN] = CurrentURN &&
+			            'External Areas Data'[External Type] = CurrentKey &&
+			            'External Areas Data'[Position] = "Actual"
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    CurrentPosition = "NOR" || CurrentPosition = "PAN" || CurrentPosition = "FPAN",
+			    ActualValue - CurrentAreaValue,
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 72f87f6c-a4b3-4595-8fb0-86138816bbb7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'External Areas Data' = m
+		mode: import
+		source = ```
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master Sufficiency Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (9)", each #"Transform File (9)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (9)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (9)", Table.ColumnNames(#"Transform File (9)"(#"Sample File (9)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"School Name", type text}, {"URN", Int64.Type}, {"Phase", type text}, {"Actual - (EX01) Soft Outdoor PE", Int64.Type}, {"Actual - (EX02) Hard Outdoor PE", Int64.Type}, {"Actual - (EX03) Soft Informal & Social", Int64.Type}, {"Actual - (EX04) Hard Informal & Social", Int64.Type}, {"Actual - (EX05) Habitat", Int64.Type}, {"Actual - (EX06) Float", Int64.Type}, {"Actual - (EX07) Non-Net Area", Int64.Type}, {"Actual - All Weather Pitches", Int64.Type}, {"NOR - (EX01) Soft Outdoor PE", Int64.Type}, {"NOR - (EX02) Hard Outdoor PE", Int64.Type}, {"NOR - (EX03) Soft Informal & Social", Int64.Type}, {"NOR - (EX04) Hard Informal & Social", Int64.Type}, {"NOR - (EX05) Habitat", Int64.Type}, {"NOR - (EX06) Float", Int64.Type}, {"NOR - (EX07) Non-Net Area", Int64.Type}, {"PAN - (EX01) Soft Outdoor PE", Int64.Type}, {"PAN - (EX02) Hard Outdoor PE", Int64.Type}, {"PAN - (EX03) Soft Informal & Social", Int64.Type}, {"PAN - (EX04) Hard Informal & Social", Int64.Type}, {"PAN - (EX05) Habitat", Int64.Type}, {"PAN - (EX06) Float", Int64.Type}, {"PAN - (EX07) Non-Net Area", Int64.Type}, {"FPAN - (EX01) Soft Outdoor PE", Int64.Type}, {"FPAN - (EX02) Hard Outdoor PE", Int64.Type}, {"FPAN - (EX03) Soft Informal & Social", Int64.Type}, {"FPAN - (EX04) Hard Informal & Social", Int64.Type}, {"FPAN - (EX05) Habitat", Int64.Type}, {"FPAN - (EX06) Float", Int64.Type}, {"FPAN - (EX07) Non-Net Area", Int64.Type}, {"Actual - Total", Int64.Type}, {"NOR - Total", Int64.Type}, {"PAN - Total", Int64.Type}, {"FPAN - Total", Int64.Type}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Source.Name", "School Name", "URN", "Phase"}, "Attribute", "Value"),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Unpivoted Columns", "Position", each Text.BeforeDelimiter([Attribute], " "), type text),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Inserted Text Before Delimiter", "External Type", each Text.AfterDelimiter([Attribute], " ", 1), type text),
+				    #"Added Conditional Column" = Table.AddColumn(#"Inserted Text After Delimiter", "Custom", each if [Position] = "Actual" then 1 else if [Position] = "NOR" then 2 else if [Position] = "PAN" then 3 else if [Position] = "FPAN" then 4 else null, type number),
+				    #"Added Custom" = Table.AddColumn(#"Added Conditional Column", "Custom.1", each if [Position]="Actual" then [Value] else null),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Custom",{{"Custom.1", "Actual Areas"}}),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Renamed Columns", "External Area Code", each Text.BetweenDelimiters([Attribute], "(", ")"), type text),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Inserted Text Between Delimiters", "Link Key", each Text.Combine(
+				    if [Position] = "Actual" and List.Contains({"EX01", "EX02", "EX03", "EX04", "EX05", "EX06", "EX07"}, [External Area Code]) 
+				    then {Text.From([URN], "en-GB"), " - ", [External Area Code]} 
+				    else null
+				)),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Inserted Merged Column",{{"Actual Areas", Int64.Type}})
+				in
+				    #"Changed Type1"
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

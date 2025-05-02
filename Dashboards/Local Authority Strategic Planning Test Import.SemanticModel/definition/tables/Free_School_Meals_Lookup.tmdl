@@ -1,0 +1,28 @@
+table Free_School_Meals_Lookup
+	lineageTag: ca02f191-1fbe-4671-98a7-4fc6a9db7177
+
+	column LA_Name
+		dataType: string
+		lineageTag: d7fd82f8-c95c-400a-afa2-53bc7f3c1cbb
+		summarizeBy: none
+		sourceColumn: LA_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2023/24_Free_school_meal_eligability_banding
+		dataType: string
+		lineageTag: 2ce79325-4527-4f37-8f00-ae1d53dd8f1c
+		summarizeBy: none
+		sourceColumn: 2023/24_Free_school_meal_eligability_banding
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Free_School_Meals_Lookup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Free_School_Meals_Lookup = Source{[Schema="dbo",Item="Free_School_Meals_Lookup"]}[Data]
+				in
+				    dbo_Free_School_Meals_Lookup
+

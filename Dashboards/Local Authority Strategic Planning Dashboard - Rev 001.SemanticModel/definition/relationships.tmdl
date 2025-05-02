@@ -1,0 +1,5 @@
+relationship 74dbfca5-6714-4874-bd07-c046a21f423b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '1 - SEN Caseload'.Custom
+	toColumn: LocalDateTable_97b5815a-f896-4e55-9ff7-07718c80f3ad.Date
+

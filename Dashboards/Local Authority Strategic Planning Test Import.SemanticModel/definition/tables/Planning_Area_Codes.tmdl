@@ -1,0 +1,21 @@
+table Planning_Area_Codes
+	lineageTag: a9511628-ca43-492d-9edf-a437d2ca55c0
+
+	column planning_area_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ec200a3-366b-4c87-a07b-c99831340b1d
+		summarizeBy: none
+		sourceColumn: planning_area_code
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Planning_Area_Codes = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Planning_Area_Codes = Source{[Schema="dbo",Item="Planning_Area_Codes"]}[Data]
+				in
+				    dbo_Planning_Area_Codes
+

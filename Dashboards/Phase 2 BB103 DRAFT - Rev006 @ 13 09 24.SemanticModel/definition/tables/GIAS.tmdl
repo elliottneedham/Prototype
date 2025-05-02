@@ -1,0 +1,1246 @@
+table GIAS
+	lineageTag: 6ef52cee-c031-4ecc-8d85-e04ae071e8d0
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 7f1dbd04-871b-47c3-b16d-25942ff7b91c
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: b4f153be-5d90-4adb-8686-3a408cb8026b
+		summarizeBy: sum
+		sourceColumn: Current URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Change to URN'
+		dataType: string
+		lineageTag: 04877563-bc21-48e1-acfa-3783f505aa51
+		summarizeBy: none
+		sourceColumn: Change to URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: 793cd4fc-0a15-4aaf-87d0-29abb003b1a4
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DfE Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: d8bfa650-b1a6-4d79-8581-266b37e7f16f
+		summarizeBy: sum
+		sourceColumn: DfE Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA (code)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3a6bb57-5f31-441d-99bb-914e010f6fa1
+		summarizeBy: sum
+		sourceColumn: LA (code)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Prioritisation'
+		dataType: int64
+		formatString: 0
+		lineageTag: e682b4bd-4af5-4671-b68f-4755fec478d8
+		summarizeBy: sum
+		sourceColumn: LA Prioritisation
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA (name)'
+		dataType: string
+		lineageTag: 5fc76ef1-3aba-4cfb-b89f-d9ae9dba0119
+		summarizeBy: none
+		sourceColumn: LA (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstablishmentNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: b9b9e28c-6867-4afd-9a40-c47dd2512bf7
+		summarizeBy: sum
+		sourceColumn: EstablishmentNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstablishmentName
+		dataType: string
+		lineageTag: b99dca32-5735-4f77-a5fc-d23a08673e32
+		summarizeBy: none
+		sourceColumn: EstablishmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rationalised Establishment Type'
+		dataType: string
+		lineageTag: 59cab88c-f429-4d43-9e67-0d08d0f426af
+		summarizeBy: none
+		sourceColumn: Rationalised Establishment Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TypeOfEstablishment (name)'
+		dataType: string
+		lineageTag: d2ac50db-a204-457c-929b-0f833c32f3ea
+		summarizeBy: none
+		sourceColumn: TypeOfEstablishment (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EstablishmentTypeGroup (name)'
+		dataType: string
+		lineageTag: 632c5aec-f11b-47b2-9a6f-b82322ce29ce
+		summarizeBy: none
+		sourceColumn: EstablishmentTypeGroup (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 73111379-22de-4de6-b7d6-767998de160c
+		summarizeBy: sum
+		sourceColumn: Status Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EstablishmentStatus (name)'
+		dataType: string
+		lineageTag: dedd2f14-10a3-45f4-a16b-d64190e78ae5
+		summarizeBy: none
+		sourceColumn: EstablishmentStatus (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ReasonEstablishmentOpened (name)'
+		dataType: string
+		lineageTag: 58a72ea6-85ab-4a6d-95a1-ac06989eea53
+		summarizeBy: none
+		sourceColumn: ReasonEstablishmentOpened (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column OpenDate
+		dataType: int64
+		formatString: 0
+		lineageTag: 5527da96-8002-4105-885a-85d7b6f9dc58
+		summarizeBy: sum
+		sourceColumn: OpenDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ReasonEstablishmentClosed (name)'
+		dataType: string
+		lineageTag: 6c758757-d25d-45c5-b83b-2248b415e340
+		summarizeBy: none
+		sourceColumn: ReasonEstablishmentClosed (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column CloseDate
+		dataType: string
+		lineageTag: e80729d2-5ad3-4388-8a50-e66391be571a
+		summarizeBy: none
+		sourceColumn: CloseDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'PhaseOfEducation (name)'
+		dataType: string
+		lineageTag: 71376b51-0aa2-446c-8eeb-9a9b062e8c9f
+		summarizeBy: none
+		sourceColumn: PhaseOfEducation (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatutoryLowAge
+		dataType: int64
+		formatString: 0
+		lineageTag: 98ef45dc-69de-4a64-9b19-07ee15f62c71
+		summarizeBy: sum
+		sourceColumn: StatutoryLowAge
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatutoryHighAge
+		dataType: int64
+		formatString: 0
+		lineageTag: 68de4641-7c16-49e8-87dd-3173ba986136
+		summarizeBy: sum
+		sourceColumn: StatutoryHighAge
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Boarders (name)'
+		dataType: string
+		lineageTag: 73391ccf-6207-4f07-8ad7-4b4ad6b8b091
+		summarizeBy: none
+		sourceColumn: Boarders (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NurseryProvision (name)'
+		dataType: string
+		lineageTag: bd3d2149-4215-453d-a026-edb61d0dbbcb
+		summarizeBy: none
+		sourceColumn: NurseryProvision (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OfficialSixthForm (name)'
+		dataType: string
+		lineageTag: 0785941f-ac0f-41a7-8bba-97c6e2146a66
+		summarizeBy: none
+		sourceColumn: OfficialSixthForm (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gender (name)'
+		dataType: string
+		lineageTag: f2d29153-cb59-47b5-8fe7-5ca50be215fe
+		summarizeBy: none
+		sourceColumn: Gender (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ReligiousCharacter (name)'
+		dataType: string
+		lineageTag: ce28ac04-bd67-48f3-b8b6-943f94ee73ac
+		summarizeBy: none
+		sourceColumn: ReligiousCharacter (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ReligiousEthos (name)'
+		dataType: string
+		lineageTag: a93c01ae-8151-4738-a574-ffe39352f041
+		summarizeBy: none
+		sourceColumn: ReligiousEthos (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Diocese (name)'
+		dataType: string
+		lineageTag: e1dec91a-ad01-4444-b9d2-3bfb3f917756
+		summarizeBy: none
+		sourceColumn: Diocese (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AdmissionsPolicy (name)'
+		dataType: string
+		lineageTag: d0075c91-d473-485a-bc36-463ce6ca67d4
+		summarizeBy: none
+		sourceColumn: AdmissionsPolicy (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column SchoolCapacity
+		dataType: int64
+		formatString: 0
+		lineageTag: c769d915-2f3f-4a09-8fb7-51369e054b8b
+		summarizeBy: sum
+		sourceColumn: SchoolCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SpecialClasses (name)'
+		dataType: string
+		lineageTag: 016c8085-b83c-478c-a3c7-6e4536636e4f
+		summarizeBy: none
+		sourceColumn: SpecialClasses (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column CensusDate
+		dataType: string
+		lineageTag: 01c5dfd9-ad74-47e2-9d08-6ad083e27752
+		summarizeBy: none
+		sourceColumn: CensusDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberOfPupils
+		dataType: int64
+		formatString: 0
+		lineageTag: f9d5d2e1-ae7b-42ce-81db-d34343408ef5
+		summarizeBy: sum
+		sourceColumn: NumberOfPupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberOfBoys
+		dataType: int64
+		formatString: 0
+		lineageTag: d4a2949d-ae22-4eb2-bd4e-531f3e729fc7
+		summarizeBy: sum
+		sourceColumn: NumberOfBoys
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumberOfGirls
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bf111a3-ff1d-452e-ad91-575fe1fb3123
+		summarizeBy: sum
+		sourceColumn: NumberOfGirls
+
+		annotation SummarizationSetBy = Automatic
+
+	column PercentageFSM
+		dataType: double
+		lineageTag: 86c9908d-3a74-4235-9766-9a926c6b1891
+		summarizeBy: sum
+		sourceColumn: PercentageFSM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'TrustSchoolFlag (name)'
+		dataType: string
+		lineageTag: 59b397bd-3060-4db9-8959-269874e798cc
+		summarizeBy: none
+		sourceColumn: TrustSchoolFlag (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trusts (name)'
+		dataType: string
+		lineageTag: 6f612fe7-0589-4f5b-98d1-fd4bd462b39c
+		summarizeBy: none
+		sourceColumn: Trusts (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SchoolSponsorFlag (name)'
+		dataType: string
+		lineageTag: 37643b73-66a3-4070-9013-04222647be9d
+		summarizeBy: none
+		sourceColumn: SchoolSponsorFlag (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SchoolSponsors (name)'
+		dataType: string
+		lineageTag: e50934a1-09a6-47a0-93ff-62c746d66deb
+		summarizeBy: none
+		sourceColumn: SchoolSponsors (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FederationFlag (name)'
+		dataType: string
+		lineageTag: 86e6a43c-b838-4b19-8198-454378d8f0a1
+		summarizeBy: none
+		sourceColumn: FederationFlag (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Federations (name)'
+		dataType: string
+		lineageTag: f43c4f7b-a6f8-4e18-87bb-00e1ed8c8d8a
+		summarizeBy: none
+		sourceColumn: Federations (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column UKPRN
+		dataType: int64
+		formatString: 0
+		lineageTag: 02d53d8b-0d87-49de-bab9-ed3f3d7250eb
+		summarizeBy: sum
+		sourceColumn: UKPRN
+
+		annotation SummarizationSetBy = Automatic
+
+	column FEHEIdentifier
+		dataType: int64
+		formatString: 0
+		lineageTag: c30f5015-e915-40b5-9401-3f88889495a7
+		summarizeBy: sum
+		sourceColumn: FEHEIdentifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FurtherEducationType (name)'
+		dataType: string
+		lineageTag: 4648d3b5-8839-4f29-b1af-94f88a288973
+		summarizeBy: none
+		sourceColumn: FurtherEducationType (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column OfstedLastInsp
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 986359d4-faca-4537-865b-48771a3f4446
+		summarizeBy: none
+		sourceColumn: OfstedLastInsp
+
+		variation Variation
+			isDefault
+			relationship: ed4548cc-5a76-4c5f-8354-f98d7a86c08c
+			defaultHierarchy: LocalDateTable_0ce9117c-7214-438d-9105-66da259f45b6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column LastChangedDate
+		dataType: int64
+		formatString: 0
+		lineageTag: e8a85894-5515-4352-97b6-c334eb49d225
+		summarizeBy: sum
+		sourceColumn: LastChangedDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Street
+		dataType: string
+		lineageTag: b55a5746-937d-4746-942c-8fb4ad0feafb
+		summarizeBy: none
+		sourceColumn: Street
+
+		annotation SummarizationSetBy = Automatic
+
+	column Locality
+		dataType: string
+		lineageTag: 9c28fb58-0973-4dae-8d59-b1a7c05ea62f
+		summarizeBy: none
+		sourceColumn: Locality
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address3
+		dataType: string
+		lineageTag: 2afcdf1e-f528-4ad7-beeb-751f83aa3da7
+		summarizeBy: none
+		sourceColumn: Address3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Town
+		dataType: string
+		lineageTag: f9862128-66e9-4525-a0c5-672124c26d15
+		summarizeBy: none
+		sourceColumn: Town
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'County (name)'
+		dataType: string
+		lineageTag: 26c6a110-d5d5-4da2-a3d9-c8e6a6e4567c
+		summarizeBy: none
+		sourceColumn: County (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Postcode
+		dataType: string
+		lineageTag: d8b331e0-11dd-4138-a8d5-1b9194518ee9
+		summarizeBy: none
+		sourceColumn: Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SchoolWebsite
+		dataType: string
+		lineageTag: 6ced9ba7-e2ad-4632-a491-f3f71607d2bf
+		summarizeBy: none
+		sourceColumn: SchoolWebsite
+
+		annotation SummarizationSetBy = Automatic
+
+	column TelephoneNum
+		dataType: string
+		lineageTag: 0ae82fcf-cc4f-4ee0-acd1-a8a6ac801de5
+		summarizeBy: none
+		sourceColumn: TelephoneNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'HeadTitle (name)'
+		dataType: string
+		lineageTag: bba91d6e-1bf0-49d1-9199-6fca17a24467
+		summarizeBy: none
+		sourceColumn: HeadTitle (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeadFirstName
+		dataType: string
+		lineageTag: ef9472c6-a616-48bb-bf78-dd217699cc82
+		summarizeBy: none
+		sourceColumn: HeadFirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeadLastName
+		dataType: string
+		lineageTag: 8f3e215e-16bb-430b-87d7-d6007a180fd0
+		summarizeBy: none
+		sourceColumn: HeadLastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeadPreferredJobTitle
+		dataType: string
+		lineageTag: 151a075e-3530-438e-b9dc-882c8e25dbe5
+		summarizeBy: none
+		sourceColumn: HeadPreferredJobTitle
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BSOInspectorateName (name)'
+		dataType: string
+		lineageTag: 4d0aef6e-b7f7-4793-8388-9cd383c0f1e7
+		summarizeBy: none
+		sourceColumn: BSOInspectorateName (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column InspectorateReport
+		dataType: int64
+		formatString: 0
+		lineageTag: 250b1312-6b7a-432e-bb82-37f7157083ce
+		summarizeBy: sum
+		sourceColumn: InspectorateReport
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateOfLastInspectionVisit
+		dataType: int64
+		formatString: 0
+		lineageTag: 55c267bb-8ce3-45e2-ba92-4115d04d758e
+		summarizeBy: sum
+		sourceColumn: DateOfLastInspectionVisit
+
+		annotation SummarizationSetBy = Automatic
+
+	column NextInspectionVisit
+		dataType: int64
+		formatString: 0
+		lineageTag: 2776cdd4-c5b6-4c9a-aa45-f8ecb19b4ff6
+		summarizeBy: sum
+		sourceColumn: NextInspectionVisit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TeenMoth (name)'
+		dataType: string
+		lineageTag: b001993d-99ac-4119-a1c4-96273ca5f0a0
+		summarizeBy: none
+		sourceColumn: TeenMoth (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column TeenMothPlaces
+		dataType: int64
+		formatString: 0
+		lineageTag: 7088dfa5-6512-47d2-82ba-bf125533d58f
+		summarizeBy: sum
+		sourceColumn: TeenMothPlaces
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CCF (name)'
+		dataType: string
+		lineageTag: 68bac983-80af-4aff-9420-604a854b336f
+		summarizeBy: none
+		sourceColumn: CCF (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SENPRU (name)'
+		dataType: string
+		lineageTag: 861acc5c-d5ca-4794-a85e-7f1200fad8b3
+		summarizeBy: none
+		sourceColumn: SENPRU (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EBD (name)'
+		dataType: string
+		lineageTag: 7a29e343-df3c-45e2-9b80-abf357975a52
+		summarizeBy: none
+		sourceColumn: EBD (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column PlacesPRU
+		dataType: int64
+		formatString: 0
+		lineageTag: 8761d108-c999-4425-87dc-1e5df5cc0d03
+		summarizeBy: sum
+		sourceColumn: PlacesPRU
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FTProv (name)'
+		dataType: string
+		lineageTag: db2cfda8-401a-4d53-9364-0731e531e2be
+		summarizeBy: none
+		sourceColumn: FTProv (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EdByOther (name)'
+		dataType: string
+		lineageTag: 79b7dd46-71b2-4d88-b30b-d3c4e668edb7
+		summarizeBy: none
+		sourceColumn: EdByOther (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Section41Approved (name)'
+		dataType: string
+		lineageTag: 439d28f7-e887-4226-b9a6-f7a5efad02db
+		summarizeBy: none
+		sourceColumn: Section41Approved (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN1 (name)'
+		dataType: string
+		lineageTag: af5d2265-e30b-47df-9973-a96a09f2b18f
+		summarizeBy: none
+		sourceColumn: SEN1 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN2 (name)'
+		dataType: string
+		lineageTag: 759c0820-5a98-4f18-98dd-4237079b48d1
+		summarizeBy: none
+		sourceColumn: SEN2 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN3 (name)'
+		dataType: string
+		lineageTag: e152b01b-3aaf-4c31-a816-4bf1407d6341
+		summarizeBy: none
+		sourceColumn: SEN3 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN4 (name)'
+		dataType: string
+		lineageTag: d39f9c25-65b4-4a89-82e0-498b9981fc90
+		summarizeBy: none
+		sourceColumn: SEN4 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN5 (name)'
+		dataType: string
+		lineageTag: 978df1be-5e94-4c1e-bbd0-f9f787a47513
+		summarizeBy: none
+		sourceColumn: SEN5 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN6 (name)'
+		dataType: string
+		lineageTag: 995be757-9a0a-4db4-b68e-5609aaa9e797
+		summarizeBy: none
+		sourceColumn: SEN6 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN7 (name)'
+		dataType: string
+		lineageTag: c2b33ce7-44ee-4ec6-b279-259485e3d5ff
+		summarizeBy: none
+		sourceColumn: SEN7 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN8 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f5f24064-dd58-4e70-87e2-de891dee5eae
+		summarizeBy: sum
+		sourceColumn: SEN8 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN9 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: d55b57f7-48af-42ee-b52f-e0add253ca4a
+		summarizeBy: sum
+		sourceColumn: SEN9 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN10 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7896abdd-d303-43d7-ad97-daeda1e6f890
+		summarizeBy: sum
+		sourceColumn: SEN10 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN11 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: b4e363ad-0abd-49b0-a272-cdeb09c21fce
+		summarizeBy: sum
+		sourceColumn: SEN11 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN12 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b1059d6-7d34-48e3-be5f-f6a556c4a8dc
+		summarizeBy: sum
+		sourceColumn: SEN12 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SEN13 (name)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 375de354-9f0e-4a8c-85d1-5b5538298fff
+		summarizeBy: sum
+		sourceColumn: SEN13 (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TypeOfResourcedProvision (name)'
+		dataType: string
+		lineageTag: f2fc1019-cd03-4ce6-bd5e-b51bfa8ee086
+		summarizeBy: none
+		sourceColumn: TypeOfResourcedProvision (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourcedProvisionOnRoll
+		dataType: int64
+		formatString: 0
+		lineageTag: e445877e-2c20-4b99-aeda-e4d49ff124a6
+		summarizeBy: sum
+		sourceColumn: ResourcedProvisionOnRoll
+
+		annotation SummarizationSetBy = Automatic
+
+	column ResourcedProvisionCapacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c0f10ab-d0cf-4ce0-8976-82dc167f897e
+		summarizeBy: sum
+		sourceColumn: ResourcedProvisionCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column SenUnitOnRoll
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ba79b3e-105b-410f-bfc4-f40d5f8fde9c
+		summarizeBy: sum
+		sourceColumn: SenUnitOnRoll
+
+		annotation SummarizationSetBy = Automatic
+
+	column SenUnitCapacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 66d0bfb0-897a-4a0e-8401-6c2aea19b2ad
+		summarizeBy: sum
+		sourceColumn: SenUnitCapacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GOR (name)'
+		dataType: string
+		lineageTag: 34c99375-a0f3-49eb-99e5-13fde2b5a255
+		summarizeBy: none
+		sourceColumn: GOR (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DistrictAdministrative (name)'
+		dataType: string
+		lineageTag: caf78f32-c28c-4782-9d5a-023f41e5c693
+		summarizeBy: none
+		sourceColumn: DistrictAdministrative (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'AdministrativeWard (name)'
+		dataType: string
+		lineageTag: 6ad42826-67ed-4964-bc63-0afbee5841af
+		summarizeBy: none
+		sourceColumn: AdministrativeWard (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ParliamentaryConstituency (name)'
+		dataType: string
+		lineageTag: 719d0970-92d0-4c94-b485-d6e64851314d
+		summarizeBy: none
+		sourceColumn: ParliamentaryConstituency (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'UrbanRural (name)'
+		dataType: string
+		lineageTag: 59bee54f-51c1-4406-81c9-c3fa1bf47faf
+		summarizeBy: none
+		sourceColumn: UrbanRural (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GSSLACode (name)'
+		dataType: string
+		lineageTag: c98fb810-c550-41a3-bbc0-e640a68aa5cd
+		summarizeBy: none
+		sourceColumn: GSSLACode (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: int64
+		formatString: 0
+		lineageTag: 97ebd6f2-582c-420a-b807-4f004d948d28
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+	column Northing
+		dataType: int64
+		formatString: 0
+		lineageTag: f2612e1c-8b37-4168-af06-57991baad984
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: string
+		lineageTag: a723dce4-fee2-48e3-bd80-2c6a13cdfa23
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: string
+		lineageTag: 8dff9496-f3a4-4005-a623-466f4bab0f16
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MSOA (name)'
+		dataType: string
+		lineageTag: d6842c06-8f8e-43b7-8765-a3a95387e60d
+		summarizeBy: none
+		sourceColumn: MSOA (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LSOA (name)'
+		dataType: string
+		lineageTag: 2930fdfd-a5a9-4c12-9457-3f2ab8d8d6fe
+		summarizeBy: none
+		sourceColumn: LSOA (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'InspectorateName (name)'
+		dataType: string
+		lineageTag: 205e997e-dbf0-453f-8404-80f031591c6e
+		summarizeBy: none
+		sourceColumn: InspectorateName (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column SENStat
+		dataType: int64
+		formatString: 0
+		lineageTag: d7ffd81f-b1e6-48d6-914c-3d823012b84f
+		summarizeBy: sum
+		sourceColumn: SENStat
+
+		annotation SummarizationSetBy = Automatic
+
+	column SENNoStat
+		dataType: int64
+		formatString: 0
+		lineageTag: beb5c658-1e49-4cc2-b18a-2c563e2db132
+		summarizeBy: sum
+		sourceColumn: SENNoStat
+
+		annotation SummarizationSetBy = Automatic
+
+	column PropsName
+		dataType: string
+		lineageTag: 91998848-97b3-4e29-92a3-f790f761b351
+		summarizeBy: none
+		sourceColumn: PropsName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OfstedRating (name)'
+		dataType: string
+		lineageTag: e62cd720-dfbf-45b3-91c6-8df1b9a5b1a1
+		summarizeBy: none
+		sourceColumn: OfstedRating (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country (name)'
+		dataType: string
+		lineageTag: d1d18bb2-cbea-4927-bd3f-a6918d02cac1
+		summarizeBy: none
+		sourceColumn: Country (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPRN
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a9a02e1-6235-4317-86ff-7bc8f2ae70db
+		summarizeBy: sum
+		sourceColumn: UPRN
+
+		annotation SummarizationSetBy = Automatic
+
+	column SiteName
+		dataType: string
+		lineageTag: 96bcc1d5-97d4-41d5-a972-d111d905fe44
+		summarizeBy: none
+		sourceColumn: SiteName
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'QABName (name)'
+		dataType: string
+		lineageTag: 308c751a-df87-40b9-88a0-ec5312b7b0a2
+		summarizeBy: none
+		sourceColumn: QABName (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'EstablishmentAccredited (name)'
+		dataType: string
+		lineageTag: cc3585dc-2fb1-4f4e-9d99-9b91fa4a2e68
+		summarizeBy: none
+		sourceColumn: EstablishmentAccredited (name)
+
+		annotation SummarizationSetBy = Automatic
+
+	column QABReport
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bd6fd50-45e1-47e8-852b-755a7fdebf9e
+		summarizeBy: sum
+		sourceColumn: QABReport
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: dc2f3971-962b-4490-8521-cfdf900e6b81
+		summarizeBy: sum
+		sourceColumn: CHNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MSOA (code)'
+		dataType: string
+		lineageTag: 7fcca9ba-66a4-48e4-9c31-454b28023c5e
+		summarizeBy: none
+		sourceColumn: MSOA (code)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LSOA (code)'
+		dataType: string
+		lineageTag: e3c17d33-e0d2-4c4f-92f5-4cb7d4d9859b
+		summarizeBy: none
+		sourceColumn: LSOA (code)
+
+		annotation SummarizationSetBy = Automatic
+
+	column FSM
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c9c0336-7427-4c0b-82c9-febae57959b6
+		summarizeBy: sum
+		sourceColumn: FSM
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccreditationExpiryDate
+		dataType: int64
+		formatString: 0
+		lineageTag: 15c6ff3c-e447-429f-a056-36914fc88db9
+		summarizeBy: sum
+		sourceColumn: AccreditationExpiryDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Linked establishments'
+		dataType: string
+		lineageTag: 9292fdb7-555a-4427-9e19-ff0273fdcf53
+		summarizeBy: none
+		sourceColumn: Linked establishments
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 2'
+		dataType: string
+		lineageTag: 0d5e581e-ae1f-4e6d-882f-955c6955eeb4
+		summarizeBy: none
+		sourceColumn: Link 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 3'
+		dataType: string
+		lineageTag: ce306cde-0892-4818-83f8-e07990e24e64
+		summarizeBy: none
+		sourceColumn: Link 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 4'
+		dataType: int64
+		formatString: 0
+		lineageTag: 48cc32a0-4fd1-4dfe-b671-033ba3397e7f
+		summarizeBy: sum
+		sourceColumn: Link 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 5'
+		dataType: int64
+		formatString: 0
+		lineageTag: a5560581-9d01-4fc4-a150-b77397d03066
+		summarizeBy: sum
+		sourceColumn: Link 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 6'
+		dataType: int64
+		formatString: 0
+		lineageTag: 57b414f2-72be-4941-896e-a0d3bea975af
+		summarizeBy: sum
+		sourceColumn: Link 6
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 7'
+		dataType: int64
+		formatString: 0
+		lineageTag: b71b0b90-f64a-4903-8225-a2b598f9a0ee
+		summarizeBy: sum
+		sourceColumn: Link 7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 8'
+		dataType: int64
+		formatString: 0
+		lineageTag: 86374140-b11e-4037-9b74-ef2981ecb951
+		summarizeBy: sum
+		sourceColumn: Link 8
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 9'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fb7a99b-963a-470c-a08b-5e4d730ac398
+		summarizeBy: sum
+		sourceColumn: Link 9
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 10'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5814f924-b922-4419-85cb-66255caff774
+		summarizeBy: sum
+		sourceColumn: Link 10
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 11'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d2f0f22-3677-4cd6-a4f9-578e54eaaf35
+		summarizeBy: sum
+		sourceColumn: Link 11
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Link 12'
+		dataType: int64
+		formatString: 0
+		lineageTag: 35511568-937c-470d-8f37-03eea2cbbefc
+		summarizeBy: sum
+		sourceColumn: Link 12
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 1'
+		dataType: string
+		lineageTag: be741554-4b39-4548-a546-7e97c3d2dfca
+		summarizeBy: none
+		sourceColumn: Predecessor Link 1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 2'
+		dataType: string
+		lineageTag: 9daf287e-706a-43ff-adaf-fe2a4e38c96d
+		summarizeBy: none
+		sourceColumn: Predecessor Link 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 3'
+		dataType: string
+		lineageTag: f44993ae-919f-48af-a29e-1f5476428251
+		summarizeBy: none
+		sourceColumn: Predecessor Link 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 4'
+		dataType: string
+		lineageTag: 571b8522-b10a-41de-993f-a74480727147
+		summarizeBy: none
+		sourceColumn: Predecessor Link 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 5'
+		dataType: string
+		lineageTag: ebe71857-20a6-4731-8fa7-89ad7f45767a
+		summarizeBy: none
+		sourceColumn: Predecessor Link 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 6'
+		dataType: string
+		lineageTag: 4e9f442b-9a27-4d23-b204-d450a2722cba
+		summarizeBy: none
+		sourceColumn: Predecessor Link 6
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 7'
+		dataType: string
+		lineageTag: f6a8e554-6aef-4946-924a-136062a20e77
+		summarizeBy: none
+		sourceColumn: Predecessor Link 7
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 8'
+		dataType: string
+		lineageTag: 7cbf3ba8-c27b-43e5-bad3-c874b4326b2e
+		summarizeBy: none
+		sourceColumn: Predecessor Link 8
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 9'
+		dataType: string
+		lineageTag: fc7656dd-9dc9-489e-8c16-39c312bcadb6
+		summarizeBy: none
+		sourceColumn: Predecessor Link 9
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 10'
+		dataType: string
+		lineageTag: 5ab2357d-4911-4aca-92ca-d7efd3ea1a0d
+		summarizeBy: none
+		sourceColumn: Predecessor Link 10
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 11'
+		dataType: string
+		lineageTag: bdb738d5-b10c-47c7-84d0-81404245c4f0
+		summarizeBy: none
+		sourceColumn: Predecessor Link 11
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Predecessor Link 12'
+		dataType: string
+		lineageTag: 97a21d08-70fa-49b5-ac64-1821be6b9e53
+		summarizeBy: none
+		sourceColumn: Predecessor Link 12
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Count of Precessor Links'
+		dataType: int64
+		formatString: 0
+		lineageTag: 737e5755-c746-4fe3-8cd4-efc760b28352
+		summarizeBy: sum
+		sourceColumn: Count of Precessor Links
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Heads Name'
+		dataType: string
+		lineageTag: 2e38a2c0-b7f9-4acb-b3b5-4c1528d2546a
+		summarizeBy: none
+		sourceColumn: Heads Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GIAS = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "1 - GIAS Cleanse.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File", each #"Transform File"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File", Table.ColumnNames(#"Transform File"(#"Sample File"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Current URN", Int64.Type}, {"Change to URN", type any}, {"URN", Int64.Type}, {"DfE Number", Int64.Type}, {"LA (code)", Int64.Type}, {"LA Prioritisation", Int64.Type}, {"LA (name)", type text}, {"EstablishmentNumber", Int64.Type}, {"EstablishmentName", type text}, {"Rationalised Establishment Type", type text}, {"TypeOfEstablishment (name)", type text}, {"EstablishmentTypeGroup (name)", type text}, {"Status Number", Int64.Type}, {"EstablishmentStatus (name)", type text}, {"ReasonEstablishmentOpened (name)", type any}, {"OpenDate", Int64.Type}, {"ReasonEstablishmentClosed (name)", type any}, {"CloseDate", type any}, {"PhaseOfEducation (name)", type text}, {"StatutoryLowAge", Int64.Type}, {"StatutoryHighAge", Int64.Type}, {"Boarders (name)", type any}, {"NurseryProvision (name)", type text}, {"OfficialSixthForm (name)", type text}, {"Gender (name)", type any}, {"ReligiousCharacter (name)", type any}, {"ReligiousEthos (name)", type any}, {"Diocese (name)", type any}, {"AdmissionsPolicy (name)", type any}, {"SchoolCapacity", Int64.Type}, {"SpecialClasses (name)", type text}, {"CensusDate", type any}, {"NumberOfPupils", Int64.Type}, {"NumberOfBoys", Int64.Type}, {"NumberOfGirls", Int64.Type}, {"PercentageFSM", type number}, {"TrustSchoolFlag (name)", type text}, {"Trusts (name)", type any}, {"SchoolSponsorFlag (name)", type text}, {"SchoolSponsors (name)", type any}, {"FederationFlag (name)", type text}, {"Federations (name)", type any}, {"UKPRN", Int64.Type}, {"FEHEIdentifier", Int64.Type}, {"FurtherEducationType (name)", type any}, {"OfstedLastInsp", type any}, {"LastChangedDate", Int64.Type}, {"Street", type text}, {"Locality", type any}, {"Address3", type any}, {"Town", type any}, {"County (name)", type any}, {"Postcode", type text}, {"SchoolWebsite", type any}, {"TelephoneNum", type any}, {"HeadTitle (name)", type any}, {"HeadFirstName", type any}, {"HeadLastName", type any}, {"HeadPreferredJobTitle", type any}, {"BSOInspectorateName (name)", type text}, {"InspectorateReport", Int64.Type}, {"DateOfLastInspectionVisit", Int64.Type}, {"NextInspectionVisit", Int64.Type}, {"TeenMoth (name)", type text}, {"TeenMothPlaces", Int64.Type}, {"CCF (name)", type any}, {"SENPRU (name)", type text}, {"EBD (name)", type text}, {"PlacesPRU", Int64.Type}, {"FTProv (name)", type any}, {"EdByOther (name)", type any}, {"Section41Approved (name)", type text}, {"SEN1 (name)", type any}, {"SEN2 (name)", type any}, {"SEN3 (name)", type any}, {"SEN4 (name)", type any}, {"SEN5 (name)", type any}, {"SEN6 (name)", type any}, {"SEN7 (name)", type any}, {"SEN8 (name)", Int64.Type}, {"SEN9 (name)", Int64.Type}, {"SEN10 (name)", Int64.Type}, {"SEN11 (name)", Int64.Type}, {"SEN12 (name)", Int64.Type}, {"SEN13 (name)", Int64.Type}, {"TypeOfResourcedProvision (name)", type any}, {"ResourcedProvisionOnRoll", Int64.Type}, {"ResourcedProvisionCapacity", Int64.Type}, {"SenUnitOnRoll", Int64.Type}, {"SenUnitCapacity", Int64.Type}, {"GOR (name)", type text}, {"DistrictAdministrative (name)", type text}, {"AdministrativeWard (name)", type text}, {"ParliamentaryConstituency (name)", type text}, {"UrbanRural (name)", type text}, {"GSSLACode (name)", type text}, {"Easting", Int64.Type}, {"Northing", Int64.Type}, {"Longitude", type any}, {"Latitude", type any}, {"MSOA (name)", type text}, {"LSOA (name)", type text}, {"InspectorateName (name)", type any}, {"SENStat", Int64.Type}, {"SENNoStat", Int64.Type}, {"PropsName", type any}, {"OfstedRating (name)", type any}, {"Country (name)", type any}, {"UPRN", Int64.Type}, {"SiteName", type any}, {"QABName (name)", type text}, {"EstablishmentAccredited (name)", type text}, {"QABReport", Int64.Type}, {"CHNumber", Int64.Type}, {"MSOA (code)", type text}, {"LSOA (code)", type text}, {"FSM", Int64.Type}, {"AccreditationExpiryDate", Int64.Type}, {"Linked establishments", type text}, {"Link 2", type any}, {"Link 3", type any}, {"Link 4", Int64.Type}, {"Link 5", Int64.Type}, {"Link 6", Int64.Type}, {"Link 7", Int64.Type}, {"Link 8", Int64.Type}, {"Link 9", Int64.Type}, {"Link 10", Int64.Type}, {"Link 11", Int64.Type}, {"Link 12", Int64.Type}, {"Predecessor Link 1", type any}, {"Predecessor Link 2", type any}, {"Predecessor Link 3", type any}, {"Predecessor Link 4", type any}, {"Predecessor Link 5", type any}, {"Predecessor Link 6", type any}, {"Predecessor Link 7", type any}, {"Predecessor Link 8", type any}, {"Predecessor Link 9", type any}, {"Predecessor Link 10", type any}, {"Predecessor Link 11", type any}, {"Predecessor Link 12", type any}, {"Count of Precessor Links", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Heads Name", each [HeadFirstName]&" "&[HeadLastName]),
+				    #"Filtered Rows1" = Table.SelectRows(#"Added Custom", each ([LA Prioritisation] <> 189)),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Filtered Rows1",{{"OfstedLastInsp", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

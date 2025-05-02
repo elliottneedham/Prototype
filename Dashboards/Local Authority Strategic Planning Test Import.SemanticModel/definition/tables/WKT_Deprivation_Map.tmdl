@@ -1,0 +1,119 @@
+table WKT_Deprivation_Map
+	lineageTag: cc5739a7-30e4-42c8-8db3-a694a4120a36
+
+	column WKT
+		dataType: string
+		lineageTag: 76f5bd10-f3c9-40df-aa28-3a07ee2748e4
+		summarizeBy: none
+		sourceColumn: WKT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 85d2da0e-42bd-4710-834a-d32b79162079
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 280b9c4b-b19a-45ed-b703-304f9d4d5825
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: string
+		lineageTag: 5794094f-966a-4dd3-b0a4-5ac8c3abc391
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column begin
+		dataType: string
+		lineageTag: 23877df0-c86f-4b61-b2ad-e8759e76089f
+		summarizeBy: none
+		sourceColumn: begin
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: string
+		lineageTag: 707cfb79-a9b9-4c34-a675-2a468b8fe775
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+	column altitudeMode
+		dataType: string
+		lineageTag: e5dc4f65-0359-4107-b973-f665283122c7
+		summarizeBy: none
+		sourceColumn: altitudeMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column tessellate
+		dataType: int64
+		formatString: 0
+		lineageTag: 9450d17f-f604-493c-bd48-509e781be4eb
+		summarizeBy: none
+		sourceColumn: tessellate
+
+		annotation SummarizationSetBy = Automatic
+
+	column extrude
+		dataType: int64
+		formatString: 0
+		lineageTag: f2ba8bb0-5850-4dd8-b3c1-75a4ea3751bf
+		summarizeBy: none
+		sourceColumn: extrude
+
+		annotation SummarizationSetBy = Automatic
+
+	column visibility
+		dataType: int64
+		formatString: 0
+		lineageTag: 6114242e-3f53-4e6d-93b9-863f652df91e
+		summarizeBy: none
+		sourceColumn: visibility
+
+		annotation SummarizationSetBy = Automatic
+
+	column drawOrder
+		dataType: string
+		lineageTag: e2a65efe-56c6-4f39-bcb8-0b2b322f33df
+		summarizeBy: none
+		sourceColumn: drawOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column icon
+		dataType: string
+		lineageTag: 6fc47b48-a46b-4647-8c5d-9c1e4e872882
+		summarizeBy: none
+		sourceColumn: icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 24021236-967f-4655-a8a4-2d286187a9cd
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WKT_Deprivation_Map = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_WKT_Deprivation_Map = Source{[Schema="dbo",Item="WKT_Deprivation_Map"]}[Data]
+				in
+				    dbo_WKT_Deprivation_Map
+

@@ -1,0 +1,7 @@
+role Untitled
+	modelPermission: read
+
+	tablePermission '7 - GIAS sorted'
+
+	annotation PBI_Id = 80f97af996394bb7b3493043d5d95861
+

@@ -1,0 +1,184 @@
+table '1 - SEN Caseload'
+	lineageTag: 50815673-b3ae-4f08-9fd9-ca9abd38f531
+
+	column 'Benchmark Comparison Ratios.xlsx'
+		dataType: string
+		lineageTag: 2f25e01a-6f59-4e2e-a395-2d290f450d31
+		summarizeBy: none
+		sourceColumn: Benchmark Comparison Ratios.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Order'
+		dataType: string
+		lineageTag: 70be0ba2-fb1b-4899-b05b-4e50e2a8c5cc
+		summarizeBy: none
+		sourceColumn: Original Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cc1364e-5eeb-4b8b-ace5-ea5c2f54094b
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_name
+		dataType: string
+		lineageTag: 48af68c2-4e4f-4dfc-88fe-833084949789
+		summarizeBy: none
+		sourceColumn: region_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: ac7ee6cc-5321-4d4c-83e9-f03f6ab9e4d1
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 8c134165-01d7-406a-b18c-d556c432a137
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column establishment_group
+		dataType: string
+		lineageTag: 626ddef7-b022-4a97-939d-8417c36df60d
+		summarizeBy: none
+		sourceColumn: establishment_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column establishment_type
+		dataType: string
+		lineageTag: a35c8772-c302-4562-ad8a-6d28e76d231c
+		summarizeBy: none
+		sourceColumn: establishment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DSG Management Plan Type'
+		dataType: string
+		lineageTag: f016e331-1907-4a80-9dba-54fb78008f7d
+		summarizeBy: none
+		sourceColumn: DSG Management Plan Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resourced Provision/SEN Unit'
+		dataType: string
+		lineageTag: 8ab072f7-7287-4ee0-8bdf-09dbaea8f45c
+		summarizeBy: none
+		sourceColumn: Resourced Provision/SEN Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Benchmark Comparison'
+		dataType: string
+		lineageTag: 5edb028e-e179-4f09-bc4b-e510d620d68a
+		summarizeBy: none
+		sourceColumn: Benchmark Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Number of People'
+		dataType: int64
+		formatString: 0
+		lineageTag: 74db1fbe-42c8-4771-b101-f2d4f6128c3c
+		summarizeBy: sum
+		sourceColumn: Number of People
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'time_period - Copy'
+		dataType: int64
+		formatString: 0
+		lineageTag: d2cf6df8-6f06-4d60-807d-09dd7fecafce
+		summarizeBy: sum
+		sourceColumn: time_period - Copy
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'time_period - Copy.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f8c0225-8fbb-47ca-bc22-d9834280d714
+		summarizeBy: sum
+		sourceColumn: time_period - Copy.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'time_period - Copy.2'
+		dataType: int64
+		formatString: 0
+		lineageTag: e3c3c34a-090a-4e6d-a5af-de3ebe549cc1
+		summarizeBy: sum
+		sourceColumn: time_period - Copy.2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 27f4ee72-c90a-4475-9f27-b0a2164e0a32
+		summarizeBy: none
+		sourceColumn: Custom
+
+		variation Variation
+			isDefault
+			relationship: 74dbfca5-6714-4874-bd07-c046a21f423b
+			defaultHierarchy: LocalDateTable_97b5815a-f896-4e55-9ff7-07718c80f3ad.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '1 - SEN Caseload' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Benchmark Comparison Ratios.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (19)", each #"Transform File (19)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (19)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (19)", Table.ColumnNames(#"Transform File (19)"(#"Sample File (19)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Data From DfE", type any}, {"Column2", type any}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type any}, {"", type any}, {"_1", type any}, {"_2", type any}, {"_3", type any}, {"_4", type any}, {"_5", type any}, {"_6", type any}, {"_7", type any}, {" -  -  - ", type text}, {"_8", type any}, {"_9", type any}, {"_10", type text}, {"_11", type any}, {"_12", type any}, {"_13", type text}, {"_14", type any}, {"_15", type any}, {"_16", type text}, {"_17", type any}, {"_18", type any}, {"_19", type text}, {"_20", type any}, {"_21", type any}, {"_22", type text}, {"_23", type any}, {"_24", type any}, {"_25", type text}, {"_26", type any}, {"_27", type any}, {"_28", type text}, {"_29", type any}, {"_30", type any}, {"_31", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"time_period", Int64.Type}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"time_identifier", "geographic_level", "country_code", "country_name", "region_code", "new_la_code", "ehcp_or_statement", "pc_caseload", "Lookup Value", "Comparator 2022 School Aged Population", "Adjustment to Comparator Value", """Text Joined"" LA IDs", "Comparator 2022 School Aged Population_1", "Adjustment to Comparator Value_2", """Text Joined"" LA IDs_3", "Comparator 2022 School Aged Population_4", "Adjustment to Comparator Value_5", """Text Joined"" LA IDs_6", "Comparator 2022 School Aged Population_7", "Adjustment to Comparator Value_8", """Text Joined"" LA IDs_9", "Comparator 2022 School Aged Population_10", "Adjustment to Comparator Value_11", """Text Joined"" LA IDs_12", "Comparator 2022 School Aged Population_13", "Adjustment to Comparator Value_14", """Text Joined"" LA IDs_15", "Comparator 2022 School Aged Population_16", "Adjustment to Comparator Value_17", """Text Joined"" LA IDs_18", "Comparator 2022 School Aged Population_19", "Adjustment to Comparator Value_20", """Text Joined"" LA IDs_21"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Local Authority", "1 - Local Authority"}, {"1 - Statistical Neighbours", "2 - Statistical Neighbours"}, {"2 - Regional", "3 - Regional"}, {"3 - Same Level of Deprivation", "4 - Same Level of Deprivation"}, {"4 - Completed Ofsted LA Review With No WSOA", "5 - Completed Ofsted LA Review With No WSOA"}, {"5 - Had No 2020/21 DSG Deficit", "6 - Had No 2020/21 DSG Deficit"}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Renamed Columns", {"Benchmark Comparison Ratios.xlsx", "Original Order", "time_period", "region_name", "old_la_code", "la_name", "establishment_group", "establishment_type", "DSG Management Plan Type", "Resourced Provision/SEN Unit"}, "Attribute", "Value"),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Unpivoted Columns",{{"Value", "Number of People"}, {"Attribute", "Benchmark Comparison"}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns2","Commissioning Strategy ","CS",Replacer.ReplaceText,{"Benchmark Comparison"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value","A - CS1 - Statistical Neighbours with No WSOA and No 202021 DSG Deficit","A - CS1 – Exemplar Stat Neighbour LAs",Replacer.ReplaceText,{"Benchmark Comparison"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1","B - CS2 - Regional LAs with No WSOA and No 202021 DSG Deficit","B - CS2 – Exemplar Regional LAs",Replacer.ReplaceText,{"Benchmark Comparison"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","C - CS3 - LAs with the Same Level of Deprivation No WSOA and No 202021 DSG Deficit","C - CS3 – Exemplar LAs with Same Deprivation Level",Replacer.ReplaceText,{"Benchmark Comparison"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3","1 - Local Authority","1 – Selected Local Authority",Replacer.ReplaceText,{"Benchmark Comparison"}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Replaced Value4", "time_period", "time_period - Copy"),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Duplicated Column",{"time_period - Copy"}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Removed Columns1", "time_period", "time_period - Copy"),
+				    #"Duplicated Column2" = Table.DuplicateColumn(#"Duplicated Column1", "time_period", "time_period - Copy.1"),
+				    #"Duplicated Column3" = Table.DuplicateColumn(#"Duplicated Column2", "time_period", "time_period - Copy.2"),
+				    #"Added Custom" = Table.AddColumn(#"Duplicated Column3", "Custom", each Date.FromText(Text.From([time_period]) & "-01-01")),
+				    #"Filtered Rows1" = Table.SelectRows(#"Added Custom", each true),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Filtered Rows1",{{"Custom", type datetime}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Changed Type2", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

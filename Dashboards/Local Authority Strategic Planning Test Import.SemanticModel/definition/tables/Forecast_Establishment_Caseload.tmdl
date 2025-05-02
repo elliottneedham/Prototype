@@ -1,0 +1,87 @@
+table Forecast_Establishment_Caseload
+	lineageTag: f046b968-f614-45f6-8dfd-bd158fcfda3d
+
+	column establishment_group
+		dataType: string
+		lineageTag: b0f50e8a-7cb7-4336-9486-5ac90260463d
+		summarizeBy: none
+		sourceColumn: establishment_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column establishment_type
+		dataType: string
+		lineageTag: 66a1ea70-9141-4e7c-b330-6fdb887c4b6f
+		summarizeBy: none
+		sourceColumn: establishment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ehcp_or_statement
+		dataType: string
+		lineageTag: 050e2f3a-e407-4317-8160-fd361e368bf5
+		summarizeBy: none
+		sourceColumn: ehcp_or_statement
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSG_Management_Plan_Type
+		dataType: string
+		lineageTag: af128508-b10e-49ee-9f58-d8198797481c
+		summarizeBy: none
+		sourceColumn: DSG_Management_Plan_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: a3af997b-10bd-4d26-941d-740c7a0f948f
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: a712b5d5-b79c-4f14-b11c-6a73c0d0324d
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: cd909402-f5ff-463b-bc5f-bd54c2b3fac5
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: double
+		lineageTag: 94fdb8c4-9dde-444f-a441-937a6f6d5f41
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 09274491-8b41-4ac2-a414-76cd68f185fe
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Forecast_Establishment_Caseload = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Forecast_Establishment_Caseload = Source{[Schema="dbo",Item="Forecast_Establishment_Caseload"]}[Data]
+				in
+				    dbo_Forecast_Establishment_Caseload
+

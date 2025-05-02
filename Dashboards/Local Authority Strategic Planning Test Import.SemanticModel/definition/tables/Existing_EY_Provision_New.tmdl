@@ -1,0 +1,183 @@
+table Existing_EY_Provision_New
+	lineageTag: 45891778-f8e3-498d-a044-3db01a950319
+
+	column Date
+		dataType: int64
+		formatString: 0
+		lineageTag: 009123bd-7a93-4e2a-a989-c13f90773556
+		summarizeBy: sum
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_URN
+		dataType: string
+		lineageTag: b63c3f7d-58c5-4db0-a329-bc7db0e47591
+		summarizeBy: none
+		sourceColumn: Provider_URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Registration_Date
+		dataType: string
+		lineageTag: 91e266bc-5504-4b0f-b45f-fb1e54e86935
+		summarizeBy: none
+		sourceColumn: Registration_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Type
+		dataType: string
+		lineageTag: 6aa52397-bddd-4d99-bedc-98fceed2248a
+		summarizeBy: none
+		sourceColumn: Provider_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Subtype
+		dataType: string
+		lineageTag: 79f132a9-ffbf-4946-8d7b-565abbc8a270
+		summarizeBy: none
+		sourceColumn: Provider_Subtype
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Status
+		dataType: string
+		lineageTag: 42c51d97-3bed-43de-acf8-d8d35cfeabf9
+		summarizeBy: none
+		sourceColumn: Provider_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Voluntary_Childcare_Register_Flag
+		dataType: string
+		lineageTag: 47a3e371-c26c-492f-bc70-e5485a73bbef
+		summarizeBy: none
+		sourceColumn: Provider_Voluntary_Childcare_Register_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Compulsory_Childcare_Register_Flag
+		dataType: string
+		lineageTag: c0fa9397-b270-4480-8f6c-e9b36f10f8bc
+		summarizeBy: none
+		sourceColumn: Provider_Compulsory_Childcare_Register_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Early_Years_Register_Flag
+		dataType: string
+		lineageTag: 090424d6-a6a0-4f5b-b983-6b2936eee5d5
+		summarizeBy: none
+		sourceColumn: Provider_Early_Years_Register_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_School_Register_Flag
+		dataType: string
+		lineageTag: 5b7d9fdd-d515-4d6b-bfb3-595553302601
+		summarizeBy: none
+		sourceColumn: Provider_School_Register_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Nursery_Register_Flag
+		dataType: string
+		lineageTag: 71b5b0b6-8d30-4ffc-896c-5bfb6f180998
+		summarizeBy: none
+		sourceColumn: Provider_Nursery_Register_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Name
+		dataType: string
+		lineageTag: 6a120612-0c5b-464f-ac2c-b653e9b57b08
+		summarizeBy: none
+		sourceColumn: Provider_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: bd5753db-eca9-4ea8-9a0a-26a1bdaf6e8d
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Town
+		dataType: string
+		lineageTag: 96fe2ee8-0869-43a4-ae3b-404c624c6029
+		summarizeBy: none
+		sourceColumn: Provider_Town
+
+		annotation SummarizationSetBy = Automatic
+
+	column Provider_Postcode
+		dataType: string
+		lineageTag: bbaf5d69-9912-41db-a0ad-b1c48e0b7ae7
+		summarizeBy: none
+		sourceColumn: Provider_Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parliamentary_Constituency
+		dataType: string
+		lineageTag: 775604a4-0102-4a6f-800d-1df868618af4
+		summarizeBy: none
+		sourceColumn: Parliamentary_Constituency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Local_Authority
+		dataType: string
+		lineageTag: b1527fe7-9e80-4c78-b001-1ed22ec4796d
+		summarizeBy: none
+		sourceColumn: Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: cee937ec-2104-4f17-a51c-37d20a592186
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Places
+		dataType: int64
+		formatString: 0
+		lineageTag: 401d0ab2-e89a-43bb-8450-db407047bbe6
+		summarizeBy: sum
+		sourceColumn: Places
+
+		annotation SummarizationSetBy = Automatic
+
+	column Most_Recent_Full:_Overall_Effectiveness
+		dataType: int64
+		formatString: 0
+		lineageTag: f5ff94bb-5bb0-4efe-8e50-e1da1bd60525
+		summarizeBy: sum
+		sourceColumn: Most_Recent_Full:_Overall_Effectiveness
+
+		annotation SummarizationSetBy = Automatic
+
+	column lsoa21cd
+		dataType: string
+		lineageTag: 33c4ae17-9e38-49f7-b74c-72ad11c928a1
+		summarizeBy: none
+		sourceColumn: lsoa21cd
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Existing_EY_Provision_New = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Existing_EY_Provision_New = Source{[Schema="dbo",Item="Existing_EY_Provision_New"]}[Data]
+				in
+				    dbo_Existing_EY_Provision_New
+

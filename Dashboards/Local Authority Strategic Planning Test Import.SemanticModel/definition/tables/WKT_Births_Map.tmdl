@@ -1,0 +1,144 @@
+table WKT_Births_Map
+	lineageTag: 1bfd9363-db94-428b-bfc8-ff1c85b59aaa
+
+	column WKT
+		dataType: string
+		lineageTag: e84ddfea-1f3f-42e9-88e1-dd8d216a10d1
+		summarizeBy: none
+		sourceColumn: WKT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: c115ac05-4778-4cba-bdb4-1a82c86f2ee3
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: a1a3bca5-5c57-4dba-9c87-4a0fd81ec24d
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: string
+		lineageTag: 0e67ed53-c977-4148-a60b-3d14336fc70b
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column begin
+		dataType: string
+		lineageTag: 60186605-bb19-4dd4-b553-8c61382d5c60
+		summarizeBy: none
+		sourceColumn: begin
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: string
+		lineageTag: ad5b1749-2a23-4b08-98da-df970923bf3b
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+	column altitudeMode
+		dataType: string
+		lineageTag: c07df949-0280-4b2c-937c-0dca39cf7a76
+		summarizeBy: none
+		sourceColumn: altitudeMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column tessellate
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e2a9b28-9d3c-4d0f-941c-c79b8dd88d89
+		summarizeBy: sum
+		sourceColumn: tessellate
+
+		annotation SummarizationSetBy = Automatic
+
+	column extrude
+		dataType: int64
+		formatString: 0
+		lineageTag: 9799e8e7-b8bd-4271-90d0-0d0336f80354
+		summarizeBy: sum
+		sourceColumn: extrude
+
+		annotation SummarizationSetBy = Automatic
+
+	column visibility
+		dataType: int64
+		formatString: 0
+		lineageTag: 09f9e481-3451-4f41-ad5e-6cfb255f4c4b
+		summarizeBy: sum
+		sourceColumn: visibility
+
+		annotation SummarizationSetBy = Automatic
+
+	column drawOrder
+		dataType: string
+		lineageTag: 25c2ea3e-581d-4e34-b012-dd4e7aa0f987
+		summarizeBy: none
+		sourceColumn: drawOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column icon
+		dataType: string
+		lineageTag: dd361650-88c2-42f7-a585-144cbdc8d639
+		summarizeBy: none
+		sourceColumn: icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mapping_Element
+		dataType: string
+		lineageTag: 0d393ee6-f4bc-4191-b0db-fb960540fe6d
+		summarizeBy: none
+		sourceColumn: Mapping_Element
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: d7407dd8-5112-48de-9d11-a83ac6720f5d
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Colour
+		dataType: string
+		lineageTag: 18dd1999-8add-47f4-820f-8b2801a207e8
+		summarizeBy: none
+		sourceColumn: Colour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: int64
+		formatString: 0
+		lineageTag: 40e58e6d-e2c3-490f-be96-bf562d2872ce
+		summarizeBy: sum
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WKT_Births_Map = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_WKT_Births_Map = Source{[Schema="dbo",Item="WKT_Births_Map"]}[Data]
+				in
+				    dbo_WKT_Births_Map
+

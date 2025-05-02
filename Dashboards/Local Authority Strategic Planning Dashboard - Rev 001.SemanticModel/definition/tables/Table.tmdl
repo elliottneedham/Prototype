@@ -1,0 +1,37 @@
+table Table
+	lineageTag: 9ceefd16-133c-4bbe-8137-6200539d94bd
+
+	column 'School Year '
+		dataType: int64
+		formatString: 0
+		lineageTag: dbe4634b-87bf-4d65-b13d-684e3834b684
+		summarizeBy: sum
+		sourceColumn: "School Year "
+		sortByColumn: 'Year Index '
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Index '
+		dataType: int64
+		formatString: 0
+		lineageTag: 0359f6a6-f1ed-4612-8d0f-160677f7063a
+		summarizeBy: sum
+		sourceColumn: "Year Index "
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("NdC7DQQxDAPRXhxvYJLyr5bF9t/GScYxnOxh3rexE2R7Gtr33CSVSacYmXIGR2Y4B2fmcE6uzOlc3JnLuXkyt/OoZ55/qgvF6G7osuwSVS4YJqlgsEyhksE0DRUNtmmqbDBOS4WDddoqHczTieLBvuhRPtoXiPLRvmDcb+n7fg==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"School Year " = _t, #"Year Index " = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"School Year ", Int64.Type}, {"Year Index ", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

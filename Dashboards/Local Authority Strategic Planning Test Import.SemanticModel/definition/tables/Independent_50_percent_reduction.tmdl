@@ -1,0 +1,489 @@
+table Independent_50_percent_reduction
+	lineageTag: 27878d00-848f-427f-955e-621ba2bd6458
+
+	measure Average_Cost_DSG_50% = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        AVERAGE(Independent_50_percent_reduction[average_cost_per_pupil])
+			    )
+			```
+		lineageTag: 0c162c96-8c7f-4ee9-8d20-e3ebbafdc4f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_Cumulative_50% = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS3"
+			
+			VAR Y202425CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y202425CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y202425CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR Y203031CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Cumulative_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203031CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Cumulative_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y203031CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Cumulative_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"  
+			    )
+			
+			
+			VAR TCMECS1 = (Y202425CS1 + Y203031CS1 = 1) && TYCS1 = 0
+			VAR TCMECS2 = (Y202425CS2 + Y203031CS2 < 1) && TYCS2 = 0
+			VAR TCMECS3 = (Y202425CS3 + Y203031CS3 < 1) && TYCS3 = 0
+			
+			RETURN
+			    IF(
+			        FCS1 && TCMECS1 || FCS2 && TCMECS2 || FCS3 && TCMECS3,
+			        BLANK(),
+			        SUM(Independent_50_percent_reduction[Cumulative_Yearly_Change])
+			    )
+			```
+		lineageTag: 4dbd1a83-19fc-4b66-9fab-d690d520a51e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_DSG_50% = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils])
+			    )
+			```
+		lineageTag: 1cca167d-95d1-40a1-acb9-6738e051e5c3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_Yearly_Change_50% = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS3"
+			
+			VAR Y202425CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y202425CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y202425CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        Independent_50_percent_reduction[Year] = 202425,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR Y203031CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Pupil_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203031CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Pupil_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y203031CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[Pupil_Yearly_Change]),
+			        Independent_50_percent_reduction[Year] = 203031,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[aggregated_DSG_pupils]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"  
+			    )
+			
+			
+			VAR TCMECS1 = (Y202425CS1 + (7 *Y203031CS1) <= 1) && TYCS1 = 0
+			VAR TCMECS2 = (Y202425CS2 + (7 *Y203031CS2) <= 1) && TYCS2 = 0
+			VAR TCMECS3 = (Y202425CS3 + (7 *Y203031CS3) <= 1) && TYCS3 = 0
+			
+			RETURN
+			    IF(
+			        FCS1 && TCMECS1 || FCS2 && TCMECS2 || FCS3 && TCMECS3,
+			        BLANK(),
+			        SUM(Independent_50_percent_reduction[Pupil_Yearly_Change])
+			    )
+			```
+		lineageTag: 72d11ade-417b-483e-b1d1-e553e70e3bf1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_DSG_Spend_50% = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Independent_50_percent_reduction[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        ALL(Independent_50_percent_reduction[Year]),
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Independent_50_percent_reduction[total_value]),
+			        Independent_50_percent_reduction[Year] = 203132,
+			        Independent_50_percent_reduction[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Independent_50_percent_reduction[total_value])
+			    )
+			```
+		lineageTag: 1254904d-5291-4d8e-86aa-aa4ff8e5dd71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sheet
+		dataType: string
+		lineageTag: 8d8baa56-2a6b-490e-923b-8fab688d9510
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: b863c6da-ef51-457f-b055-97b93fb50f93
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 0649e2af-da84-4e1a-b376-74216ba8bf62
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 17533ad4-cc71-45d6-a1d9-c2c2774f4b7c
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 3984d3ef-4774-42f6-8a36-b1da31f7539d
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column aggregated_DSG_pupils
+		dataType: double
+		lineageTag: 08666f95-70a8-44b0-9375-35261bed9960
+		summarizeBy: sum
+		sourceColumn: aggregated_DSG_pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_cost_per_pupil
+		dataType: double
+		lineageTag: 91f1e250-a5c3-45ab-ba8c-3985af97d376
+		summarizeBy: sum
+		sourceColumn: average_cost_per_pupil
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pupil_Yearly_Change
+		dataType: double
+		lineageTag: 3173b515-0224-4c57-b751-34322c0b72e1
+		summarizeBy: sum
+		sourceColumn: Pupil_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Yearly_Change
+		dataType: double
+		lineageTag: 349f9532-23e2-496a-9836-2131beaf77b8
+		summarizeBy: sum
+		sourceColumn: Cumulative_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_value
+		dataType: double
+		lineageTag: b524821f-428f-4912-bae0-330d3d7725b0
+		summarizeBy: sum
+		sourceColumn: total_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Independent_50_percent_reduction = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Independent_50_percent_reduction = Source{[Schema="dbo",Item="Independent_50_percent_reduction"]}[Data]
+				in
+				    dbo_Independent_50_percent_reduction
+

@@ -1,0 +1,87 @@
+table 'Deanery Projections'
+	lineageTag: 58c1f635-8503-4d7a-8656-275cbb1cfcb2
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: af5535af-cd18-4a40-b497-b1d7b5668123
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diocese
+		dataType: string
+		lineageTag: e0147eb2-40cb-46e8-9473-0463b9bf64ca
+		summarizeBy: none
+		sourceColumn: Diocese
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: 94ac71a5-e677-4fa7-9d6b-d9d6ef0015b1
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Measure
+		dataType: string
+		lineageTag: 37e65b04-ac74-4cdf-885d-a0d671dd295d
+		summarizeBy: none
+		sourceColumn: Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 3d9a3988-8409-4923-bede-f98786406ddb
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: b19d703f-24bd-4f9a-b89d-a52fc1c8f49c
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 82ae2497-9935-4fff-b64f-2b6e6ae81a4b
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Deanery Projections' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Deanery Level Population Projections - Rev 002 @ 05 08 24.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (13)", each #"Transform File (13)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (13)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (13)", Table.ColumnNames(#"Transform File (13)"(#"Sample File (13)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Diocese", type text}, {"Deanery", type text}, {"Measure", type text}, {"2019/20", type number}, {"2020/21", type number}, {"2021/22", type number}, {"2022/23", type number}, {"2023/24", type number}, {"2024/25", type number}, {"2025/26", type number}, {"2026/27", type number}, {"2027/28", type number}, {"2028/29", type number}, {"2029/30", type number}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Source.Name", "Diocese", "Deanery", "Measure"}, "Attribute", "Value"),
+				    #"Renamed Columns" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Year"}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Renamed Columns", "Index", 1, 1, Int64.Type),
+				    #"Replaced Value" = Table.ReplaceValue(#"Added Index","/","",Replacer.ReplaceText,{"Year"}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Replaced Value", each not Text.Contains([Measure], "%")),
+				    #"Filtered Rows2" = Table.SelectRows(#"Filtered Rows1", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,59 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Birth_Data_New","Benchmark_Comparison_List","Capital_Costs_2","Comparison_List","Cost_Avoidance_New","Deprivation_Data","DSG_Finance","EHCP_SEN_Pupil_Data_Collection","Existing_EY_Provision_New","External_Area_Table","External_Asset_Data","Forecast_Establishment_Caseload","Free_School_Meals_Lookup","Full_Comparison_Projection_and_Forcasting_Age_Caseload_Table","Full_Comparison_Projection_and_Forcasting_Characteristics_Caseload_Table","Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table","Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements","Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements","Full_Comparison_Projection_and_Forecasting_Estab_Caseload_DSG_Projection","Full_Comparison_Projection_and_Forecasting_NCYear_Table","Full_Comparison_Projection_and_Forecasting_SEN_Assessment","Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table","Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns","Independent_100_percent_reduction","Independent_50_percent_reduction","LA_Comparators","LA_WKT","Local_Authority_List","Logo_Images","LSOA_Codes","PAN_NOR_BB_Planning_Area_Pupil_Numbers","Planning_Area_Codes","Potential_30_Hour_Free_Child_Care_EY_Pupils","Pupil_Capacity_Shortfall_Surplus","Pupil_Home_Locations_Appended","S251_Spending_Comparison","Title_Number_Lookup","WKT_30_Hours_Map","WKT_Births_Map","WKT_Deprivation_Map","Year","Year_Index"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.138.1203.0 (24.11)
+
+ref table Birth_Data_New
+ref table Benchmark_Comparison_List
+ref table Capital_Costs_2
+ref table Comparison_List
+ref table Cost_Avoidance_New
+ref table Deprivation_Data
+ref table DSG_Finance
+ref table EHCP_SEN_Pupil_Data_Collection
+ref table Existing_EY_Provision_New
+ref table External_Area_Table
+ref table External_Asset_Data
+ref table Forecast_Establishment_Caseload
+ref table Free_School_Meals_Lookup
+ref table Full_Comparison_Projection_and_Forcasting_Age_Caseload_Table
+ref table Full_Comparison_Projection_and_Forcasting_Characteristics_Caseload_Table
+ref table Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table
+ref table Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements
+ref table Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements
+ref table Full_Comparison_Projection_and_Forecasting_Estab_Caseload_DSG_Projection
+ref table Full_Comparison_Projection_and_Forecasting_NCYear_Table
+ref table Full_Comparison_Projection_and_Forecasting_SEN_Assessment
+ref table Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table
+ref table Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns
+ref table Independent_100_percent_reduction
+ref table Independent_50_percent_reduction
+ref table LA_Comparators
+ref table LA_WKT
+ref table Local_Authority_List
+ref table Logo_Images
+ref table LSOA_Codes
+ref table PAN_NOR_BB_Planning_Area_Pupil_Numbers
+ref table Planning_Area_Codes
+ref table Potential_30_Hour_Free_Child_Care_EY_Pupils
+ref table Pupil_Capacity_Shortfall_Surplus
+ref table Pupil_Home_Locations_Appended
+ref table S251_Spending_Comparison
+ref table Title_Number_Lookup
+ref table WKT_30_Hours_Map
+ref table WKT_Births_Map
+ref table WKT_Deprivation_Map
+ref table Year
+ref table Year_Index
+
+ref cultureInfo en-GB
+

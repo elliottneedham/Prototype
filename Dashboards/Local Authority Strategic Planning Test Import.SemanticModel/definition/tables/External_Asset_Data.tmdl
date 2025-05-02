@@ -1,0 +1,146 @@
+table External_Asset_Data
+	lineageTag: db8a1e36-2cee-45f0-b291-d47de2c90d27
+
+	column Client
+		dataType: string
+		lineageTag: 0703f592-9e95-4bed-aaf8-505ad4422c9b
+		summarizeBy: none
+		sourceColumn: Client
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Category
+		dataType: string
+		lineageTag: 0b503d0d-b356-4e9a-8a6d-518bb9593fdd
+		summarizeBy: none
+		sourceColumn: Asset_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Sub_Category
+		dataType: string
+		lineageTag: b0317db6-51a9-4582-a5fe-e9ea6e7d051d
+		summarizeBy: none
+		sourceColumn: Asset_Sub_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Type
+		dataType: string
+		lineageTag: 594e8710-44e1-4272-82ea-23f9e1298a95
+		summarizeBy: none
+		sourceColumn: Asset_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Local_Authority
+		dataType: string
+		lineageTag: f60550f9-9729-4f38-a4bb-981b69e980e7
+		summarizeBy: none
+		sourceColumn: Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Name
+		dataType: string
+		lineageTag: 9fc8a195-17fb-416f-a940-7ca05284b79a
+		summarizeBy: none
+		sourceColumn: Asset_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: 089c35c4-b480-427b-953c-ccc2107bc8a0
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title_Number
+		dataType: string
+		lineageTag: 51638bb3-7c18-41df-a6fa-774863427289
+		summarizeBy: none
+		sourceColumn: Title_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ownership
+		dataType: string
+		lineageTag: f9428646-eb4e-4bc1-966d-aa158060e4f5
+		summarizeBy: none
+		sourceColumn: Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column Postcode
+		dataType: string
+		lineageTag: 1d73166c-f33b-4138-966c-b6487be1ac31
+		summarizeBy: none
+		sourceColumn: Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Current_URN
+		dataType: string
+		lineageTag: b74f46a1-9ded-415d-9df3-5ca13dd18c8b
+		summarizeBy: none
+		sourceColumn: Current_URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: double
+		lineageTag: 705f6bdd-f078-41df-a105-14c601dd04fc
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Northing
+		dataType: double
+		lineageTag: f2753b98-b4d1-40d3-9f75-15d2a5fb97d2
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Tenure
+		dataType: string
+		lineageTag: 60972447-28ec-45ea-80fb-81a1645847df
+		summarizeBy: none
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 8adc1cb1-2e7f-47f8-a214-d71941756b45
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column GESA
+		dataType: double
+		lineageTag: e550cca2-a91d-408f-9b31-3111102b6a52
+		summarizeBy: sum
+		sourceColumn: GESA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition External_Asset_Data = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_External_Asset_Data = Source{[Schema="dbo",Item="External_Asset_Data"]}[Data]
+				in
+				    dbo_External_Asset_Data
+

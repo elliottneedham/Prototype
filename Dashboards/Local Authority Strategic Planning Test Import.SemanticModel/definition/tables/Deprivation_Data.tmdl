@@ -1,0 +1,249 @@
+table Deprivation_Data
+	lineageTag: 5b515cac-e5b9-49a1-8df5-766ab7220528
+
+	column CTRY11CD
+		dataType: string
+		lineageTag: fa53648e-36a1-4551-b0b4-d097c516cfbb
+		summarizeBy: none
+		sourceColumn: CTRY11CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTRY11NM
+		dataType: string
+		lineageTag: 3c5d72d3-d907-4cf0-9589-69dc7fe430ce
+		summarizeBy: none
+		sourceColumn: CTRY11NM
+
+		annotation SummarizationSetBy = Automatic
+
+	column RGN11CD
+		dataType: string
+		lineageTag: f8da6139-c20f-4678-ac50-e5a401eaca2d
+		summarizeBy: none
+		sourceColumn: RGN11CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 13cd17c4-3298-4a76-a273-c6f7d949fb8d
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column LA_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: 509ab022-f091-4051-a481-aee40ada5bb2
+		summarizeBy: count
+		sourceColumn: LA_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Local_Authority
+		dataType: string
+		lineageTag: 048d3a77-ddc2-44e3-bbf3-4e6bc9933770
+		summarizeBy: none
+		sourceColumn: Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAD17CD
+		dataType: string
+		lineageTag: 329f5557-7936-45e1-96d8-0c1b2531e3b9
+		summarizeBy: none
+		sourceColumn: LAD17CD
+
+		annotation SummarizationSetBy = Automatic
+
+	column District
+		dataType: string
+		lineageTag: 130c8b4e-6dd0-4f21-9f18-c604be2aa7c7
+		summarizeBy: none
+		sourceColumn: District
+
+		annotation SummarizationSetBy = Automatic
+
+	column Consituency_Number
+		dataType: string
+		lineageTag: c036561f-4a40-418f-b11b-156458fba769
+		summarizeBy: none
+		sourceColumn: Consituency_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Consituency_Name
+		dataType: string
+		lineageTag: 0161619a-8129-4cd7-92f6-ba0c6a5d4720
+		summarizeBy: none
+		sourceColumn: Consituency_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ward_Number
+		dataType: string
+		lineageTag: fe202791-5fdf-4f84-b52b-38309d696293
+		summarizeBy: none
+		sourceColumn: Ward_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ward
+		dataType: string
+		lineageTag: f30aa93a-b7ac-4491-9b48-fd1ce7a98575
+		summarizeBy: none
+		sourceColumn: Ward
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSOA_Number
+		dataType: string
+		lineageTag: 8e29f912-e33f-4009-8332-a56fc466cc6f
+		summarizeBy: none
+		sourceColumn: MSOA_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSOA_Name
+		dataType: string
+		lineageTag: 8e01f3c3-ad06-4402-bd01-d50289ff0218
+		summarizeBy: none
+		sourceColumn: MSOA_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA_Number
+		dataType: string
+		lineageTag: 920eea9a-810e-42e6-a39c-e403511641b8
+		summarizeBy: none
+		sourceColumn: LSOA_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA_Name
+		dataType: string
+		lineageTag: e299c106-d3c7-4f7e-9b0d-489350529a80
+		summarizeBy: none
+		sourceColumn: LSOA_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA_Urban/Rural_Classification
+		dataType: string
+		lineageTag: 4102a0f4-7835-42af-adad-3a0901b8b64e
+		summarizeBy: none
+		sourceColumn: LSOA_Urban/Rural_Classification
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Planning_Area_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: ac0cfbfc-20b3-4614-ab52-be7bde329aa2
+		summarizeBy: count
+		sourceColumn: Primary_Planning_Area_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Planning_Code_Instance
+		dataType: string
+		lineageTag: 878d5b9f-1978-4716-8ee7-516f88ed9a1a
+		summarizeBy: none
+		sourceColumn: Primary_Planning_Code_Instance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_Planning_Area_Name
+		dataType: string
+		lineageTag: a69ad17f-78b8-4b87-a1c4-6f5a67738e0b
+		summarizeBy: none
+		sourceColumn: Primary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Area_Code
+		dataType: int64
+		formatString: 0
+		lineageTag: bb423ef4-c3b7-4d7c-814e-b626a6ef2c29
+		summarizeBy: count
+		sourceColumn: Secondary_Planning_Area_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Code_Instance
+		dataType: string
+		lineageTag: 5e621a8e-3c7b-4f9b-9dcd-9af266943b0f
+		summarizeBy: none
+		sourceColumn: Secondary_Planning_Code_Instance
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Area_Name
+		dataType: string
+		lineageTag: 12f15b68-7360-4169-befe-8caccf1dbda0
+		summarizeBy: none
+		sourceColumn: Secondary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Diocese
+		dataType: string
+		lineageTag: d0b84ed3-17d6-4504-8577-476fb1e70ecc
+		summarizeBy: none
+		sourceColumn: Catholic_Diocese
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Deanery
+		dataType: string
+		lineageTag: 671a0195-0763-4158-8260-8362c074d9c2
+		summarizeBy: none
+		sourceColumn: Catholic_Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Catholic_Parish
+		dataType: string
+		lineageTag: 085d3112-6b30-4daa-bf43-f0769a0f0a16
+		summarizeBy: none
+		sourceColumn: Catholic_Parish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deprivation_Measure
+		dataType: string
+		lineageTag: bbe320a8-c9b4-4528-8fbb-bdc12e27ce00
+		summarizeBy: none
+		sourceColumn: Deprivation_Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rank
+		dataType: int64
+		formatString: 0
+		lineageTag: bff6da03-a120-4c9c-98e9-672cefe02e76
+		summarizeBy: sum
+		sourceColumn: Rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Indices.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1eae77f5-8bb6-4970-b9f5-3da32e05f303
+		summarizeBy: sum
+		sourceColumn: Indices.1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Deprivation_Data = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Deprivation_Data = Source{[Schema="dbo",Item="Deprivation_Data"]}[Data]
+				in
+				    dbo_Deprivation_Data
+

@@ -1,0 +1,21 @@
+table Year
+	lineageTag: 660cca3c-1945-43ad-9c41-31593bfa6a3a
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2febd49f-3cc4-4837-9070-5780119c3644
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Year = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Year = Source{[Schema="dbo",Item="Year"]}[Data]
+				in
+				    dbo_Year
+

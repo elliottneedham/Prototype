@@ -1,0 +1,248 @@
+table 'Pupil Home Locations Appended'
+	lineageTag: f29b18f8-71df-4302-8dcd-ceeda4e067fb
+
+	column '2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx'
+		dataType: string
+		lineageTag: f353367b-c6cf-40de-94c2-43adb16a0318
+		summarizeBy: none
+		sourceColumn: 2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column AcademicYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 28e2a056-055e-47f0-9262-8060a0aa55b5
+		summarizeBy: sum
+		sourceColumn: AcademicYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: bfdb7c94-00fa-46d2-9f72-160d02ebefac
+		summarizeBy: sum
+		sourceColumn: Current URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current DFE'
+		dataType: int64
+		formatString: 0
+		lineageTag: e93f32cd-ef87-42d5-b6e1-cc391f73831d
+		summarizeBy: sum
+		sourceColumn: Current DFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: 147cfcc8-e6b8-461c-be8c-f7e4ace0e20d
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAEstab
+		dataType: int64
+		formatString: 0
+		lineageTag: 78e4f5ef-c44a-43b4-a941-06398f123292
+		summarizeBy: sum
+		sourceColumn: LAEstab
+
+		annotation SummarizationSetBy = Automatic
+
+	column NCYearActual
+		dataType: string
+		lineageTag: 10b0fb7e-8187-4baa-a892-3d3135f5b9bd
+		summarizeBy: none
+		sourceColumn: NCYearActual
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSOA21
+		dataType: string
+		lineageTag: 924ec18c-340a-4675-8e5e-a9f5ce311cc8
+		summarizeBy: none
+		sourceColumn: MSOA21
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA21
+		dataType: string
+		lineageTag: f404179c-8fd6-4803-b23f-853f03724794
+		summarizeBy: none
+		sourceColumn: LSOA21
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fa3418c-45c9-49d8-83df-8a2cb02fa2c6
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Local Authority'
+		dataType: string
+		lineageTag: 03f4f70f-9814-4b63-afe7-3c42e989f30c
+		summarizeBy: none
+		sourceColumn: School Local Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School District'
+		dataType: string
+		lineageTag: 108e4014-3269-42bf-8b69-ad143746c2c4
+		summarizeBy: none
+		sourceColumn: School District
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name '
+		dataType: string
+		lineageTag: 9892de85-3c6f-460b-be68-ff35c6e0de53
+		summarizeBy: none
+		sourceColumn: "School Name "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Easting'
+		dataType: int64
+		formatString: 0
+		lineageTag: a2688fb1-d585-47b6-b722-d7465a0492d5
+		summarizeBy: sum
+		sourceColumn: School Easting
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Northing'
+		dataType: int64
+		formatString: 0
+		lineageTag: 64817260-b319-40b7-af84-d6a614fc9503
+		summarizeBy: sum
+		sourceColumn: School Northing
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Longitude'
+		dataType: double
+		lineageTag: a42925a3-a43e-428a-aed6-17b9e03032ca
+		summarizeBy: sum
+		sourceColumn: School Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'School Latitude'
+		dataType: double
+		lineageTag: 90b8b5a5-9b3a-42ad-939e-a3795a4f1bb8
+		summarizeBy: sum
+		sourceColumn: School Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Home Easting'
+		dataType: double
+		lineageTag: 72521ecd-6a1f-4630-ab67-312be37b5f19
+		summarizeBy: sum
+		sourceColumn: Home Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Home Northing'
+		dataType: double
+		lineageTag: a7dbad29-0fd8-4893-9691-6264ce1a1510
+		summarizeBy: sum
+		sourceColumn: Home Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Home Longitude'
+		dataType: double
+		lineageTag: 5aed37b9-75bc-40b5-9573-07cf6b1d1048
+		summarizeBy: sum
+		sourceColumn: Home Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Home Latitude'
+		dataType: double
+		lineageTag: b457dbdd-5187-46c3-9687-8032d2de0486
+		summarizeBy: sum
+		sourceColumn: Home Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Travel Distance (m)'
+		dataType: double
+		lineageTag: 215ded19-8a5b-48b3-9e3f-522221b0244f
+		summarizeBy: sum
+		sourceColumn: Travel Distance (m)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Travel Distance(miles)'
+		dataType: double
+		lineageTag: 66cee638-3bf0-4de5-b205-1f4981677953
+		summarizeBy: sum
+		sourceColumn: Travel Distance(miles)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Banded Travel Distance (miles)'
+		dataType: string
+		lineageTag: 5277365a-835c-4dd1-b4f1-37ec09e750e1
+		summarizeBy: none
+		sourceColumn: Banded Travel Distance (miles)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home Local Authority'
+		dataType: string
+		lineageTag: 3fb0e04d-51ec-4d7d-a40e-f4b86f7d3569
+		summarizeBy: none
+		sourceColumn: Home Local Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Home District'
+		dataType: string
+		lineageTag: de55d0ed-242e-4df5-8688-728d282f6feb
+		summarizeBy: none
+		sourceColumn: Home District
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Pupil Home Locations Appended' = m
+		mode: import
+		queryGroup: 'Pupil Home Locations'
+		source =
+				let
+				    Source = Table.Combine({#"E1 to R", #"Y1 to Y2", #"Y3 to Y6", #"Y7 to Y9", #"Y10 to Y11", #"Y12 to Y14"})
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

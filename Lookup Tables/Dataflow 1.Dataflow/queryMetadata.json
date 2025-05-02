@@ -1,0 +1,22 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowFastCopy": false
+  },
+  "name": "Dataflow 1",
+  "queryGroups": [],
+  "documentLocale": "en-GB",
+  "queriesMetadata": {
+    "Updated_LSOA_Codes_against_PA": {
+      "queryId": "1aac79f8-6d61-47e9-843d-98f62c4ecf65",
+      "queryName": "Updated_LSOA_Codes_against_PA"
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"3857d375-928d-42f1-b71e-aa4049767eb4\",\"DatasourceId\":\"788f10ad-5056-47d6-950c-2fe90c6a6310\"}"
+    }
+  ]
+}

@@ -1,0 +1,231 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from Query1'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (2)'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2'
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup 'Transform File from Query2\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (2)'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup 'Transform File from Query2 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query4'
+
+	annotation PBI_QueryGroupOrder = 8
+
+queryGroup 'Transform File from Query4\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (3)'
+
+	annotation PBI_QueryGroupOrder = 10
+
+queryGroup 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (4)'
+
+	annotation PBI_QueryGroupOrder = 12
+
+queryGroup 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (5)'
+
+	annotation PBI_QueryGroupOrder = 14
+
+queryGroup 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (6)'
+
+	annotation PBI_QueryGroupOrder = 16
+
+queryGroup 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (7)'
+
+	annotation PBI_QueryGroupOrder = 18
+
+queryGroup 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (8)'
+
+	annotation PBI_QueryGroupOrder = 20
+
+queryGroup 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (3)'
+
+	annotation PBI_QueryGroupOrder = 22
+
+queryGroup 'Transform File from Query2 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (9)'
+
+	annotation PBI_QueryGroupOrder = 24
+
+queryGroup 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (10)'
+
+	annotation PBI_QueryGroupOrder = 26
+
+queryGroup 'Transform File from Query1 (10)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (11)'
+
+	annotation PBI_QueryGroupOrder = 28
+
+queryGroup 'Transform File from Query1 (11)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (12)'
+
+	annotation PBI_QueryGroupOrder = 30
+
+queryGroup 'Transform File from Query1 (12)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (13)'
+
+	annotation PBI_QueryGroupOrder = 32
+
+queryGroup 'Transform File from Query1 (13)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (14)'
+
+	annotation PBI_QueryGroupOrder = 34
+
+queryGroup 'Transform File from Query1 (14)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (15)'
+
+	annotation PBI_QueryGroupOrder = 36
+
+queryGroup 'Transform File from Query1 (15)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (16)'
+
+	annotation PBI_QueryGroupOrder = 38
+
+queryGroup 'Transform File from Query1 (16)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Errors in queries that were loaded on 16/09/2024 18:52:40.
+queryGroup 'Query Errors - 16/09/2024 18:52:40'
+
+	annotation PBI_QueryGroupOrder = 40
+
+queryGroup 'Transform File from Query1 (17)'
+
+	annotation PBI_QueryGroupOrder = 41
+
+queryGroup 'Transform File from Query1 (17)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+/// Errors in queries that were loaded on 16/09/2024 19:13:30.
+queryGroup 'Query Errors - 16/09/2024 19:13:30'
+
+	annotation PBI_QueryGroupOrder = 43
+
+queryGroup 'Transform File from Query1 (18)'
+
+	annotation PBI_QueryGroupOrder = 44
+
+queryGroup 'Transform File from Query1 (18)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (19)'
+
+	annotation PBI_QueryGroupOrder = 46
+
+queryGroup 'Transform File from Query1 (19)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (20)'
+
+	annotation PBI_QueryGroupOrder = 48
+
+queryGroup 'Transform File from Query1 (20)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Sample File","Parameter1","Transform Sample File","Transform File","Parameter2","Transform Sample File (2)","Sample File (2)","Transform File (2)","Parameter3","Transform Sample File (3)","Sample File (3)","Transform File (3)","Parameter4","Transform Sample File (4)","Sample File (4)","Transform File (4)","Parameter5","Transform Sample File (5)","Sample File (5)","Transform File (5)","7 - GIAS sorted","Parameter6","Transform Sample File (6)","Sample File (6)","Transform File (6)","Parameter7","Transform Sample File (7)","Sample File (7)","Transform File (7)","Parameter8","Transform Sample File (8)","Sample File (8)","Transform File (8)","Parameter9","Transform Sample File (9)","Sample File (9)","Transform File (9)","Parameter10","Transform Sample File (10)","Sample File (10)","Transform File (10)","Parameter11","Transform Sample File (11)","Sample File (11)","Transform File (11)","Parameter12","Transform Sample File (12)","Sample File (12)","Transform File (12)","Sample File (13)","Parameter13","Transform Sample File (13)","Transform File (13)","Sample File (14)","Parameter14","Transform Sample File (14)","Transform File (14)","Sample File (15)","Parameter15","Transform Sample File (15)","Transform File (15)","Sample File (16)","Parameter16","Transform Sample File (16)","Transform File (16)","Sample File (17)","Parameter17","Transform Sample File (17)","Transform File (17)","Parameter18","Transform Sample File (18)","Sample File (18)","Transform File (18)","Table","1 - SEN Caseload","Parameter19","Transform Sample File (19)","Sample File (19)","Transform File (19)","2 - SEN Caseload Age Range","Parameter20","Transform Sample File (20)","Sample File (20)","Transform File (20)","Errors in Query1","3 - SEN Caseload Characteristics","Parameter21","Transform Sample File (21)","Sample File (21)","Transform File (21)","Errors in Query1 (2)","4 - SEN2 Year Group & Need","Parameter22","Transform Sample File (22)","Sample File (22)","Transform File (22)","6 - Assessment & Discontinuation","Parameter23","Transform Sample File (23)","Sample File (23)","Transform File (23)","5 - SEN2 EHCP SEN Support by School Type","Parameter24","Transform Sample File (24)","Sample File (24)","Transform File (24)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+
+ref table DateTableTemplate_4b78f220-eb77-43ea-9993-bccecc665970
+ref table '7 - GIAS sorted'
+ref table Table
+ref table '1 - SEN Caseload'
+ref table '2 - SEN Caseload Age Range'
+ref table '3 - SEN Caseload Characteristics'
+ref table '4 - SEN2 Year Group & Need'
+ref table '6 - Assessment & Discontinuation'
+ref table '5 - SEN2 EHCP SEN Support by School Type'
+ref table LocalDateTable_97b5815a-f896-4e55-9ff7-07718c80f3ad
+
+ref role Untitled
+
+ref cultureInfo en-US
+

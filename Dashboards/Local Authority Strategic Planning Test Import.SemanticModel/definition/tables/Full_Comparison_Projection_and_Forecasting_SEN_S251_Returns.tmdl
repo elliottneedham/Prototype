@@ -1,0 +1,103 @@
+table Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns
+	lineageTag: 08044f7b-00d6-4abe-aa7e-db7341089bb6
+
+	column Sheet
+		dataType: string
+		lineageTag: cb5c6257-b3f9-4b81-90bb-8fd58b1d6417
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: f5c92a24-74ce-4044-9adf-1e98a89fb902
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: c266de27-8493-41bc-a9b3-d02f1ddc1521
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 23de458e-faa4-4da7-9230-90322f4f0e19
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_cost_per_pupil
+		dataType: double
+		lineageTag: b2b47c00-3528-4916-8eef-d4148a67671e
+		summarizeBy: sum
+		sourceColumn: average_cost_per_pupil
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c42e398-6d6a-4cd9-8009-7833d5263628
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pupil_Yearly_Change
+		dataType: double
+		lineageTag: dcf4073d-7cef-4293-b780-05a0577b7c4d
+		summarizeBy: sum
+		sourceColumn: Pupil_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aggregated_DSG_pupils
+		dataType: double
+		lineageTag: 304e0435-4594-4f21-bbdf-3e1a139738e0
+		summarizeBy: sum
+		sourceColumn: aggregated_DSG_pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aggregated_DSG_value
+		dataType: double
+		lineageTag: fc9447e3-8a84-40e9-a4d5-c285c890c64d
+		summarizeBy: sum
+		sourceColumn: aggregated_DSG_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Pupil_Change
+		dataType: double
+		lineageTag: 10e0b36d-4243-4ecc-939a-a1bb02525e54
+		summarizeBy: sum
+		sourceColumn: Cumulative_Pupil_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns
+

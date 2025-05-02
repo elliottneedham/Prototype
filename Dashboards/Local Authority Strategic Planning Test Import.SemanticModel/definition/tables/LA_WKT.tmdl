@@ -1,0 +1,45 @@
+table LA_WKT
+	lineageTag: 50c75924-687e-4aef-bbe4-4fb92bf49664
+
+	column Local_Authority
+		dataType: string
+		lineageTag: 1c8b31ce-94f9-4dec-a537-922e7ff13e8e
+		summarizeBy: none
+		sourceColumn: Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKT
+		dataType: string
+		lineageTag: 7d064fdf-30b0-49e2-99c4-7b83a8f2a322
+		summarizeBy: none
+		sourceColumn: WKT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: c0fb1927-cc06-4798-9249-490ace0b1982
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 544a8ec6-2bca-4c41-bef4-1a8ec22fc7bf
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LA_WKT = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_LA_WKT = Source{[Schema="dbo",Item="LA_WKT"]}[Data]
+				in
+				    dbo_LA_WKT
+

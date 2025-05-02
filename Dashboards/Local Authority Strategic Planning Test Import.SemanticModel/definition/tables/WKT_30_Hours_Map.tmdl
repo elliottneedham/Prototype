@@ -1,0 +1,144 @@
+table WKT_30_Hours_Map
+	lineageTag: 7f3cecf8-ef4a-4f23-809c-c1b6f915a5ba
+
+	column Mapping_Element
+		dataType: string
+		lineageTag: 6fdf4ae8-f9d5-4add-bd9b-8396d8b2b569
+		summarizeBy: none
+		sourceColumn: Mapping_Element
+
+		annotation SummarizationSetBy = Automatic
+
+	column WKT
+		dataType: string
+		lineageTag: b632fb7a-205e-4a9e-9567-b76c820bbb12
+		summarizeBy: none
+		sourceColumn: WKT
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 403dbdea-d6b9-4567-a66e-ef7fdf7bb5e2
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: c6641463-5ba9-4db9-9f1a-f5c7eb34dcd2
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: string
+		lineageTag: 1d21909f-129c-4857-a526-dfeb62ca99ce
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column begin
+		dataType: string
+		lineageTag: 0b4bd600-3cf5-4079-9512-434537b984f7
+		summarizeBy: none
+		sourceColumn: begin
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: string
+		lineageTag: 2858beb6-8138-41be-8d79-0d86edfd2ab7
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+	column altitudeMode
+		dataType: string
+		lineageTag: 60079e07-b1ba-49d5-b239-878ddbb9e6fc
+		summarizeBy: none
+		sourceColumn: altitudeMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column tessellate
+		dataType: int64
+		formatString: 0
+		lineageTag: cad17641-3b53-43b8-a460-200a31e2f345
+		summarizeBy: sum
+		sourceColumn: tessellate
+
+		annotation SummarizationSetBy = Automatic
+
+	column extrude
+		dataType: int64
+		formatString: 0
+		lineageTag: 8a166937-9e64-4e57-8fa3-9830bab3ccac
+		summarizeBy: sum
+		sourceColumn: extrude
+
+		annotation SummarizationSetBy = Automatic
+
+	column visibility
+		dataType: int64
+		formatString: 0
+		lineageTag: d9e90727-2ea9-4b11-a9cb-2a129bb7f528
+		summarizeBy: sum
+		sourceColumn: visibility
+
+		annotation SummarizationSetBy = Automatic
+
+	column drawOrder
+		dataType: string
+		lineageTag: 0709323b-ae4c-4114-aa39-3556719eb6cb
+		summarizeBy: none
+		sourceColumn: drawOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column icon
+		dataType: string
+		lineageTag: f42ce3d8-e0d6-4964-8712-140b4ed7cc2f
+		summarizeBy: none
+		sourceColumn: icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 0c509284-190a-4012-9c8e-1ea6e7d479f3
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Colour
+		dataType: string
+		lineageTag: 7be04d56-e0ba-42f2-9b07-2d3f1c24748f
+		summarizeBy: none
+		sourceColumn: Colour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Size
+		dataType: int64
+		formatString: 0
+		lineageTag: 91baa1ca-4423-4ab7-af6b-3d076624db2c
+		summarizeBy: sum
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	partition WKT_30_Hours_Map = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_WKT_30_Hours_Map = Source{[Schema="dbo",Item="WKT_30_Hours_Map"]}[Data]
+				in
+				    dbo_WKT_30_Hours_Map
+

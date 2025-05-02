@@ -1,0 +1,233 @@
+relationship 92fa8b4e-6976-509d-3873-edd76cf47ef9
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Age_Caseload_Table.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship b7066e43-5a94-effc-2c96-7e838f220db0
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Age_Caseload_Table.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 538876a8-0d2a-539b-9883-d39e04bfad49
+	fromColumn: Independent_100_percent_reduction.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 7a560ccb-c0bf-1cf1-b1ed-2cd376e4e255
+	fromColumn: Independent_100_percent_reduction.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship c52aedc8-c7c7-5b53-6a3f-26f1ad6b52e7
+	fromColumn: DSG_Finance.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship e22f32d6-0c71-bd4b-85e1-77616396a216
+	fromColumn: DSG_Finance.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 3c16d5d3-bf7f-4c0c-a5e5-92b2c02ac7e3
+	fromColumn: Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 04319938-547c-0a7d-b574-d437d1cbc44a
+	fromColumn: Full_Comparison_Projection_and_Forecasting_SEN_S251_Returns.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 8fdaa727-3aae-0621-e2f4-5cbe04c1b168
+	fromColumn: S251_Spending_Comparison.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 88545623-2a3f-b030-9144-aa83ab8da431
+	fromColumn: S251_Spending_Comparison.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 43c323b5-1a48-3d03-6c2e-b56ef8c10b3f
+	fromColumn: Forecast_Establishment_Caseload.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 01ec6c77-f7c7-f346-ed9e-beb1ef1aef47
+	fromColumn: Forecast_Establishment_Caseload.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship dd7bbb68-6356-1937-b458-8596816cfc38
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Characteristics_Caseload_Table.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship e5c8e504-de0e-fe96-7b9e-87c179ece66c
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Characteristics_Caseload_Table.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 523db3dd-36e6-1da0-878b-c759eb5995a5
+	fromColumn: Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 1a671e4e-d22e-83f8-0756-882bb78a2e56
+	fromColumn: Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship be1f7bd8-7e08-6ac7-c340-9201925b174f
+	fromColumn: Full_Comparison_Projection_and_Forecasting_Estab_Caseload_DSG_Projection.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 71ada31f-d3af-e63f-2569-e448652bd31b
+	fromColumn: Full_Comparison_Projection_and_Forecasting_Estab_Caseload_DSG_Projection.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 9e08dea9-593c-91a7-f90d-219b6db38158
+	fromColumn: Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 6c7cc888-e653-9a3b-d07b-282082853a65
+	fromColumn: Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 3e190a49-33f7-8306-5c88-1ac7c6360810
+	fromColumn: Cost_Avoidance_New.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship b40bab8d-5cf6-c796-2484-372bf449dbc0
+	fromColumn: Cost_Avoidance_New.Commissioning_Strategy
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 77263ca6-597d-f1bc-7aa4-0f1617172f4c
+	fromColumn: Full_Comparison_Projection_and_Forecasting_SEN_Assessment.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship abdfc9bf-fdd7-b98f-ef00-b85960e0f3ce
+	fromColumn: Full_Comparison_Projection_and_Forecasting_SEN_Assessment.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 0ea231f8-0c1f-da60-5d68-fd0cba73f0e1
+	fromColumn: Independent_50_percent_reduction.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 2319e4c4-0f03-c1d1-0fda-f8f7183b4856
+	fromColumn: Independent_50_percent_reduction.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship c6f589bb-6ada-5576-d130-6205194e62ce
+	fromColumn: Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship a25dfa15-f440-e13f-67b1-4696923cd9cf
+	fromColumn: Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 16791a2d-30eb-cbf1-8198-e304d6a4f401
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 1eec8aa8-b89d-1449-ca8b-0e677766bae4
+	fromColumn: Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship cdb19d40-89ea-1bad-568a-c258e45b2430
+	fromColumn: Capital_Costs_2.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 38772a11-78bd-4950-4295-624555ec0567
+	fromColumn: Capital_Costs_2.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship 0fe69909-dcd0-b3d8-1a17-8c06e7cb1a29
+	fromColumn: Full_Comparison_Projection_and_Forecasting_NCYear_Table.la_name
+	toColumn: Local_Authority_List.la_name
+
+relationship 07ecfec8-2870-fb30-16b0-c58b6acc4b4c
+	fromColumn: Full_Comparison_Projection_and_Forecasting_NCYear_Table.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship f69e14fc-156d-e384-721b-129948dbf5d3
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: LA_Comparators.LA_Name
+	toColumn: Local_Authority_List.la_name
+
+relationship 4379b70c-53a4-a445-c0d9-fa5289e2ec4c
+	fromColumn: Pupil_Capacity_Shortfall_Surplus.LA__name_
+	toColumn: Local_Authority_List.la_name
+
+relationship 06df6f89-c52e-ed5b-0ae0-2cb4a3f14719
+	crossFilteringBehavior: bothDirections
+	fromColumn: Pupil_Capacity_Shortfall_Surplus.planning_area_code
+	toColumn: Planning_Area_Codes.planning_area_code
+
+relationship 93b06b75-159a-4581-8f5e-b548af6a8445
+	crossFilteringBehavior: bothDirections
+	fromColumn: PAN_NOR_BB_Planning_Area_Pupil_Numbers.planning_area_code
+	toColumn: Planning_Area_Codes.planning_area_code
+
+relationship d4992989-d4d0-8a77-1261-b3fccefd51f3
+	fromColumn: External_Area_Table.Local_Authority
+	toColumn: Local_Authority_List.la_name
+
+relationship ab6695e8-f696-8a4a-4760-ac08d5529af5
+	crossFilteringBehavior: bothDirections
+	fromColumn: External_Area_Table.Title_Number
+	toColumn: Title_Number_Lookup.Name
+
+relationship 41ce87dd-ca55-e8bb-64f7-68e92407a314
+	crossFilteringBehavior: bothDirections
+	fromColumn: LA_WKT.Name
+	toColumn: Title_Number_Lookup.Name
+
+relationship ceba7496-7dac-3d93-05cd-2557cbb26089
+	fromColumn: Logo_Images.ImageKey
+	toColumn: Local_Authority_List.la_name
+
+relationship 42048c76-d219-0359-29cc-33121f797b6c
+	fromColumn: Birth_Data_New.Local_Authority_Name
+	toColumn: Local_Authority_List.la_name
+
+relationship e5a1dc51-f06c-31d7-5d6d-a1f5360cedbc
+	fromColumn: Birth_Data_New.Year
+	toColumn: Year.Year
+
+relationship 48dc42a4-9c90-af71-3cd5-1f26a5ba9e3c
+	crossFilteringBehavior: bothDirections
+	fromColumn: Birth_Data_New.LSOA_code
+	toColumn: LSOA_Codes.LSOA_2021_Code
+
+relationship 02b76c92-9daa-18f9-10e7-a0f78297cc72
+	crossFilteringBehavior: bothDirections
+	fromColumn: WKT_30_Hours_Map.Name
+	toColumn: LSOA_Codes.LSOA_2021_Code
+
+relationship c6241bea-fa53-b84b-59ed-ee68c1b62087
+	crossFilteringBehavior: bothDirections
+	fromColumn: Potential_30_Hour_Free_Child_Care_EY_Pupils.lsoa21cd
+	toColumn: LSOA_Codes.LSOA_2021_Code
+
+relationship a607eeb5-ce52-d6c3-c664-06c6bd0c37d9
+	crossFilteringBehavior: bothDirections
+	fromColumn: Existing_EY_Provision_New.lsoa21cd
+	toColumn: LSOA_Codes.LSOA_2021_Code
+
+relationship 63bb6eff-2fdd-0733-4def-0aa086871299
+	crossFilteringBehavior: bothDirections
+	fromColumn: WKT_Births_Map.Name
+	toColumn: LSOA_Codes.LSOA_2021_Code
+
+relationship 53982987-f555-49aa-96be-ff4595397390
+	fromColumn: Free_School_Meals_Lookup.LA_Name
+	toColumn: Local_Authority_List.la_name
+
+relationship 7125acc3-ee24-a644-91de-a889ce0cd7d3
+	fromColumn: Deprivation_Data.Local_Authority
+	toColumn: Local_Authority_List.la_name
+
+relationship 2114f7c2-d7b2-9af3-0e9e-5237b03ee97d
+	crossFilteringBehavior: bothDirections
+	fromColumn: Deprivation_Data.LSOA_Number
+	toColumn: WKT_Deprivation_Map.Name
+
+relationship 0184d28c-c744-a3a0-5368-4ef7cefd1468
+	fromColumn: Pupil_Home_Locations_Appended.NCYearActual
+	toColumn: Year_Index.Year
+
+relationship beb7f481-acac-fb67-9c14-7de5d5376e6c
+	crossFilteringBehavior: bothDirections
+	fromColumn: Comparison_List.Benchmark_Comparison
+	toColumn: Benchmark_Comparison_List.Benchmark_Comparison
+
+relationship e9842ff6-326f-7922-bc99-27c67829dab9
+	fromColumn: EHCP_SEN_Pupil_Data_Collection.Unique_Client_Name
+	toColumn: Local_Authority_List.la_name
+

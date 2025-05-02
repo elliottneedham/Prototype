@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Local Authority Strategic Planning Test Import"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b237c9f2-200c-8c4a-442c-317d65d85664"
+  }
+}

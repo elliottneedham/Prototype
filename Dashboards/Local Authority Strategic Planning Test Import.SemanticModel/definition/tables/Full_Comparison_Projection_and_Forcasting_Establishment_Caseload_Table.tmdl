@@ -1,0 +1,159 @@
+table Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table
+	lineageTag: 66ec746d-23c7-4f49-96a3-a11be69fa85b
+
+	measure Pupil_Numbers_Estab_Caseload = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils]),
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table[pupils])
+			    )
+			```
+		lineageTag: eadc7121-251d-411f-90ce-387e8c672868
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column establishment_group
+		dataType: string
+		lineageTag: 3ca983bb-b56f-4930-9221-ad513a8e4620
+		summarizeBy: none
+		sourceColumn: establishment_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column establishment_type
+		dataType: string
+		lineageTag: df38a6d5-b0ed-4c47-9601-f73491ef6f7c
+		summarizeBy: none
+		sourceColumn: establishment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ehcp_or_statement
+		dataType: string
+		lineageTag: 4dc6cf86-f03b-4549-8a66-6a618df8c847
+		summarizeBy: none
+		sourceColumn: ehcp_or_statement
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSG_Management_Plan_Type
+		dataType: string
+		lineageTag: ab57ed67-f228-4f46-b33a-72c0b4c78c07
+		summarizeBy: none
+		sourceColumn: DSG_Management_Plan_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: de8afec0-6661-4bf2-8df1-36a1d2e6b04e
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 3d1115bf-4c4a-4c56-887e-8c9fae458a15
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 7b2f549d-6e11-4b27-9776-63617f584795
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: double
+		lineageTag: 620a240e-75ad-401c-82a2-25910b0f6857
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: b5124b77-6091-432d-b944-03f54d82b8d5
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forcasting_Establishment_Caseload_Table
+

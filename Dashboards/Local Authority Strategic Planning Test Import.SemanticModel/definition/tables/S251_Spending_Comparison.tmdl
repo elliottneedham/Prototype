@@ -1,0 +1,91 @@
+table S251_Spending_Comparison
+	lineageTag: ee4f1221-5aee-4c40-9393-f167bdaed7f4
+
+	measure value_S251 = ```
+			
+			
+			VAR TotalYValues = 
+			    CALCULATE(
+			        SUM(S251_Spending_Comparison[adjusted_value]),
+			        ALL(S251_Spending_Comparison[time_period])
+			    )
+			
+			RETURN
+			    IF(
+			        TotalYValues = 0,
+			        BLANK(),
+			        SUM(S251_Spending_Comparison[adjusted_value])
+			    )
+			```
+		lineageTag: c96dc716-399d-4103-9109-bb1503af915e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column old_la_code
+		dataType: string
+		lineageTag: 01e2749d-6a6f-4583-b28b-fc744f04a0b7
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: ff0a7096-c2a4-4ad4-95fd-4124405fdf0f
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sheet
+		dataType: string
+		lineageTag: 39c64c45-339c-460d-b325-898c7ea0beb9
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data_Requirements
+		dataType: string
+		lineageTag: 5a49dae8-4063-4132-b6ee-5db962acfeab
+		summarizeBy: none
+		sourceColumn: Data_Requirements
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		lineageTag: 49381149-279f-4d2a-9281-db37d944bdd7
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 3177dc9c-311f-42d3-aa9a-19ae73313883
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column adjusted_value
+		dataType: double
+		lineageTag: 681783ef-92c3-4921-85a6-e7274f733ede
+		summarizeBy: sum
+		sourceColumn: adjusted_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition S251_Spending_Comparison = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_S251_Spending_Comparison = Source{[Schema="dbo",Item="S251_Spending_Comparison"]}[Data]
+				in
+				    dbo_S251_Spending_Comparison
+

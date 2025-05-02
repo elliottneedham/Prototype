@@ -1,0 +1,220 @@
+table Capital_Costs_2
+	lineageTag: eaccb0d4-6df1-4ca7-9a2f-5b23febae6b3
+
+	measure uniqueValue = sumx(distinct('Capital_Costs_2'[Year]),FIRSTNONBLANK('Capital_Costs_2'[Value],0))
+		lineageTag: bd1fde5a-9c5b-404e-b260-b5415bee5881
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sheet
+		dataType: string
+		lineageTag: 027b1328-0161-491d-9922-83f71c2778e1
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: 25f77e61-8641-4cab-ad3d-9c69c78c5192
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 2a82daf2-da6e-4a3f-8ef3-3f3fc54f7c19
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: f938e61a-125f-4d0a-b26b-efe435498add
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scenario
+		dataType: string
+		lineageTag: ee74d4f1-0762-45cb-8304-6d48a25dc76e
+		summarizeBy: none
+		sourceColumn: Scenario
+
+		annotation SummarizationSetBy = Automatic
+
+	column Construction_Type
+		dataType: string
+		lineageTag: 2aaf303a-da6f-4868-8982-17ddb5bc61fe
+		summarizeBy: none
+		sourceColumn: Construction_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 949feff4-3f91-49f4-a546-3b06a74ed52f
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_pupils
+		dataType: double
+		lineageTag: bcd5cecd-6b5a-4339-94d6-c0b94849f20e
+		summarizeBy: sum
+		sourceColumn: total_pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column average_cost_per_pupil
+		dataType: double
+		lineageTag: 7149358c-6fb1-4eb1-82a2-e3e124dc88bf
+		summarizeBy: sum
+		sourceColumn: average_cost_per_pupil
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_value
+		dataType: double
+		lineageTag: f2a3168e-5cb3-48f2-9ba3-b31222c64de1
+		summarizeBy: sum
+		sourceColumn: total_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Pupil_Yearly_Change
+		dataType: double
+		lineageTag: 8490ea53-7b3f-413e-84a8-273348335099
+		summarizeBy: sum
+		sourceColumn: Pupil_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Yearly_Change
+		dataType: double
+		lineageTag: ba6200db-920f-4d1f-a5b6-18771d6d3380
+		summarizeBy: sum
+		sourceColumn: Cumulative_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		dataType: double
+		lineageTag: 64269811-1536-41e8-a63f-0bee6ca8e07d
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Measure
+		dataType: string
+		lineageTag: 83ac3f06-a156-44bd-8222-cb960c8a01e4
+		summarizeBy: none
+		sourceColumn: Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Average_Area_Per_Pupil
+		dataType: double
+		lineageTag: 98cc54f1-6f64-4c29-ada4-9d8795bb9fbf
+		summarizeBy: sum
+		sourceColumn: Average_Area_Per_Pupil
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column BCIS_m2_Rate
+		dataType: double
+		lineageTag: 1b3446cf-6753-4cfc-9378-8a1d66674789
+		summarizeBy: sum
+		sourceColumn: BCIS_m2_Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Location_Indices_%
+		dataType: double
+		lineageTag: 1f26ddae-bf38-4989-9f4d-5d473bf29f14
+		summarizeBy: sum
+		sourceColumn: Location_Indices_%
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Time_Adjustment
+		dataType: double
+		lineageTag: 8cb1d565-e4db-4c60-8100-5970e700981e
+		summarizeBy: sum
+		sourceColumn: Time_Adjustment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Construction_Cost
+		dataType: double
+		lineageTag: 24b9d25b-78c4-4d5a-8ae4-274d0d6e7604
+		summarizeBy: sum
+		sourceColumn: Construction_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Construction_Cost
+		dataType: double
+		lineageTag: fbb77eb9-5152-4dfd-b270-58e8257978fe
+		summarizeBy: sum
+		sourceColumn: Cumulative_Construction_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Total_Cost
+		dataType: double
+		lineageTag: 48d8aceb-b593-4de7-9702-69d791acb4a8
+		summarizeBy: sum
+		sourceColumn: Cumulative_Total_Cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Merged
+		dataType: string
+		lineageTag: 4c90b9d5-04c5-4374-b348-7d94fb2fa469
+		summarizeBy: none
+		sourceColumn: Merged
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Capital_Costs_2 = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Capital_Costs_2 = Source{[Schema="dbo",Item="Capital_Costs_2"]}[Data]
+				in
+				    dbo_Capital_Costs_2
+

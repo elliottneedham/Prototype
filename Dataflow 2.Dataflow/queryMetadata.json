@@ -1,0 +1,42 @@
+{
+  "formatVersion": "202502",
+  "computeEngineSettings": {
+    "allowFastCopy": false
+  },
+  "name": "Dataflow 2",
+  "queryGroups": [],
+  "documentLocale": "en-GB",
+  "queriesMetadata": {
+    "School_Level_Data_GIAS_Data": {
+      "queryId": "9a200053-d222-4116-b766-a4e408a97f0b",
+      "queryName": "School_Level_Data_GIAS_Data"
+    },
+    "School_Level_Data_Historic_Actual_and_Projection_NoR": {
+      "queryId": "a60e8691-d52c-4d30-b389-2423dc0ac816",
+      "queryName": "School_Level_Data_Historic_Actual_and_Projection_NoR"
+    },
+    "PAN_NOR_BB_Planning_Area_Pupil_Numbers": {
+      "queryId": "1eb591d2-bf38-4dce-9795-ec96b4de4431",
+      "queryName": "PAN_NOR_BB_Planning_Area_Pupil_Numbers"
+    },
+    "TEST_BB_NOR_PAN_Planning Areas": {
+      "queryId": "cc9191f5-10f3-4f71-afba-cdd014ff5f5f",
+      "queryName": "TEST_BB_NOR_PAN_Planning Areas"
+    },
+    "School_Level_Data_GIAS_Data (2)": {
+      "queryId": "a245f07e-e6bd-433c-8b99-5ccfa9469801",
+      "queryName": "School_Level_Data_GIAS_Data (2)"
+    },
+    "School_Level_Data_GIAS_Data (3)": {
+      "queryId": "e3803cfe-877a-4c1c-92b5-3c49c31165a7",
+      "queryName": "School_Level_Data_GIAS_Data (3)"
+    }
+  },
+  "connections": [
+    {
+      "path": "Lakehouse",
+      "kind": "Lakehouse",
+      "connectionId": "{\"ClusterId\":\"3857d375-928d-42f1-b71e-aa4049767eb4\",\"DatasourceId\":\"788f10ad-5056-47d6-950c-2fe90c6a6310\"}"
+    }
+  ]
+}

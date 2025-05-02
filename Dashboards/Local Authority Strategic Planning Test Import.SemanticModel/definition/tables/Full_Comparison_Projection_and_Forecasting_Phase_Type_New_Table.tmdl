@@ -1,0 +1,78 @@
+table Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table
+	lineageTag: 8a578c0f-fa2d-4a03-989e-2a7ce7ad4655
+
+	column phase_type_grouping
+		dataType: string
+		lineageTag: 70da8c58-a735-4b80-9c52-1dbd759fa6fa
+		summarizeBy: none
+		sourceColumn: phase_type_grouping
+
+		annotation SummarizationSetBy = Automatic
+
+	column type_of_establishment
+		dataType: string
+		lineageTag: cfe85dcf-050a-4a55-80e5-7ad02b2034a6
+		summarizeBy: none
+		sourceColumn: type_of_establishment
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 5b33926d-df82-462a-9d46-2a0dfad944cb
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: dafe4dd9-9c7a-4687-b926-c92d75ea3ea8
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: cc66f293-d114-456e-a744-ee64158eaa12
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 83a00a45-f619-4238-8031-546ceb38a1df
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: int64
+		formatString: 0
+		lineageTag: 5167608a-957f-46c5-9b00-4a36c57f4f67
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 902613c1-5f61-40d1-bb8c-731514374d93
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_Phase_Type_New_Table
+

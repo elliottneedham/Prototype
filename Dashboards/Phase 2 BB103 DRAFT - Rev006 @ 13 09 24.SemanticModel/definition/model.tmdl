@@ -1,0 +1,124 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from Query1'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Pupil Info'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Transform File from Pupil Info\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Rooms'
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup 'Transform File from Rooms\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Room Summary'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup 'Transform File from Room Summary\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (2)'
+
+	annotation PBI_QueryGroupOrder = 8
+
+queryGroup 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (3)'
+
+	annotation PBI_QueryGroupOrder = 10
+
+queryGroup 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (4)'
+
+	annotation PBI_QueryGroupOrder = 12
+
+queryGroup 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (5)'
+
+	annotation PBI_QueryGroupOrder = 14
+
+queryGroup 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (6)'
+
+	annotation PBI_QueryGroupOrder = 16
+
+queryGroup 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (7)'
+
+	annotation PBI_QueryGroupOrder = 18
+
+queryGroup 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (8)'
+
+	annotation PBI_QueryGroupOrder = 20
+
+queryGroup 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (9)'
+
+	annotation PBI_QueryGroupOrder = 22
+
+queryGroup 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Rooms","GIAS","Parameter1","Transform Sample File","Sample File","Transform File","Pupil Info","Parameter2","Transform Sample File (2)","Sample File (2)","Transform File (2)","Parameter3","Transform Sample File (3)","Sample File (3)","Transform File (3)","Parameter4","Transform Sample File (4)","Sample File (4)","Transform File (4)","Room Summary","Parameter5","Transform Sample File (5)","Sample File (5)","Transform File (5)","Potential Pupils","Parameter6","Transform Sample File (6)","Sample File (6)","Transform File (6)","Sample File (7)","Parameter7","Transform Sample File (7)","Transform File (7)","Master CAD","Sample File (8)","Parameter8","Transform Sample File (8)","Transform File (8)","External Areas Data","Parameter9","Transform Sample File (9)","Sample File (9)","Transform File (9)","Total Pupils against Potential Pupils","Parameter10","Transform Sample File (10)","Sample File (10)","Transform File (10)","Sample File (11)","Parameter11","Transform Sample File (11)","Transform File (11)","Master External CAD","Sample File (12)","Parameter12","Transform Sample File (12)","Transform File (12)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.132.1053.0 (24.08)
+
+ref table Rooms
+ref table DateTableTemplate_6a966c79-3d1d-4a30-8178-db9686b9a4fc
+ref table GIAS
+ref table 'Pupil Info'
+ref table 'Room Summary'
+ref table 'Potential Pupils'
+ref table LocalDateTable_0ce9117c-7214-438d-9105-66da259f45b6
+ref table 'Master CAD'
+ref table 'External Areas Data'
+ref table 'Total Pupils against Potential Pupils'
+ref table 'Master External CAD'
+
+ref cultureInfo en-GB
+

@@ -1,0 +1,112 @@
+relationship cb086eab-f69b-7346-76e8-c6e6c88e0734
+	fromColumn: Rooms.URN
+	toColumn: GIAS.URN
+
+relationship AutoDetected_ba8d972b-f868-40bf-9e85-49462af3f9e6
+	fromColumn: 'Pupil Info'.URN
+	toColumn: GIAS.URN
+
+relationship eac14a3a-fe48-9c45-255f-09d863ffa920
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Room Summary'.'School URN'
+	toColumn: GIAS.URN
+
+relationship dd9f0db2-00c1-0ed5-6b73-e5423982fa84
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Room Summary'.'School Name'
+	toColumn: GIAS.EstablishmentName
+
+relationship df99b5cb-5acd-3cf2-503f-ddc3056d067a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Pupil Info'.'School Name'
+	toColumn: GIAS.EstablishmentName
+
+relationship 9b21eb68-5c6d-6d98-ffc0-ea48408065ee
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: Rooms.'School Name'
+	toColumn: GIAS.EstablishmentName
+
+relationship 214e63ac-ca97-55c9-0dc1-01b8f57cc9d8
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Room Summary'.Phase
+	toColumn: Rooms.Phase
+
+relationship 8d2c8228-818e-8ad0-791d-3a727094042b
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Room Summary'.'School URN'
+	toColumn: 'Pupil Info'.URN
+
+relationship AutoDetected_fd4da6d6-9233-445e-9949-91af1f6b1dc3
+	fromColumn: 'Potential Pupils'.URN
+	toColumn: GIAS.URN
+
+relationship ed4548cc-5a76-4c5f-8354-f98d7a86c08c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: GIAS.OfstedLastInsp
+	toColumn: LocalDateTable_0ce9117c-7214-438d-9105-66da259f45b6.Date
+
+relationship AutoDetected_9db35b1f-4145-4da2-9d1a-c47487777a34
+	crossFilteringBehavior: bothDirections
+	fromColumn: Rooms.'LA Room Nr'
+	toColumn: 'Master CAD'.'Rooms.LA Room Nr'
+
+relationship eeca5028-de22-4820-6d5a-126d2e88b7f2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Room Summary'.'Room Type'
+	toColumn: 'Master CAD'.'Rooms.Room Type'
+
+relationship AutoDetected_fadd5f54-f62b-4cd7-98a6-bbb1ecb629ba
+	fromColumn: 'External Areas Data'.URN
+	toColumn: GIAS.URN
+
+relationship AutoDetected_3e34fc97-a268-433f-8e0e-b8cc08f2d5e5
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Pupil Info'.'School Name'
+	toColumn: 'Total Pupils against Potential Pupils'.'School Name'
+
+relationship AutoDetected_b896e623-847d-42ad-a40d-cf00780ef570
+	isActive: false
+	toCardinality: many
+	fromColumn: 'Room Summary'.'School Name'
+	toColumn: 'Total Pupils against Potential Pupils'.'School Name'
+
+relationship AutoDetected_2f11e990-e390-4fcb-a6c0-47f6ec7fe095
+	toCardinality: many
+	fromColumn: 'Potential Pupils'.'School Name'
+	toColumn: 'Total Pupils against Potential Pupils'.'School Name'
+
+relationship AutoDetected_294f1e45-2e40-4f65-96c4-ad9ac0ff8786
+	toCardinality: many
+	fromColumn: 'External Areas Data'.'School Name'
+	toColumn: 'Total Pupils against Potential Pupils'.'School Name'
+
+relationship AutoDetected_20370c5b-1e7d-43ff-88c6-8368550bb079
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Total Pupils against Potential Pupils'.URN
+	toColumn: GIAS.URN
+
+relationship 4271506b-67e4-b2a3-24c7-5e9b511c3134
+	isActive: false
+	toCardinality: many
+	fromColumn: Rooms.URN
+	toColumn: 'Total Pupils against Potential Pupils'.URN
+
+relationship 219785cf-8a37-2f53-2a70-e819cf6e9093
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'External Areas Data'.'Link Key'
+	toColumn: 'Master External CAD'.'Replaced Text'
+

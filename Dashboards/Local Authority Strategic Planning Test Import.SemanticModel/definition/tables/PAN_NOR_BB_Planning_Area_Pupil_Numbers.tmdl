@@ -1,0 +1,108 @@
+table PAN_NOR_BB_Planning_Area_Pupil_Numbers
+	lineageTag: 790b720c-0c8f-4d14-9c19-ef5ab3600e2e
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		lineageTag: e55ba8e5-91c1-4a30-99d5-dbd75b319e8b
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: da110c9c-570f-4e7b-aa60-62575b8993da
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 619050b6-0bed-4bbb-ae80-f5dd9a71bbfa
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_area_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 7eb27736-dd84-4379-b5e5-7c12f89dbc2e
+		summarizeBy: none
+		sourceColumn: planning_area_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_area_name
+		dataType: string
+		lineageTag: d528f602-6932-457d-bc20-d44fddebe3cd
+		summarizeBy: none
+		sourceColumn: planning_area_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_area_phase
+		dataType: string
+		lineageTag: adceac58-564b-4ef0-8f33-02411c9f6a2c
+		summarizeBy: none
+		sourceColumn: planning_area_phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupil_forecast_and_202223_actuals
+		dataType: int64
+		formatString: 0
+		lineageTag: e1902540-2e6b-40e3-ab47-7fd402286f8d
+		summarizeBy: sum
+		sourceColumn: pupil_forecast_and_202223_actuals
+
+		annotation SummarizationSetBy = Automatic
+
+	column EY_NOR_Multiplier
+		dataType: double
+		lineageTag: 2ae88983-a2f6-4b47-9419-620d78ae9577
+		summarizeBy: sum
+		sourceColumn: EY_NOR_Multiplier
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Curated_Projected_NOR
+		dataType: int64
+		formatString: 0
+		lineageTag: 424b7c0b-7b56-4400-a9da-581c83f0b6f0
+		summarizeBy: sum
+		sourceColumn: Curated_Projected_NOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Curated_PAN
+		dataType: int64
+		formatString: 0
+		lineageTag: 80d29ec9-c52a-4a9a-abaf-f562f39ced12
+		summarizeBy: sum
+		sourceColumn: Curated_PAN
+
+		annotation SummarizationSetBy = Automatic
+
+	column BB103/104_Capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: ac349761-4205-4ebb-885b-0227dbac7a75
+		summarizeBy: sum
+		sourceColumn: BB103/104_Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	partition PAN_NOR_BB_Planning_Area_Pupil_Numbers = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_PAN_NOR_BB_Planning_Area_Pupil_Numbers = Source{[Schema="dbo",Item="PAN_NOR_BB_Planning_Area_Pupil_Numbers"]}[Data]
+				in
+				    dbo_PAN_NOR_BB_Planning_Area_Pupil_Numbers
+

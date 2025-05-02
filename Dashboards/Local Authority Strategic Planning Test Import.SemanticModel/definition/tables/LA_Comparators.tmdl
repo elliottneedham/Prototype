@@ -1,0 +1,93 @@
+table LA_Comparators
+	lineageTag: ae1e96cc-3e67-4271-bb9a-2cdc16634d6d
+
+	column LA_ID
+		dataType: string
+		lineageTag: 5e0eeb34-71e8-4a70-a651-62e87cc390cc
+		summarizeBy: none
+		sourceColumn: LA_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LA_Name
+		dataType: string
+		lineageTag: 1f71013f-29c2-4244-8beb-6ff1b65ab21b
+		summarizeBy: none
+		sourceColumn: LA_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Statistical_Neighbours
+		dataType: string
+		lineageTag: df49f2c0-7835-45e3-8358-c1ba345562d3
+		summarizeBy: none
+		sourceColumn: Statistical_Neighbours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regional_Neighbours
+		dataType: string
+		lineageTag: cce1cea4-2b3b-4796-a461-54c1e32388f4
+		summarizeBy: none
+		sourceColumn: Regional_Neighbours
+
+		annotation SummarizationSetBy = Automatic
+
+	column Same_Level_of_Deprivation_LA_Comparators
+		dataType: string
+		lineageTag: 73dffe31-4367-45a8-8d65-a134159039a5
+		summarizeBy: none
+		sourceColumn: Same_Level_of_Deprivation_LA_Comparators
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ofsted_LA_Review_With_No_WSOA_Comparators
+		dataType: string
+		lineageTag: a9516267-4a90-41b4-a998-e375f77c242d
+		summarizeBy: none
+		sourceColumn: Ofsted_LA_Review_With_No_WSOA_Comparators
+
+		annotation SummarizationSetBy = Automatic
+
+	column No_2020/21_DSG_Deficit_LA_Comparators
+		dataType: string
+		lineageTag: 4114b8e5-c04f-4c4d-abb2-6e136f125a1c
+		summarizeBy: none
+		sourceColumn: No_2020/21_DSG_Deficit_LA_Comparators
+
+		annotation SummarizationSetBy = Automatic
+
+	column CS1
+		dataType: string
+		lineageTag: 191b45ac-a6fc-45c1-be5a-bbf5306aa5a9
+		summarizeBy: none
+		sourceColumn: CS1
+
+		annotation SummarizationSetBy = Automatic
+
+	column CS2
+		dataType: string
+		lineageTag: e49ecbcf-79c1-41ed-8f9e-dadbf1bd2a74
+		summarizeBy: none
+		sourceColumn: CS2
+
+		annotation SummarizationSetBy = Automatic
+
+	column CS3
+		dataType: string
+		lineageTag: 4016da9d-647c-4994-af5e-fa483c372232
+		summarizeBy: none
+		sourceColumn: CS3
+
+		annotation SummarizationSetBy = Automatic
+
+	partition LA_Comparators = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_LA_Comparators = Source{[Schema="dbo",Item="LA_Comparators"]}[Data],
+				    #"Renamed Columns" = Table.RenameColumns(dbo_LA_Comparators,{{"A_-_Commissioning_Strategy_1_LA_Comparators", "CS1"}, {"B_-_Commissioning_Strategy_2_LA_Comparators", "CS2"}, {"C_-_Commissioning_Strategy_3_LA_Comparators", "CS3"}})
+				in
+				    #"Renamed Columns"
+
