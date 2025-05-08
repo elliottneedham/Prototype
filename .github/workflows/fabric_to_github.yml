@@ -1,0 +1,26 @@
+name: Fabric NoR Data Sync
+
+on:
+  workflow_dispatch: # allows manual runs
+  schedule:
+    - cron: '0 * * * *' # runs hourly
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download CSV from Fabric OneLake
+        run: |
+          curl -L "${{ secrets.ONELAKE_CSV_URL }}" -o public/data/nor_data.csv
+
+      - name: Commit & push changes (if any)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/data/nor_data.csv
+          git commit -m "Automated update: NoR dataset [$(date)]" || echo "No new data to commit"
+          git push
