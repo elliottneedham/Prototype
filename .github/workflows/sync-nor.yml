@@ -1,0 +1,47 @@
+name: Sync NoR CSV from Azure Blob
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  sync_csv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Ensure output folder exists
+        run: mkdir -p public/data
+
+      - name: Download CSV from Azure Blob
+        run: |
+          echo "📥 Downloading NoR CSV from Azure Blob..."
+          curl -L "https://fabricdashdata.blob.core.windows.net/exports/nor_data_combined.csv" -o public/data/nor_data_combined.csv
+          echo "✅ Download complete. Contents:"
+          ls -lh public/data/
+
+      - name: Commit and push if changed
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          echo "🔍 Checking file exists before commit..."
+          test -f public/data/nor_data_combined.csv || (echo "❌ File missing"; exit 1)
+
+          git add public/data/nor_data_combined.csv || echo "⚠️ Nothing to add"
+          git status
+
+          if ! git diff --cached --quiet; then
+            echo "🔄 Changes detected. Committing..."
+            git commit -m "🔄 Sync NoR CSV from Azure Blob"
+
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}
+            git push origin HEAD
+          else
+            echo "✅ No changes to commit"
+          fi
