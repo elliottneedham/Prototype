@@ -8,7 +8,7 @@ body {
   font-family: var(--font-family);
   font-size: 16px;
   line-height: 1.6;
-  color: #fff; /* optional: ensures white text on dark bg */
+  color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -98,4 +98,22 @@ button, input, select {
   border-radius: 8px;
   font-size: 0.95rem;
   min-width: 180px;
+}
+
+/* 🌀 Tailwind Utility: fade-in animation */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
