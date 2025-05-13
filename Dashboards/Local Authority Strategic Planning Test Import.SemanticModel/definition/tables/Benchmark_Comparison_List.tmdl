@@ -1,0 +1,20 @@
+table Benchmark_Comparison_List
+	lineageTag: dfba46bc-ade9-421d-a0ae-b1d5afb51098
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 2fb529ab-c067-4de1-8765-f8148b5745a4
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Benchmark_Comparison_List = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Benchmark_Comparison_List = Source{[Schema="dbo",Item="Benchmark_Comparison_List"]}[Data]
+				in
+				    dbo_Benchmark_Comparison_List
+

@@ -1,0 +1,20 @@
+table Local_Authority_List
+	lineageTag: 89e3d833-027a-4ccb-bb50-52e8d071a6bc
+
+	column la_name
+		dataType: string
+		lineageTag: d9619375-0e89-4e39-a739-f063a9da3a2a
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Local_Authority_List = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Local_Authority_List = Source{[Schema="dbo",Item="Local_Authority_List"]}[Data]
+				in
+				    dbo_Local_Authority_List
+

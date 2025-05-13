@@ -1,0 +1,79 @@
+table 01_Commissioning_Strategy_1
+	lineageTag: ec314775-cd12-4b19-ad8d-ebd5fdffac78
+	sourceLineageTag: [dbo].[01_Commissioning_Strategy_1]
+
+	column LA_ID
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 3edfee6c-9b55-4384-88d4-a917aa09ddea
+		sourceLineageTag: LA_ID
+		summarizeBy: none
+		sourceColumn: LA_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LA_Name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: c6e067a8-9a2a-4139-8094-39840d0d0459
+		sourceLineageTag: LA_Name
+		summarizeBy: none
+		sourceColumn: LA_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: cbb7ce48-1422-4601-ae63-194220aba7e2
+		sourceLineageTag: time_period
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparison_Pupils
+		dataType: double
+		sourceProviderType: float
+		lineageTag: 48e51b7d-3480-4166-82fd-ebc5944246e3
+		sourceLineageTag: Comparison_Pupils
+		summarizeBy: sum
+		sourceColumn: Comparison_Pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LA_Pupils
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: d4f3fa3f-d824-4b4a-84c5-32772dd0fbf5
+		sourceLineageTag: LA_Pupils
+		summarizeBy: sum
+		sourceColumn: LA_Pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comparison_Percentage
+		dataType: double
+		sourceProviderType: decimal(34, 6)
+		lineageTag: 9e1e65ee-60ad-4283-8c85-df7ed43d5bca
+		sourceLineageTag: Comparison_Percentage
+		summarizeBy: sum
+		sourceColumn: Comparison_Percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 01_Commissioning_Strategy_1 = entity
+		mode: directLake
+		source
+			entityName: 01_Commissioning_Strategy_1
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,209 @@
+table Pupil_Capacity_Shortfall_Surplus
+	lineageTag: c5b677d5-bbff-4f68-9342-54d6ac59ace6
+
+	column URN
+		dataType: string
+		lineageTag: ff3abf3f-8c9e-42fe-9333-51f23027fc7b
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column LA__name_
+		dataType: string
+		lineageTag: 3668790e-11c8-4ccf-a90e-666c440ab517
+		summarizeBy: none
+		sourceColumn: LA__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstablishmentName
+		dataType: string
+		lineageTag: 93ae6ac0-e7f1-46e7-a166-aeb045ac6963
+		summarizeBy: none
+		sourceColumn: EstablishmentName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rationalised_School_Type
+		dataType: string
+		lineageTag: 65368608-5432-4287-8e01-15b5ae5f5a67
+		summarizeBy: none
+		sourceColumn: Rationalised_School_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhaseOfEducation__name_
+		dataType: string
+		lineageTag: 4d6690a7-2652-401f-93cd-8f31ae75a485
+		summarizeBy: none
+		sourceColumn: PhaseOfEducation__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistrictAdministrative__name_
+		dataType: string
+		lineageTag: 7b7b9dc2-29a5-40ca-82ad-1d3f6ba83679
+		summarizeBy: none
+		sourceColumn: DistrictAdministrative__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column AdministrativeWard__name_
+		dataType: string
+		lineageTag: 949df677-b309-451a-9777-85c127f1fd28
+		summarizeBy: none
+		sourceColumn: AdministrativeWard__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column ParliamentaryConstituency__name_
+		dataType: string
+		lineageTag: 45e2dfff-0917-482f-846c-29e6c796d194
+		summarizeBy: none
+		sourceColumn: ParliamentaryConstituency__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA__code_
+		dataType: string
+		lineageTag: ac3be9b9-538b-4fff-b926-672780f318fa
+		summarizeBy: none
+		sourceColumn: LSOA__code_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Overall_effectiveness
+		dataType: double
+		lineageTag: e5659690-eb05-4d92-804e-712958bc3b0d
+		summarizeBy: sum
+		sourceColumn: Overall_effectiveness
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column planning_area_code
+		dataType: int64
+		formatString: 0
+		lineageTag: f62c9b77-0ab0-4def-a0bb-4e20a2d3e78a
+		summarizeBy: none
+		sourceColumn: planning_area_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_area_name
+		dataType: string
+		lineageTag: 926be16f-25ce-48eb-b663-0b3e47e6823e
+		summarizeBy: none
+		sourceColumn: planning_area_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Internal_Area_Taken_From
+		dataType: string
+		lineageTag: 85fa6a15-7697-46c6-bd6b-69664f5cd0ff
+		summarizeBy: none
+		sourceColumn: Internal_Area_Taken_From
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_GIFA
+		dataType: double
+		lineageTag: 9a9c53b2-17bf-4202-bc11-b8e00710b1b5
+		summarizeBy: sum
+		sourceColumn: Actual_GIFA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: da34b4d3-2720-43db-9c50-0c7623baae29
+		summarizeBy: sum
+		sourceColumn: Total_capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_NOR
+		dataType: int64
+		formatString: 0
+		lineageTag: 47a63529-6857-4544-a178-3c729e6f7b65
+		summarizeBy: sum
+		sourceColumn: Total_NOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column BB103_104_Capacity
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b038cd7-cc26-4376-8767-c301a60608b4
+		summarizeBy: sum
+		sourceColumn: BB103_104_Capacity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Measure
+		dataType: string
+		lineageTag: 56b7eec7-53dd-48a7-ae36-53729754e98a
+		summarizeBy: none
+		sourceColumn: Measure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pupils
+		dataType: int64
+		formatString: 0
+		lineageTag: c054b9c2-47c5-4b4c-a94d-24709d3b5402
+		summarizeBy: sum
+		sourceColumn: Pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column longitude
+		dataType: double
+		lineageTag: 54dcaaef-8778-4336-8793-5ebfaf7eb586
+		summarizeBy: sum
+		sourceColumn: longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column latitude
+		dataType: double
+		lineageTag: 783017fe-b79c-4264-95e9-aec2d926b147
+		summarizeBy: sum
+		sourceColumn: latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School/URN
+		dataType: string
+		lineageTag: 11e552cf-90ab-442b-a5cc-98f8bcd533b9
+		summarizeBy: none
+		sourceColumn: School/URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column MAT
+		dataType: string
+		lineageTag: 7227e402-ae8a-47a9-bf7e-f2a1f981833e
+		summarizeBy: none
+		sourceColumn: MAT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pupil_Capacity_Shortfall_Surplus = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Pupil_Capacity_Shortfall_Surplus = Source{[Schema="dbo",Item="Pupil_Capacity_Shortfall_Surplus"]}[Data]
+				in
+				    dbo_Pupil_Capacity_Shortfall_Surplus
+

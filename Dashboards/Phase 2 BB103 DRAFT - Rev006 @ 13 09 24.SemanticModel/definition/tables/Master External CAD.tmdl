@@ -1,0 +1,91 @@
+table 'Master External CAD'
+	lineageTag: 408e854f-fe13-4574-96af-b98c73c2a0bb
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 2856adf8-a603-4876-bdc9-9c3564faaea9
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contents
+		dataType: string
+		lineageTag: 5c1980e8-fa9a-4dc6-832c-c8c1bb1bed29
+		summarizeBy: none
+		sourceColumn: Contents
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXTSTRING
+		dataType: string
+		lineageTag: 03251fb4-76b0-4859-a363-6e95f5dd86aa
+		summarizeBy: none
+		sourceColumn: TEXTSTRING
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXT_SIZE
+		dataType: int64
+		formatString: 0
+		lineageTag: 0ecbc6c2-4c8b-4290-a0c0-e85a5e354611
+		summarizeBy: sum
+		sourceColumn: TEXT_SIZE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TEXT_ANGLE
+		dataType: int64
+		formatString: 0
+		lineageTag: 1e36697e-4e29-4dde-a9a6-e1ac6347d9ee
+		summarizeBy: sum
+		sourceColumn: TEXT_ANGLE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'External Code'
+		dataType: string
+		lineageTag: 04498751-e148-4a25-8c23-355baceea328
+		summarizeBy: none
+		sourceColumn: External Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: 13a36051-8e8d-4e3d-863d-0bfcb2fb818d
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Replaced Text'
+		dataType: string
+		lineageTag: deaadf82-8ae9-46cc-ad16-96a123e0c381
+		summarizeBy: none
+		sourceColumn: Replaced Text
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Master External CAD' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master CAD (All Externals) - Joined.csv")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (12)", each #"Transform File (12)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (12)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (12)", Table.ColumnNames(#"Transform File (12)"(#"Sample File (12)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Contents", type text}, {"TEXTSTRING", type text}, {"TEXT_SIZE", Int64.Type}, {"TEXT_ANGLE", Int64.Type}}),
+				    #"Inserted Text After Delimiter" = Table.AddColumn(#"Changed Type", "External Code", each Text.AfterDelimiter([Contents], "P"), type text),
+				    #"Inserted Text Before Delimiter" = Table.AddColumn(#"Inserted Text After Delimiter", "URN", each Text.BeforeDelimiter([Contents], "\"), type text),
+				    #"Inserted Replaced Text" = Table.AddColumn(#"Inserted Text Before Delimiter", "Replaced Text", each Text.Replace([Contents], "\P", " - "), type text)
+				in
+				    #"Inserted Replaced Text"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

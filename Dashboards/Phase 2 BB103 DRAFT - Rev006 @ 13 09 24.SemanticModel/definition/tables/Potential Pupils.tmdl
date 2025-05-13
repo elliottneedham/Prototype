@@ -1,0 +1,122 @@
+table 'Potential Pupils'
+	lineageTag: 2e3a138f-2870-46ac-ae28-450f4384abf6
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 603008d7-dc6d-4d6e-8c44-102dbca1b175
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 5f4db6c4-2621-4133-bda2-f352e7364c96
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: badc85c5-db49-4a28-8f45-851933a1ef1b
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: d1004ded-28b7-44db-83a1-09bdc2e3edf0
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 8c0d8bc2-e0d9-40b0-9ab3-5efdbc1106ad
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 4cec2aa4-f0af-4e2a-88f1-0f1a33f31d69
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comparison Criteria'
+		dataType: string
+		lineageTag: 57658db7-1222-4a37-b2cc-ec445d48576f
+		summarizeBy: none
+		sourceColumn: Comparison Criteria
+		sortByColumn: 'Sort order for Criteria'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: 37ad8f58-93ad-46c6-8e57-a5dcc0cde910
+		summarizeBy: none
+		sourceColumn: Position
+		sortByColumn: 'Position Sort Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Position Sort Order'
+		dataType: double
+		lineageTag: 5169dbb2-a9ff-4b93-b6c8-5f0a7313ffae
+		summarizeBy: sum
+		sourceColumn: Position Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sort order for Criteria'
+		dataType: double
+		lineageTag: c6d7d999-c37e-4f04-aff3-3fb9dc9a2731
+		summarizeBy: sum
+		sourceColumn: Sort order for Criteria
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Potential Pupils' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master Sufficiency Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (6)", each #"Transform File (6)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (6)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (6)", Table.ColumnNames(#"Transform File (6)"(#"Sample File (6)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"School Name", type any}, {"URN", Int64.Type}, {"Phase", type any}, {"BB103 m² Per Pupil Rate:", type number}, {"Total Internal Area Used by School (m²):", type number}, {"NOR - Actual m² Above/Below Internal Area", type number}, {"PAN - Actual m² Above/Below Internal Area", type number}, {"FPAN - Actual m² Above/Below Internal Area", type number}, {"NOR - Potential Over/Under Capacity", Int64.Type}, {"PAN - Potential Over/Under Capacity", Int64.Type}, {"FPAN - Potential Over/Under Capacity", Int64.Type}, {"Total Potential Pupils (Against Pan)", Int64.Type}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Source.Name", "School Name", "URN", "Phase"}, "Attribute", "Value"),
+				    #"Comparison Criteria" = Table.AddColumn(#"Unpivoted Columns", "Custom", each let splitAttribute = List.Reverse(Splitter.SplitTextByDelimiter("m", QuoteStyle.None)([Attribute])), splitsplitAttribute0 = Splitter.SplitTextByDelimiter(" - ", QuoteStyle.None)(splitAttribute{0}?), splitAttribute2 = Splitter.SplitTextByDelimiter(" - ", QuoteStyle.None)([Attribute]), splitAttribute3 = List.Reverse(Splitter.SplitTextByDelimiter(" - ", QuoteStyle.None)([Attribute])) in Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(splitsplitAttribute0{0}?), 34)), Text.Middle(splitAttribute2{1}?, 31, 1), Text.End(splitAttribute3{0}?, 34)}), type text),
+				    #"Renamed Columns" = Table.RenameColumns(#"Comparison Criteria",{{"Custom", "Comparison Criteria"}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Renamed Columns", "Custom", each if [Attribute] = "NOR - Actual m² Above/Below Internal Area" then "NOR" else if [Attribute] = "FPAN - Actual m² Above/Below Internal Area" then "FPAN" else if [Attribute] = "NOR - Potential Over/Under Capacity" then "NOR" else if [Attribute] = "FPAN - Potential Over/Under Capacity" then "FPAN" else "PAN", type text),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "Position"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns2", "Position Sort Order", each if [Position] = "PAN" then 2 else if [Position] = "NOR" then 1 else if [Position] = "FPAN" then 3 else null, type number),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Added Conditional Column1", "Sort order for Criteria", each if [Comparison Criteria] = "BB103 m² Per Pupil Rate:" then 1 else if [Comparison Criteria] = "Internal Area Used by School (m²):" then 2 else if [Comparison Criteria] = "Actual m² Above/Below Internal Area" then 3 else if [Comparison Criteria] = "Potential Over/Under Capacity" then 4 else if [Comparison Criteria] = "Total Potential Pupils (Against Pan)" then 5 else null, type number),
+				    #"Rounded Off" = Table.TransformColumns(#"Added Conditional Column2",{{"Value", each Number.Round(_, 1), type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Rounded Off",{{"Value", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

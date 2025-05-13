@@ -1,0 +1,46 @@
+table 'Year index'
+	isHidden
+	lineageTag: 6ae7b34e-8901-4ee2-865c-bd06a64bde22
+
+	column year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 95d69427-eb7f-494b-86b8-d602f5fe49b6
+		summarizeBy: none
+		sourceColumn: year
+		sortByColumn: index
+
+		changedProperty = SortByColumn
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	column index
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 3b88bd5c-71dc-44cd-bbe5-ae43e350a100
+		summarizeBy: none
+		sourceColumn: index
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+	partition 'Year index' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Nc6xDQAhDATBXhwT4DMGXAui/zb+eOm00WR7jqF7oVszt9semZMQHSBDBIIcYmCQKQ4kOcXEJJc4scgtLmyyxI16G12u+Lf4dT8=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [year = _t, index = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"year", Int64.Type}, {"index", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

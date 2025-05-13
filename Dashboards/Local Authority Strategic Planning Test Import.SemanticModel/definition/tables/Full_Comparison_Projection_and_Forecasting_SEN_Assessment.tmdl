@@ -1,0 +1,225 @@
+table Full_Comparison_Projection_and_Forecasting_SEN_Assessment
+	lineageTag: d41c9411-5f67-4d80-8317-c923d7674d75
+
+	measure Pupil_Numbers_Assessment = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[pupils])
+			    )
+			```
+		lineageTag: f3657ac6-1c34-4290-beeb-13eee413e92c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupil_Numbers_Percentage = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage]),
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        AVERAGE(Full_Comparison_Projection_and_Forecasting_SEN_Assessment[Percentage])
+			    )
+			```
+		lineageTag: 8342081c-38bc-404d-b584-0856af2d1d71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Area
+		dataType: string
+		lineageTag: f805d9b2-e60c-498e-b30d-426a5aa5e073
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: 45765899-40fd-406a-8dec-9e593392e24e
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: b3ee904a-067a-4465-bc07-50547121060a
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 1456fab2-283a-4182-9449-25ab38c659e2
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: a9d3d672-4d81-4d4d-a673-9980f09dc005
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 1beb383f-e2e6-434d-91c4-e1da7e458f10
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Percentage
+		dataType: double
+		lineageTag: 3fce9e53-fdf6-45d2-8e23-8c5ba099c4a8
+		summarizeBy: sum
+		sourceColumn: Percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pupils
+		dataType: double
+		lineageTag: 5e68c2b1-625d-45e7-a8b7-1a77b97c4a72
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Full_Comparison_Projection_and_Forecasting_SEN_Assessment = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_SEN_Assessment = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_SEN_Assessment"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_SEN_Assessment
+

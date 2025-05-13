@@ -1,0 +1,1246 @@
+expression 'Sample File' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Assets Data.csv")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: b719e4cf-4d16-4f91-bc73-839f5dbf6d2a
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression Parameter1 = #"Sample File" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 40798b54-9983-439e-b43f-b60595988d04
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Exception
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=39, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 22d99404-5700-4fbf-a2db-6bc64a50d7ed
+	queryGroup: 'Transform File from Query1'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transform File' =
+		let
+		    Source = (Parameter1 as binary) => let
+		    Source = Csv.Document(Parameter1,[Delimiter=",", Columns=39, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 3fe5a8dd-2167-4a50-be07-b7cb95dd77ac
+	queryGroup: 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter2 = #"Sample File (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 527f7fb0-fbc6-4c9f-af45-ade87777a2e5
+	queryGroup: 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (2)' =
+		let
+		    Source = Excel.Workbook(Parameter2, null, true),
+		    #"GIAS Sorted_Sheet" = Source{[Item="GIAS Sorted",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"GIAS Sorted_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: d549f000-5c41-47ea-beed-cb8e3ba623e0
+	queryGroup: 'Transform File from Query1 (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (2)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "1 - GIAS Cleanse.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: d27365c9-6736-4322-8d76-7812c416a45d
+	queryGroup: 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (2)' =
+		let
+		    Source = (Parameter2 as binary) => let
+		    Source = Excel.Workbook(Parameter2, null, true),
+		    #"GIAS Sorted_Sheet" = Source{[Item="GIAS Sorted",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"GIAS Sorted_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (2)""}" ]
+	lineageTag: 23d5d41e-cdc7-4359-a108-fff712cf6374
+	queryGroup: 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter3 = #"Sample File (3)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (3)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 6c4cabbb-f42f-46ac-abf2-407e733c7ec1
+	queryGroup: 'Transform File from Query2\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (3)' =
+		let
+		    Source = Xml.Tables(Parameter3),
+		    Table0 = Source{0}[Table]
+		in
+		    Table0
+	lineageTag: 880aa2b8-6f96-4c5c-b229-7b92d7edd09b
+	queryGroup: 'Transform File from Query2'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (3)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury @ 03.06.24.kml")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: d51047c7-3856-431a-803d-458ec4a0e840
+	queryGroup: 'Transform File from Query2\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (3)' =
+		let
+		    Source = (Parameter3 as binary) => let
+		    Source = Xml.Tables(Parameter3),
+		    Table0 = Source{0}[Table]
+		in
+		    Table0
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (3)""}" ]
+	lineageTag: c4a9f480-76f0-4288-811d-d2fd304f9edf
+	queryGroup: 'Transform File from Query2\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter4 = #"Sample File (4)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (4)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: c1da8eba-6f2e-4134-abce-3cc6a488e424
+	queryGroup: 'Transform File from Query2 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (4)' =
+		let
+		    Source = Excel.Workbook(Parameter4, null, true),
+		    #"GIAS Longitude & Latitude_Sheet" = Source{[Item="GIAS Longitude & Latitude",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"GIAS Longitude & Latitude_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 63389205-34ab-46da-ae36-98937548c925
+	queryGroup: 'Transform File from Query2 (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (4)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "GIAS Longitude & Latitude.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 1252311b-c7d0-47d7-8845-8554b32946e9
+	queryGroup: 'Transform File from Query2 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (4)' =
+		let
+		    Source = (Parameter4 as binary) => let
+		    Source = Excel.Workbook(Parameter4, null, true),
+		    #"GIAS Longitude & Latitude_Sheet" = Source{[Item="GIAS Longitude & Latitude",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"GIAS Longitude & Latitude_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (4)""}" ]
+	lineageTag: fa64fbab-59b3-41ee-aed1-592275b69e5d
+	queryGroup: 'Transform File from Query2 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter5 = #"Sample File (5)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (5)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 805c1971-d585-43ca-b56d-3392efa9a48a
+	queryGroup: 'Transform File from Query4\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (5)' =
+		let
+		    Source = Excel.Workbook(Parameter5, null, true),
+		    #"LSOA Mapping Co-ordinates_Sheet" = Source{[Item="LSOA Mapping Co-ordinates",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"LSOA Mapping Co-ordinates_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 0528f52f-da2d-4637-bab4-aab2f6982c71
+	queryGroup: 'Transform File from Query4'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (5)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2023 Pupil Home Location.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: f49a4905-e3c4-41f6-904e-1acad105b1f2
+	queryGroup: 'Transform File from Query4\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (5)' =
+		let
+		    Source = (Parameter5 as binary) => let
+		    Source = Excel.Workbook(Parameter5, null, true),
+		    #"LSOA Mapping Co-ordinates_Sheet" = Source{[Item="LSOA Mapping Co-ordinates",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"LSOA Mapping Co-ordinates_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (5)""}" ]
+	lineageTag: e887f768-1ecb-4a6d-afee-5ae4b42a76ae
+	queryGroup: 'Transform File from Query4\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'Sample File (6)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Assets Data.csv")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 5f826b0e-c56b-4129-9325-fe04bb22d5ae
+	queryGroup: 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression Parameter6 = #"Sample File (6)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (6)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 882e284a-de65-4715-b870-863a9fef2fbb
+	queryGroup: 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (6)' =
+		let
+		    Source = Csv.Document(Parameter6,[Delimiter=",", Columns=39, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: d9323da3-a8f1-4307-9221-4038cd30f364
+	queryGroup: 'Transform File from Query1 (3)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transform File (6)' =
+		let
+		    Source = (Parameter6 as binary) => let
+		    Source = Csv.Document(Parameter6,[Delimiter=",", Columns=39, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (6)""}" ]
+	lineageTag: c129f30a-eb44-4465-af09-8bbb30322740
+	queryGroup: 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter8 = #"Sample File (8)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (8)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 7889cbb5-3a9d-4d2f-b06a-6e239505abf6
+	queryGroup: 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (8)' =
+		let
+		    Source = Excel.Workbook(Parameter8, null, true),
+		    in_Sheet = Source{[Item="in",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(in_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 4767e39b-34ae-4025-8604-5402972e2776
+	queryGroup: 'Transform File from Query1 (4)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (8)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Assets Data.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: fb999a0d-a4f4-43d3-9f5b-ff2d02233096
+	queryGroup: 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (8)' =
+		let
+		    Source = (Parameter8 as binary) => let
+		    Source = Excel.Workbook(Parameter8, null, true),
+		    in_Sheet = Source{[Item="in",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(in_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (8)""}" ]
+	lineageTag: c8296a2b-1253-450e-90ba-356326ccd2d4
+	queryGroup: 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter9 = #"Sample File (9)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (9)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 5838cd31-9037-4520-b0a1-898bbc0e9873
+	queryGroup: 'Transform File from Query2 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (9)' =
+		let
+		    Source = Excel.Workbook(Parameter9, null, true),
+		    Sheet2_Sheet = Source{[Item="Sheet2",Kind="Sheet"]}[Data]
+		in
+		    Sheet2_Sheet
+	lineageTag: 3e0d3ef5-58c1-4030-9bc2-5f7bd6c97a84
+	queryGroup: 'Transform File from Query2 (3)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (9)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "DoS - S106 Allocations with comments - Rev 001 @ 06 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: ce0d7d72-72e6-4a99-84f6-fa41bb733898
+	queryGroup: 'Transform File from Query2 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (9)' =
+		let
+		    Source = (Parameter9 as binary) => let
+		    Source = Excel.Workbook(Parameter9, null, true),
+		    Sheet2_Sheet = Source{[Item="Sheet2",Kind="Sheet"]}[Data]
+		in
+		    Sheet2_Sheet
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (9)""}" ]
+	lineageTag: 588eadf9-3584-4e1d-bdd4-604bc4d285c8
+	queryGroup: 'Transform File from Query2 (3)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter10 = #"Sample File (10)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (10)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 84a49c97-e966-4a1c-bc4c-703b0d19ca94
+	queryGroup: 'Transform File from Query3\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (10)' =
+		let
+		    Source = Excel.Workbook(Parameter10, null, true),
+		    #"PowerBI Format Table 1_Sheet" = Source{[Item="PowerBI Format Table 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"PowerBI Format Table 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 15f84b0f-d3ee-420f-9367-3848a8d83016
+	queryGroup: 'Transform File from Query3'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (10)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Pupil Place Planning Risks & Opportunities - Rev 001 @ 17 07 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: b15a0ec7-7ad2-4abb-9efe-26debe3a8f1a
+	queryGroup: 'Transform File from Query3\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (10)' =
+		let
+		    Source = (Parameter10 as binary) => let
+		    Source = Excel.Workbook(Parameter10, null, true),
+		    #"PowerBI Format Table 1_Sheet" = Source{[Item="PowerBI Format Table 1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"PowerBI Format Table 1_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (10)""}" ]
+	lineageTag: 49603493-490d-449c-9323-3c535fc3eb4f
+	queryGroup: 'Transform File from Query3\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter11 = #"Sample File (11)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (11)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 1884ea4b-6b5f-446a-a44b-41fb61ee21b6
+	queryGroup: 'Transform File from Query4 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (11)' =
+		let
+		    Source = Excel.Workbook(Parameter11, null, true),
+		    #"4 - Mass Attendence_Sheet" = Source{[Item="4 - Mass Attendence",Kind="Sheet"]}[Data]
+		in
+		    #"4 - Mass Attendence_Sheet"
+	lineageTag: cc555cb2-c426-4278-8fbb-c0e0cae87049
+	queryGroup: 'Transform File from Query4 (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (11)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 63bc8bae-982a-4b6c-9f57-73d1e07dc0d5
+	queryGroup: 'Transform File from Query4 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (11)' =
+		let
+		    Source = (Parameter11 as binary) => let
+		    Source = Excel.Workbook(Parameter11, null, true),
+		    #"4 - Mass Attendence_Sheet" = Source{[Item="4 - Mass Attendence",Kind="Sheet"]}[Data]
+		in
+		    #"4 - Mass Attendence_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (11)""}" ]
+	lineageTag: 3088509b-101b-4012-9c8d-5b4a438b1b8e
+	queryGroup: 'Transform File from Query4 (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter12 = #"Sample File (12)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (12)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: c316ae34-b559-4027-a5ed-9e1f8c4dfec2
+	queryGroup: 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (12)' =
+		let
+		    Source = Excel.Workbook(Parameter12, null, true),
+		    #"1 - School GIAS Data @ 180624_Sheet" = Source{[Item="1 - School GIAS Data @ 180624",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"1 - School GIAS Data @ 180624_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: fb791b1c-a648-4b49-96d2-b0e3ac4de79a
+	queryGroup: 'Transform File from Query1 (5)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (12)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 7f4744dc-8d57-42c6-bda3-a540c715f679
+	queryGroup: 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (12)' =
+		let
+		    Source = (Parameter12 as binary) => let
+		    Source = Excel.Workbook(Parameter12, null, true),
+		    #"1 - School GIAS Data @ 180624_Sheet" = Source{[Item="1 - School GIAS Data @ 180624",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"1 - School GIAS Data @ 180624_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (12)""}" ]
+	lineageTag: e33e8d58-4b57-4bae-bc36-b818b4041fea
+	queryGroup: 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter13 = #"Sample File (13)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (13)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 0b360f98-ab44-4547-9e82-e1a73a18062e
+	queryGroup: 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (13)' =
+		let
+		    Source = Excel.Workbook(Parameter13, null, true),
+		    #"Deanery Calculations_Sheet" = Source{[Item="Deanery Calculations",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Deanery Calculations_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: bcc13746-9f6b-409c-a4b8-b6d106ad2eb2
+	queryGroup: 'Transform File from Query1 (6)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (13)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Deanery Level Population Projections - Rev 002 @ 05 08 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: d9f9b19b-d923-4a0b-95e1-6bae27ad37d0
+	queryGroup: 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (13)' =
+		let
+		    Source = (Parameter13 as binary) => let
+		    Source = Excel.Workbook(Parameter13, null, true),
+		    #"Deanery Calculations_Sheet" = Source{[Item="Deanery Calculations",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Deanery Calculations_Sheet", [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (13)""}" ]
+	lineageTag: 82a955b2-fb09-4ca5-a14c-107b48f957bb
+	queryGroup: 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter14 = #"Sample File (14)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (14)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 687a2d7f-b85d-4844-ad66-c36513e3826a
+	queryGroup: 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (14)' =
+		let
+		    Source = Excel.Workbook(Parameter14, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 4c1b279b-54b0-46ed-b33c-c2ab16a11b07
+	queryGroup: 'Transform File from Query1 (7)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (14)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewbury Basic and High Needs and early Years Capital Funding - Rev 001 @ 15 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: ec63e153-4c77-4c67-b459-212f5d61d800
+	queryGroup: 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (14)' =
+		let
+		    Source = (Parameter14 as binary) => let
+		    Source = Excel.Workbook(Parameter14, null, true),
+		    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (14)""}" ]
+	lineageTag: fef0c385-4ec5-4bf4-882c-e062b4b3f500
+	queryGroup: 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter15 = #"Sample File (15)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (15)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 21dfaa82-f273-44ac-ac4e-55840c704669
+	queryGroup: 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (15)' =
+		let
+		    Source = Excel.Workbook(Parameter15, null, true),
+		    #"E1 to R_Sheet" = Source{[Item="E1 to R",Kind="Sheet"]}[Data]
+		in
+		    #"E1 to R_Sheet"
+	lineageTag: 80c4303e-d82e-436a-8934-e6e71044450b
+	queryGroup: 'Transform File from Query1 (8)'
+
+expression 'Sample File (15)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 6551da68-5bc2-4138-8266-52317577f104
+	queryGroup: 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (15)' =
+		let
+		    Source = (Parameter15 as binary) => let
+		    Source = Excel.Workbook(Parameter15, null, true),
+		    #"E1 to R_Sheet" = Source{[Item="E1 to R",Kind="Sheet"]}[Data]
+		in
+		    #"E1 to R_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (15)""}" ]
+	lineageTag: d83186aa-037a-487b-a7c5-8cc73dbd55c8
+	queryGroup: 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter16 = #"Sample File (16)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (16)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 5ef48d46-0597-4d4d-9994-6ebc7b28e2d1
+	queryGroup: 'Transform File from Query2 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (16)' =
+		let
+		    Source = Excel.Workbook(Parameter16, null, true),
+		    #"Y1 to Y2_Sheet" = Source{[Item="Y1 to Y2",Kind="Sheet"]}[Data]
+		in
+		    #"Y1 to Y2_Sheet"
+	lineageTag: e8c82ded-587b-4187-a385-14d7a8058061
+	queryGroup: 'Transform File from Query2 (4)'
+
+expression 'Sample File (16)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 298fccc6-4139-4237-a953-96ade5cc5250
+	queryGroup: 'Transform File from Query2 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (16)' =
+		let
+		    Source = (Parameter16 as binary) => let
+		    Source = Excel.Workbook(Parameter16, null, true),
+		    #"Y1 to Y2_Sheet" = Source{[Item="Y1 to Y2",Kind="Sheet"]}[Data]
+		in
+		    #"Y1 to Y2_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (16)""}" ]
+	lineageTag: abbe35a4-807f-4ef0-a904-35e46828457f
+	queryGroup: 'Transform File from Query2 (4)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter17 = #"Sample File (17)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (17)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 49be36dc-2b19-4300-a946-1e027e787b20
+	queryGroup: 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (17)' =
+		let
+		    Source = Excel.Workbook(Parameter17, null, true),
+		    #"Y3 to Y6_Sheet" = Source{[Item="Y3 to Y6",Kind="Sheet"]}[Data]
+		in
+		    #"Y3 to Y6_Sheet"
+	lineageTag: bb69926a-e41a-4597-a2f6-1e5a9a84dd35
+	queryGroup: 'Transform File from Query1 (9)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (17)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 5883f242-8ba9-4f55-8bc8-d760c19fb9b2
+	queryGroup: 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (17)' =
+		let
+		    Source = (Parameter17 as binary) => let
+		    Source = Excel.Workbook(Parameter17, null, true),
+		    #"Y3 to Y6_Sheet" = Source{[Item="Y3 to Y6",Kind="Sheet"]}[Data]
+		in
+		    #"Y3 to Y6_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (17)""}" ]
+	lineageTag: 696444ea-a843-43b3-860f-4db3654169b4
+	queryGroup: 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter18 = #"Sample File (18)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (18)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 2fd1179a-a885-4f9b-9295-0653325715ba
+	queryGroup: 'Transform File from Query1 (10)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (18)' =
+		let
+		    Source = Excel.Workbook(Parameter18, null, true),
+		    #"Y7 to Y9_Sheet" = Source{[Item="Y7 to Y9",Kind="Sheet"]}[Data]
+		in
+		    #"Y7 to Y9_Sheet"
+	lineageTag: ddc573b0-1072-4ce1-bb83-a20b1330cb3f
+	queryGroup: 'Transform File from Query1 (10)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (18)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 5788eede-69c2-4e09-a7df-3e7713ebc2ea
+	queryGroup: 'Transform File from Query1 (10)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (18)' =
+		let
+		    Source = (Parameter18 as binary) => let
+		    Source = Excel.Workbook(Parameter18, null, true),
+		    #"Y7 to Y9_Sheet" = Source{[Item="Y7 to Y9",Kind="Sheet"]}[Data]
+		in
+		    #"Y7 to Y9_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (18)""}" ]
+	lineageTag: 57537e2c-92ae-48c5-80c2-cd81226a2019
+	queryGroup: 'Transform File from Query1 (10)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter19 = #"Sample File (19)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (19)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: a46366f5-52d1-4f2f-b867-599dd2dfa507
+	queryGroup: 'Transform File from Query1 (11)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (19)' =
+		let
+		    Source = Excel.Workbook(Parameter19, null, true),
+		    #"Y10 to Y11_Sheet" = Source{[Item="Y10 to Y11",Kind="Sheet"]}[Data]
+		in
+		    #"Y10 to Y11_Sheet"
+	lineageTag: b436117b-dfb4-4eb9-adc1-720d2061f08f
+	queryGroup: 'Transform File from Query1 (11)'
+
+expression 'Sample File (19)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 28809ae6-e980-49d6-a672-dd821be87103
+	queryGroup: 'Transform File from Query1 (11)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (19)' =
+		let
+		    Source = (Parameter19 as binary) => let
+		    Source = Excel.Workbook(Parameter19, null, true),
+		    #"Y10 to Y11_Sheet" = Source{[Item="Y10 to Y11",Kind="Sheet"]}[Data]
+		in
+		    #"Y10 to Y11_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (19)""}" ]
+	lineageTag: 8c8f5c81-206f-4087-b037-0055ff9ce877
+	queryGroup: 'Transform File from Query1 (11)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter20 = #"Sample File (20)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (20)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 54d6e9cf-9ae6-46cb-8745-36e76e102c59
+	queryGroup: 'Transform File from Query1 (12)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (20)' =
+		let
+		    Source = Excel.Workbook(Parameter20, null, true),
+		    #"Y12 to Y14_Sheet" = Source{[Item="Y12 to Y14",Kind="Sheet"]}[Data]
+		in
+		    #"Y12 to Y14_Sheet"
+	lineageTag: 96261300-683e-4a5f-a144-605e68ada90e
+	queryGroup: 'Transform File from Query1 (12)'
+
+expression 'Sample File (20)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 5a60d15a-0ef0-4913-b956-3c462ed83fdf
+	queryGroup: 'Transform File from Query1 (12)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (20)' =
+		let
+		    Source = (Parameter20 as binary) => let
+		    Source = Excel.Workbook(Parameter20, null, true),
+		    #"Y12 to Y14_Sheet" = Source{[Item="Y12 to Y14",Kind="Sheet"]}[Data]
+		in
+		    #"Y12 to Y14_Sheet"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (20)""}" ]
+	lineageTag: 2dbd805a-ec96-4ac6-82e7-7045f0ce2221
+	queryGroup: 'Transform File from Query1 (12)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter21 = #"Sample File (21)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (21)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: be2455c4-9200-4e00-b521-15d4269936d2
+	queryGroup: 'Transform File from Query1 (13)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (21)' =
+		let
+		    Source = Excel.Workbook(Parameter21, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type text}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"Column16", type text}, {"Column17", type text}, {"Column18", type any}, {"Column19", type text}, {"Column20", Int64.Type}, {"Column21", Int64.Type}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", type text}, {"Column36", type text}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: fbe3bcc7-2f59-49f6-a57b-7af5a3b8958e
+	queryGroup: 'Transform File from Query1 (13)'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Sample File (21)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: aa0ccf98-4cc2-4f0d-a1fc-a7f96751f3aa
+	queryGroup: 'Transform File from Query1 (13)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (21)' =
+		let
+		    Source = (Parameter21 as binary) => let
+		    Source = Excel.Workbook(Parameter21, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type text}, {"Column7", type any}, {"Column8", type any}, {"Column9", type any}, {"Column10", type any}, {"Column11", type text}, {"Column12", type any}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"Column16", type text}, {"Column17", type text}, {"Column18", type any}, {"Column19", type text}, {"Column20", Int64.Type}, {"Column21", Int64.Type}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", type text}, {"Column36", type text}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}})
+		in
+		    #"Changed Type"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (21)""}" ]
+	lineageTag: 28cb6710-785f-4bb4-b8df-d53ef3a32b1e
+	queryGroup: 'Transform File from Query1 (13)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter22 = #"Sample File (22)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (22)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 79d8d7b8-e9fc-4cc7-a2a8-aaa78047f62d
+	queryGroup: 'Transform File from Additional Places\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (22)' =
+		let
+		    Source = Excel.Workbook(Parameter22, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 8a48ca98-4f90-4fc1-8005-38c1ebee1ee1
+	queryGroup: 'Transform File from Additional Places'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (22)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (21)", each #"Transform File (21)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    Navigation1 = #"Renamed Columns1"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 8f1bd193-bc7b-4ad1-8e77-ef4b547ce074
+	queryGroup: 'Transform File from Additional Places\Helper Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (22)' =
+		let
+		    Source = (Parameter22 as binary) => let
+		    Source = Excel.Workbook(Parameter22, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}})
+		in
+		    #"Changed Type"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (22)""}" ]
+	lineageTag: 3682b298-3203-45ed-a886-ddb4c34054f5
+	queryGroup: 'Transform File from Additional Places\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter23 = #"Sample File (23)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (23)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: a01da31d-05e3-40fb-b466-26ca91d4ac79
+	queryGroup: 'Transform File from Query1 (14)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (23)' =
+		let
+		    Source = Excel.Workbook(Parameter23, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: ef658902-b0ae-49f0-a6de-e3acb19bcf11
+	queryGroup: 'Transform File from Query1 (14)'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Sample File (23)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 841496b5-24fb-460d-b6a0-1bb6252ac744
+	queryGroup: 'Transform File from Query1 (14)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (23)' =
+		let
+		    Source = (Parameter23 as binary) => let
+		    Source = Excel.Workbook(Parameter23, null, false),
+		    #"Exidence Base_sheet" = Source{[Item="Exidence Base",Kind="Sheet"]}[Data],
+		    FilterNullAndWhitespace = each List.Select(_, each _ <> null and (not (_ is text) or Text.Trim(_) <> "")),
+		    #"Removed Top Rows" = Table.Skip(#"Exidence Base_sheet", each try List.IsEmpty(List.Skip(FilterNullAndWhitespace(Record.FieldValues(_)), 1)) otherwise false),
+		    #"Removed Other Columns" = Table.SelectColumns(#"Removed Top Rows", List.Select(Table.ColumnNames(#"Removed Top Rows"), each try not List.IsEmpty(FilterNullAndWhitespace(Table.Column(#"Removed Top Rows", _))) otherwise true)),
+		    #"Removed Blank Rows" = Table.SelectRows(#"Removed Other Columns", each not List.IsEmpty(FilterNullAndWhitespace(Record.FieldValues(_)))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Removed Blank Rows",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}})
+		in
+		    #"Changed Type"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (23)""}" ]
+	lineageTag: f86083af-91c1-47c6-a71a-6ee779acc539
+	queryGroup: 'Transform File from Query1 (14)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'E1 to R' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (15)", each #"Transform File (15)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (15)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (15)", Table.ColumnNames(#"Transform File (15)"(#"Sample File (15)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx", type text}, {"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", type text}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: f360e22d-f632-442b-9747-a3b74e4905b7
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Y1 to Y2' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (16)", each #"Transform File (16)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (16)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (16)", Table.ColumnNames(#"Transform File (16)"(#"Sample File (16)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx", type text}, {"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", Int64.Type}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 5920c42a-c356-44d0-8c55-dc4f85438aed
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Y3 to Y6' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (17)", each #"Transform File (17)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (17)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (17)", Table.ColumnNames(#"Transform File (17)"(#"Sample File (17)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx", type text}, {"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", Int64.Type}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: edd90836-a8a6-44e4-928b-175c681e8ada
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Y7 to Y9' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (18)", each #"Transform File (18)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (18)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (18)", Table.ColumnNames(#"Transform File (18)"(#"Sample File (18)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx", type text}, {"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", Int64.Type}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 06e88cf4-0368-4c8f-9c28-c76a5be6c3b5
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Y10 to Y11' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (19)", each #"Transform File (19)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (19)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (19)", Table.ColumnNames(#"Transform File (19)"(#"Sample File (19)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx", type text}, {"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", Int64.Type}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 8993ffe4-a08c-41b0-9466-7e4484b21a0e
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression 'Y12 to Y14' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "2024 Pupil Data Collated an Cleansed - Rev 001 @ 23 09 24.xlsx")),
+		    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+		    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (20)", each #"Transform File (20)"([Content])),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+		    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (20)"}),
+		    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (20)", Table.ColumnNames(#"Transform File (20)"(#"Sample File (20)"))),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type any}, {"Column3", type any}, {"Column4", type any}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type text}, {"Column11", type text}, {"Column12", type text}, {"Column13", type any}, {"Column14", type any}, {"Column15", type any}, {"Column16", type any}, {"Column17", type any}, {"Column18", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type text}, {"Column24", type text}, {"Column25", type text}}),
+		    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Source.Name"}),
+		    #"Removed Top Rows" = Table.Skip(#"Removed Columns",1),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"AcademicYear", Int64.Type}, {"Current URN", Int64.Type}, {"Current DFE", Int64.Type}, {"URN", Int64.Type}, {"LAEstab", Int64.Type}, {"NCYearActual", Int64.Type}, {"MSOA21", type text}, {"LSOA21", type text}, {"pupils", Int64.Type}, {"School Local Authority", type text}, {"School District", type text}, {"School Name ", type text}, {"School Easting", Int64.Type}, {"School Northing", Int64.Type}, {"School Longitude", type number}, {"School Latitude", type number}, {"Home Easting", type number}, {"Home Northing", type number}, {"Home Longitude", type number}, {"Home Latitude", type number}, {"Travel Distance (m)", type number}, {"Travel Distance(miles)", type number}, {"Banded Travel Distance (miles)", type text}, {"Home Local Authority", type text}, {"Home District", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: d9346f5f-953f-4d4c-b79b-0a381dc890b4
+	queryGroup: 'Pupil Home Locations'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Exception
+
+expression Parameter7 = #"Sample File (7)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (7)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 316b3c30-7f1c-482e-9feb-677797a278e1
+	queryGroup: 'Transform File from Query2 (5)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (7)' =
+		let
+		    Source = Excel.Workbook(Parameter7, null, true),
+		    merged_Sheet = Source{[Item="merged",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(merged_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 200432a4-8d66-40a8-9dad-4bb5099bcb76
+	queryGroup: 'Transform File from Query2 (5)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (7)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Local Plans.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 6194a744-acf8-4e3e-a498-f642192a41ef
+	queryGroup: 'Transform File from Query2 (5)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (7)' =
+		let
+		    Source = (Parameter7 as binary) => let
+		    Source = Excel.Workbook(Parameter7, null, true),
+		    merged_Sheet = Source{[Item="merged",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(merged_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (7)""}" ]
+	lineageTag: 8d003603-b212-4f87-96ab-66a986d0d1a8
+	queryGroup: 'Transform File from Query2 (5)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression Parameter24 = #"Sample File (24)" meta [IsParameterQuery=true, BinaryIdentifier=#"Sample File (24)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 995396bb-4678-4300-ab36-62352bfa6fd6
+	queryGroup: 'Transform File from Query1 (15)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform Sample File (24)' =
+		let
+		    Source = Excel.Workbook(Parameter24, null, true),
+		    merged_Sheet = Source{[Item="merged",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(merged_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 0c35047b-3c78-42f3-91d2-2e653d37168f
+	queryGroup: 'Transform File from Query1 (15)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Sample File (24)' =
+		let
+		    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+		    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Local Developments Schools and Churches Daat Table - Rev 001 @ 06 10 24.xlsx")),
+		    Navigation1 = #"Filtered Rows"{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 434180f1-4b3d-492f-ad26-d91fb4581392
+	queryGroup: 'Transform File from Query1 (15)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transform File (24)' =
+		let
+		    Source = (Parameter24 as binary) => let
+		    Source = Excel.Workbook(Parameter24, null, true),
+		    merged_Sheet = Source{[Item="merged",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(merged_Sheet, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File (24)""}" ]
+	lineageTag: 1f1d7bbc-48a0-415c-88f9-bc85b2b04817
+	queryGroup: 'Transform File from Query1 (15)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+

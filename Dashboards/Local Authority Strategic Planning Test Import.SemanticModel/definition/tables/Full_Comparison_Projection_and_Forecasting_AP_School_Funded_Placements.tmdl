@@ -1,0 +1,151 @@
+table Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements
+	lineageTag: 599dea67-e0d0-4607-babd-75a5c8c4031f
+
+	measure Pupil_Numbers_School_Funded = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements[pupils])
+			    )
+			```
+		lineageTag: 94e9f2e8-f4bd-466a-b570-7f4bdbafa5f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column old_la_code
+		dataType: string
+		lineageTag: 6588f91a-b282-4dc9-886b-18ac371deeb0
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: cdc2632b-17a6-4218-ba3d-e7c23ee38b74
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 0a79c248-2b79-4a03-bd7a-cdc38d2f9011
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: double
+		lineageTag: 1650a598-5158-40ce-aa92-1d070b83f762
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 605378f8-d272-4ebf-b501-a41e3d9db88c
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column characteristic_grouping
+		dataType: string
+		lineageTag: 349af618-f966-4e58-a5c7-23a7d6b76d04
+		summarizeBy: none
+		sourceColumn: characteristic_grouping
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupil_characteristic
+		dataType: string
+		lineageTag: dc60ef5a-dde6-46e5-bbe4-9db4016040a7
+		summarizeBy: none
+		sourceColumn: pupil_characteristic
+
+		annotation SummarizationSetBy = Automatic
+
+	column setting_type
+		dataType: string
+		lineageTag: 289e2ba1-aa70-4a63-9649-508abe17dd84
+		summarizeBy: none
+		sourceColumn: setting_type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_AP_School_Funded_Placements
+

@@ -1,0 +1,62 @@
+table 'Info Links'
+	lineageTag: a9a286f3-86e0-4def-8d58-4b4881bf2ea6
+
+	column 'Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx'
+		dataType: string
+		lineageTag: dbf5da71-b81d-4674-92c7-d3afc2afe16e
+		summarizeBy: none
+		sourceColumn: Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: 950cfbd7-8e59-4933-bdf8-dd63f2691491
+		summarizeBy: none
+		sourceColumn: School URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: c8c15d92-8367-447c-a252-689e7659eaa1
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 2cc07152-98b5-4335-a272-7da3fe3416d3
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Info Links' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (23)", each #"Transform File (23)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (23)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (23)", Table.ColumnNames(#"Transform File (23)"(#"Sample File (23)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column2", "Column3", "Column4", "Column7", "Column8", "Column9", "Column10", "Column11", "Column12", "Column13", "Column14", "Column15", "Column16", "Column17", "Column18", "Column19", "Column20", "Column21", "Column22", "Column23", "Column24", "Column25", "Column26", "Column27", "Column28", "Column29", "Column30", "Column31", "Column32", "Column33", "Column34", "Column35", "Column36"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx", type text}, {"School URN", Int64.Type}, {"URN/Unique Ref", type any}, {"Information Source (Link) 1", type text}, {"Information Source (Link) 2", type text}, {"Information Source (Link) 3", type text}, {"Information Source (Link) 4", type text}, {"Information Source (Link) 5", type text}, {"Information Source (Link) 6", type text}, {"Information Source (Link) 7", type text}, {"Information Source (Link) 8", type text}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type1", each ([School URN] <> null)),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Filtered Rows1",{"URN/Unique Ref", "Information Source (Link) 8"}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Removed Columns1", {"Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx", "School URN"}, "Attribute", "Value")
+				in
+				    #"Unpivoted Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

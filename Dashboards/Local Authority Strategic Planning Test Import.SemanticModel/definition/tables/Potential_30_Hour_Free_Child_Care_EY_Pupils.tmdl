@@ -1,0 +1,48 @@
+table Potential_30_Hour_Free_Child_Care_EY_Pupils
+	lineageTag: e653b4dc-9afc-4ab5-9058-17fee7ca6891
+
+	column lsoa21cd
+		dataType: string
+		lineageTag: 28668828-3fce-45e0-b4e0-3eaa0999107a
+		summarizeBy: none
+		sourceColumn: lsoa21cd
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c2a3226-b63c-4bfc-851a-e3151eff4775
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: aff4da24-cdf5-4d1c-90b4-38b19cf0506d
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number_of_EY
+		dataType: double
+		lineageTag: ab08dfca-1b1f-4467-9cfa-e15928ee94ab
+		summarizeBy: sum
+		sourceColumn: Number_of_EY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Potential_30_Hour_Free_Child_Care_EY_Pupils = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Potential_30_Hour_Free_Child_Care_EY_Pupils = Source{[Schema="dbo",Item="Potential_30_Hour_Free_Child_Care_EY_Pupils"]}[Data]
+				in
+				    dbo_Potential_30_Hour_Free_Child_Care_EY_Pupils
+

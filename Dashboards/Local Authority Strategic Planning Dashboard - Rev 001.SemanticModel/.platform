@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Local Authority Strategic Planning Dashboard - Rev 001"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b6180f13-6bea-b90d-4526-104a5e45a1e2"
+  }
+}

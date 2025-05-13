@@ -1,0 +1,231 @@
+table 'Local Developments'
+	lineageTag: d267989b-2f8d-4ae3-859e-3920ca0b978d
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 8c01aedd-ee24-4b8f-906c-cec5b1b0766a
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Reference
+		dataType: string
+		lineageTag: e340ff8e-f58e-4c5e-abec-f0e86bede4a0
+		summarizeBy: none
+		sourceColumn: Reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Authority '
+		dataType: string
+		lineageTag: 4fd136dd-b1ca-4afc-bb5d-01b595b45f1b
+		summarizeBy: none
+		sourceColumn: "Local Authority "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Authority'
+		dataType: string
+		lineageTag: 43efd84d-3bbc-4c0e-a0f9-a9cb7c449848
+		summarizeBy: none
+		sourceColumn: Planning Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diocese
+		dataType: string
+		lineageTag: d183ec1e-4260-46cf-9551-156e2fec2fd8
+		summarizeBy: none
+		sourceColumn: Diocese
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: cb2cf3fd-9ff8-406c-9a19-02644ea91f4d
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parish
+		dataType: string
+		lineageTag: 0d1cdc6c-0b7a-42c8-8a35-972ced80c4f3
+		summarizeBy: none
+		sourceColumn: Parish
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Name'
+		dataType: string
+		lineageTag: f49397a4-8fe5-420e-9f2f-a594b149be42
+		summarizeBy: none
+		sourceColumn: Asset Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lookup
+		dataType: string
+		lineageTag: 5de639e8-6e94-40a4-8772-91077d904298
+		summarizeBy: none
+		sourceColumn: Lookup
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Type'
+		dataType: string
+		lineageTag: c9973c9e-b968-467e-afeb-fbd9ecea7a9f
+		summarizeBy: none
+		sourceColumn: Data Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'S106/CIL Type'
+		dataType: string
+		lineageTag: 0c51decf-54b6-4437-876a-d5f0e05d001e
+		summarizeBy: none
+		sourceColumn: S106/CIL Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Type'
+		dataType: string
+		lineageTag: 4ae7ff36-61bb-4041-bf1c-30ac84439fb2
+		summarizeBy: none
+		sourceColumn: School Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mapping Type'
+		dataType: string
+		lineageTag: ffd0f21d-4d79-4a7e-9fba-672184b31896
+		summarizeBy: none
+		sourceColumn: Mapping Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area (m2)'
+		dataType: int64
+		formatString: 0
+		lineageTag: a68527a1-b0b5-4233-861e-cdd91b9750ef
+		summarizeBy: sum
+		sourceColumn: Area (m2)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area (Acres)'
+		dataType: double
+		lineageTag: 4dd36f2b-e695-4f51-bea9-f4754f248880
+		summarizeBy: sum
+		sourceColumn: Area (Acres)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Construction Phase'
+		dataType: string
+		lineageTag: 770f91e5-84a8-486c-905f-a8c56084f94d
+		summarizeBy: none
+		sourceColumn: Construction Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estimated Dwellings'
+		dataType: int64
+		formatString: 0
+		lineageTag: 068cb34a-554f-488b-964b-111a6738fa08
+		summarizeBy: sum
+		sourceColumn: Estimated Dwellings
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mass Attendance'
+		dataType: string
+		lineageTag: 1e5e9e0f-293f-4449-badb-b86a62cb5b65
+		summarizeBy: none
+		sourceColumn: Mass Attendance
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2023/24 NOR'
+		dataType: string
+		lineageTag: c2b8cfcd-b344-4884-832d-2881b2640dd4
+		summarizeBy: none
+		sourceColumn: 2023/24 NOR
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: double
+		lineageTag: 801ef196-454b-40fb-87fd-44f09a95f2b9
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Northing
+		dataType: double
+		lineageTag: 92c74215-887a-4f30-9e0d-35f8bb5a2e3b
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: 178f7b8b-43e8-4d35-bcc8-7397cf9bea1d
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		lineageTag: 540ba21b-9580-4d23-8571-06dd83905403
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: c3e2459f-3f27-4c89-a2b8-004cf8bc7ab6
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Local Developments' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Local Developments Schools and Churches Daat Table - Rev 001 @ 06 10 24.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (24)", each #"Transform File (24)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (24)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (24)", Table.ColumnNames(#"Transform File (24)"(#"Sample File (24)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Reference", type text}, {"Local Authority ", type text}, {"Planning Authority", type text}, {"Diocese", type text}, {"Deanery", type text}, {"Parish", type text}, {"Asset Name", type text}, {"Lookup", type text}, {"Data Type", type text}, {"S106/CIL Type", type text}, {"School Type", type text}, {"Mapping Type", type text}, {"Area (m2)", Int64.Type}, {"Area (Acres)", type number}, {"Construction Phase", type text}, {"Estimated Dwellings", type any}, {"Mass Attendance", type any}, {"2023/24 NOR", type text}, {"Easting", type number}, {"Northing", type number}, {"Longitude", type number}, {"Latitude", type number}, {"Value", Int64.Type}, {"Calc 1", type number}, {"Calc 2 - Average", type number}, {"Calc 3 - Unique Values", type number}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type", each true),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows1",{"Calc 1", "Calc 2 - Average", "Calc 3 - Unique Values"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"Estimated Dwellings", Int64.Type}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Changed Type1", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

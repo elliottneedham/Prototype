@@ -1,0 +1,124 @@
+table '6 - Assessment & Discontinuation'
+	lineageTag: b4f43a46-e5d4-41d0-bbe6-18b7eb153dd7
+
+	column 'Benchmark Comparison Ratios.xlsx'
+		dataType: string
+		lineageTag: cb42fff4-bf8e-465f-b67c-53cfa04ad6d4
+		summarizeBy: none
+		sourceColumn: Benchmark Comparison Ratios.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column time_period
+		dataType: int64
+		formatString: 0
+		lineageTag: 8aec32ce-f70a-49a8-932a-6334969a993b
+		summarizeBy: sum
+		sourceColumn: time_period
+
+		annotation SummarizationSetBy = Automatic
+
+	column region_name
+		dataType: string
+		lineageTag: 299d5d2e-7a9d-410b-922a-a2a5cff076da
+		summarizeBy: none
+		sourceColumn: region_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: int64
+		formatString: 0
+		lineageTag: c323d130-7f2d-43ff-bab5-3b1aad9fef09
+		summarizeBy: sum
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: e618a4f6-4951-4da1-8f2d-9c688ba56680
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area
+		dataType: string
+		lineageTag: 644c111b-c775-4e4b-856b-cfd972868c7e
+		summarizeBy: none
+		sourceColumn: Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 2341d35a-a68a-4f07-8425-2ed5f90e7bff
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: d3be145a-3d5a-4cbe-a378-7f4d1e7b4564
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: fd66243b-fbc6-42ed-86f3-094350a470c1
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Benchmark Comparator'
+		dataType: string
+		lineageTag: f9db1ad1-1c9b-4817-90de-37f63255096e
+		summarizeBy: none
+		sourceColumn: Benchmark Comparator
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: double
+		lineageTag: 8f6b6e29-8e04-4954-8ef4-56c9d05ba5d6
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '6 - Assessment & Discontinuation' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Benchmark Comparison Ratios.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (23)", each #"Transform File (23)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (23)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (23)", Table.ColumnNames(#"Transform File (23)"(#"Sample File (23)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Assessment and Discontinuation Data From DfE", type any}, {"Column2", type any}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", type text}, {"Column7", type text}, {"Column8", type text}, {"Column9", type text}, {"Column10", type any}, {"Column11", type text}, {"Column12", type text}, {"Column13", type text}, {"Column14", type text}, {"Column15", type any}, {"", type any}, {"_1", type any}, {"_2", type any}, {"_3", type any}, {"_4", type any}, {"_5", type any}, {"_6", type any}, {"_7", type any}, {" -  - ", type text}, {"_8", type any}, {"_9", type any}, {"_10", type text}, {"_11", type any}, {"_12", type any}, {"_13", type text}, {"_14", type any}, {"_15", type any}, {"_16", type text}, {"_17", type any}, {"_18", type any}, {"_19", type text}, {"_20", type any}, {"_21", type any}, {"_22", type text}, {"_23", type any}, {"_24", type any}, {"_25", type text}, {"_26", type any}, {"_27", type any}, {"_28", type text}, {"_29", type any}, {"_30", type any}, {"_31", type text}}),
+				    #"Removed Top Rows" = Table.Skip(#"Changed Type",1),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Benchmark Comparison Ratios.xlsx", type text}, {"Original Order", Int64.Type}, {"time_period", Int64.Type}, {"time_identifier", type text}, {"geographic_level", type text}, {"country_code", type text}, {"country_name", type text}, {"region_code", type text}, {"region_name", type text}, {"new_la_code", type text}, {"old_la_code", Int64.Type}, {"la_name", type text}, {"Area", type text}, {"Description", type text}, {"Unit", type text}, {"Local Authority", type number}, {"1 - Statistical Neighbours", type number}, {"2 - Regional", type number}, {"3 - Same Level of Deprivation", type number}, {"4 - Completed Ofsted LA Review With No WSOA", type number}, {"5 - Had No 2020/21 DSG Deficit", type number}, {"A - Commissioning Strategy 1 - Statistical Neighbours with No WSOA and No 202021 DSG Deficit", type number}, {"B - Commissioning Strategy 2 - Regional LAs with No WSOA and No 202021 DSG Deficit", type number}, {"C - Commissioning Strategy 3 - LAs with the Same Level of Deprivation No WSOA and No 202021 DSG Deficit", type number}, {"Lookup Value", type text}, {"Comparator 2022 School Aged Population", Int64.Type}, {"Adjustment to Comparator Value", type number}, {"""Text Joined"" LA IDs", type number}, {"Comparator 2022 School Aged Population_1", Int64.Type}, {"Adjustment to Comparator Value_2", type number}, {"""Text Joined"" LA IDs_3", type number}, {"Comparator 2022 School Aged Population_4", Int64.Type}, {"Adjustment to Comparator Value_5", type number}, {"""Text Joined"" LA IDs_6", type number}, {"Comparator 2022 School Aged Population_7", Int64.Type}, {"Adjustment to Comparator Value_8", type number}, {"""Text Joined"" LA IDs_9", type number}, {"Comparator 2022 School Aged Population_10", Int64.Type}, {"Adjustment to Comparator Value_11", type number}, {"""Text Joined"" LA IDs_12", type number}, {"Comparator 2022 School Aged Population_13", Int64.Type}, {"Adjustment to Comparator Value_14", type number}, {"""Text Joined"" LA IDs_15", Int64.Type}, {"Comparator 2022 School Aged Population_16", Int64.Type}, {"Adjustment to Comparator Value_17", type number}, {"""Text Joined"" LA IDs_18", type number}, {"Comparator 2022 School Aged Population_19", Int64.Type}, {"Adjustment to Comparator Value_20", type number}, {"""Text Joined"" LA IDs_21", type number}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Original Order", "time_identifier", "geographic_level", "country_code", "country_name", "region_code", "new_la_code"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Local Authority", "1 - Selected Local Authority"}, {"1 - Statistical Neighbours", "2 - Statistical Neighbour LAs"}, {"2 - Regional", "3 - Regional LAs"}, {"3 - Same Level of Deprivation", "4 - LAs with Same Level of Deprivation"}, {"4 - Completed Ofsted LA Review With No WSOA", "5 - LAs who Completed Ofsted LA Review With No WSOA"}, {"5 - Had No 2020/21 DSG Deficit", "6 - LAs who Had No 2020/21 DSG Deficit"}, {"A - Commissioning Strategy 1 - Statistical Neighbours with No WSOA and No 202021 DSG Deficit", "A - CS1 – Exemplar Stat Neighbour LAs"}, {"B - Commissioning Strategy 2 - Regional LAs with No WSOA and No 202021 DSG Deficit", "B - CS2 – Exemplar Regional LAs"}, {"C - Commissioning Strategy 3 - LAs with the Same Level of Deprivation No WSOA and No 202021 DSG Deficit", "C - CS3 – Exemplar LAs with Same Deprivation Level"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns",{"Lookup Value", "Comparator 2022 School Aged Population", "Adjustment to Comparator Value", """Text Joined"" LA IDs", "Comparator 2022 School Aged Population_1", "Adjustment to Comparator Value_2", """Text Joined"" LA IDs_3", "Comparator 2022 School Aged Population_4", "Adjustment to Comparator Value_5", """Text Joined"" LA IDs_6", "Comparator 2022 School Aged Population_7", "Adjustment to Comparator Value_8", """Text Joined"" LA IDs_9", "Comparator 2022 School Aged Population_10", "Adjustment to Comparator Value_11", """Text Joined"" LA IDs_12", "Comparator 2022 School Aged Population_13", "Adjustment to Comparator Value_14", """Text Joined"" LA IDs_15", "Comparator 2022 School Aged Population_16", "Adjustment to Comparator Value_17", """Text Joined"" LA IDs_18", "Comparator 2022 School Aged Population_19", "Adjustment to Comparator Value_20", """Text Joined"" LA IDs_21"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Columns1", "Index", 1, 1, Int64.Type),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Added Index", {"Benchmark Comparison Ratios.xlsx", "time_period", "region_name", "old_la_code", "la_name", "Area", "Description", "Unit", "Index"}, "Attribute", "Value"),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Unpivoted Columns",{{"Attribute", "Benchmark Comparator"}})
+				in
+				    #"Renamed Columns2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,83 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "datasetSettings": {
+              "type": "LakehouseTable",
+              "typeProperties": {
+                "table": "Age_Slicer_Order"
+              },
+              "schema": [],
+              "linkedService": {
+                "name": "Insites_Lakehouse_Gold",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "6ea04b74-d5a9-aa94-4652-4565fc0e23ae",
+                    "workspaceId": "00000000-0000-0000-0000-000000000000",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "sink": {
+            "type": "JsonSink",
+            "formatSettings": {
+              "type": "JsonWriteSettings"
+            },
+            "storeSettings": {
+              "type": "LakehouseWriteSettings"
+            },
+            "datasetSettings": {
+              "type": "Json",
+              "typeProperties": {
+                "location": {
+                  "type": "LakehouseLocation"
+                }
+              },
+              "schema": {},
+              "linkedService": {
+                "name": "Test_Lakehouse",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "artifactId": "6d153443-b65a-4e64-81e4-1a06b528f940",
+                    "workspaceId": "8111edf3-1122-4c45-9e7a-f51534c323f8",
+                    "rootFolder": "Files"
+                  },
+                  "annotations": []
+                }
+              },
+              "annotations": []
+            }
+          },
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          },
+          "enableStaging": false
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Copy data1",
+        "dependsOn": []
+      }
+    ]
+  }
+}

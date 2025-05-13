@@ -1,0 +1,87 @@
+table 'Total Pupils against Potential Pupils'
+	lineageTag: a096eabf-0f30-418b-999f-11e3121bfee4
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 30d220df-57a7-4842-a072-20a7fccd2562
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 928619e5-09ae-4512-8e87-01954a2dce1f
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: a41fe452-a871-44ff-9467-1d95b2af4c6f
+		summarizeBy: sum
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 5818c697-c4ac-40ba-869f-b8486d72ae6d
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 5494d6f5-8bac-493b-afb3-7332e9dbebe4
+		summarizeBy: none
+		sourceColumn: Attribute
+		sortByColumn: Custom
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: int64
+		formatString: 0
+		lineageTag: a637ef18-dac3-4ae7-84ca-e04348fbc2aa
+		summarizeBy: sum
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: double
+		lineageTag: d80529f0-badd-4448-b0ab-2f29860b17e6
+		summarizeBy: sum
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Total Pupils against Potential Pupils' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master Sufficiency Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (10)", each #"Transform File (10)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (10)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (10)", Table.ColumnNames(#"Transform File (10)"(#"Sample File (10)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"School Name", type text}, {"URN", Int64.Type}, {"Phase", type text}, {"Total NOR", Int64.Type}, {"Total PAN", Int64.Type}, {"Total FPAN", Int64.Type}, {"Total Potential Pupils (Against Pan)", Int64.Type}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Changed Type", {"Source.Name", "School Name", "URN", "Phase"}, "Attribute", "Value"),
+				    #"Added Conditional Column" = Table.AddColumn(#"Unpivoted Columns", "Custom", each if [Attribute] = "Total NOR" then 1 else if [Attribute] = "Total PAN" then 2 else if [Attribute] = "Total FPAN" then 3 else if [Attribute] = "Total Potential Pupils (Against Pan)" then 4 else null, type number)
+				in
+				    #"Added Conditional Column"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

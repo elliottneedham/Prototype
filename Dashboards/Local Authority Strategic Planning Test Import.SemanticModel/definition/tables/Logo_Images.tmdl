@@ -1,0 +1,44 @@
+table Logo_Images
+	lineageTag: 941a4d48-3d3b-4116-949c-4be4248140db
+
+	column Name
+		dataType: string
+		lineageTag: 803e6150-16cb-49a9-a1bc-2967e6677392
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Folder_Path
+		dataType: string
+		lineageTag: 79b08575-f99f-403e-9320-f7fb5ad4d0f1
+		summarizeBy: none
+		sourceColumn: Folder_Path
+
+		annotation SummarizationSetBy = Automatic
+
+	column LA_Logos
+		dataType: string
+		lineageTag: 3a0896da-46a6-4fca-9bb6-aba4b06fc703
+		summarizeBy: none
+		sourceColumn: LA_Logos
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImageKey
+		dataType: string
+		lineageTag: 9e4e24dd-db9c-422c-b6e3-a7adc77a2b5f
+		summarizeBy: none
+		sourceColumn: ImageKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Logo_Images = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Logo_Images = Source{[Schema="dbo",Item="Logo_Images"]}[Data]
+				in
+				    dbo_Logo_Images
+

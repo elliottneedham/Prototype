@@ -1,0 +1,149 @@
+table Full_Comparison_Projection_and_Forecasting_NCYear_Table
+	lineageTag: bf3d342f-b030-4dde-a7f1-f6b8d07349e0
+
+	measure Pupil_Numbers_SEN_Support = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_NCYear_Table[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Full_Comparison_Projection_and_Forecasting_NCYear_Table[pupils])
+			    )
+			```
+		formatString: 0
+		lineageTag: 19a95a91-1fde-47d8-9d59-919397ea2743
+
+	column phase_type_grouping
+		dataType: string
+		lineageTag: 3146b6c6-c4a7-43af-a59b-9165c64063e1
+		summarizeBy: none
+		sourceColumn: phase_type_grouping
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupil_sen_status
+		dataType: string
+		lineageTag: c6bb8b40-cf59-454e-952e-cbccb9781aa5
+		summarizeBy: none
+		sourceColumn: pupil_sen_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_need
+		dataType: string
+		lineageTag: f8b82f41-9e8c-44dd-ae90-11d47f83dc74
+		summarizeBy: none
+		sourceColumn: primary_need
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: 113996b3-4306-4ffd-91f9-fadb0ee50bb0
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 1eef76d2-4e84-4dd2-887a-f1fba2852386
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 69d583d2-6ea9-4b87-96f0-96a3addc9842
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ba75191-d3fe-48e2-a4b0-5b61df182fa9
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2cee9c08-2b29-4fe0-9a39-48c853562f89
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Full_Comparison_Projection_and_Forecasting_NCYear_Table = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_NCYear_Table = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_NCYear_Table"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_NCYear_Table
+

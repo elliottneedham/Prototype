@@ -1,0 +1,395 @@
+table 'Additional Places'
+	lineageTag: 27eee08b-839b-4744-afca-290f2cf31b61
+
+	measure unique2020 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2020],0))
+		formatString: 0
+		lineageTag: aedec767-cbef-4eae-b982-f4a877364ffd
+
+	measure unique2021 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2021],0))
+		formatString: 0
+		lineageTag: 65837ba8-f102-408f-8b82-e900c7674af9
+
+	measure unique2022 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2022],0))
+		formatString: 0
+		lineageTag: 2ccd298a-6e3e-4e98-b5a4-f7a96ecf87eb
+
+	measure unique2023 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2023],0))
+		formatString: 0
+		lineageTag: cb8ea603-0b5a-4732-aac0-e44976e5e4a0
+
+	measure unique2024 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2024],0))
+		formatString: 0
+		lineageTag: 6c1d8184-18fb-423d-a59e-d4c2eaa8a994
+
+	measure unique2025 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2025],0))
+		formatString: 0
+		lineageTag: 56de1050-1162-4de1-8251-6d9933e831c2
+
+	measure unique2026 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2026],0))
+		formatString: 0
+		lineageTag: 8a1de346-8871-45ee-8c4f-1d33f28593ea
+
+	measure unique2027 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2027],0))
+		formatString: 0
+		lineageTag: 71fbdd58-32f1-4794-b278-53d04f2cee48
+
+	measure unique2028 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2028],0))
+		formatString: 0
+		lineageTag: 4e6b59e1-44d0-4ce3-961c-334b3534cef4
+
+	measure unique2029 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2029],0))
+		formatString: 0
+		lineageTag: 86162b70-a9e3-4e03-a118-8ffcea1ea592
+
+	measure unique2030 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2030],0))
+		formatString: 0
+		lineageTag: 90833cce-087b-42ec-b638-8efac2d735b2
+
+	measure unique2031 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2031],0))
+		formatString: 0
+		lineageTag: 1abd5a2c-cd54-4d7a-a630-86dd39e692f7
+
+	measure unique2032 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2032],0))
+		formatString: 0
+		lineageTag: cc72c417-6f6b-4396-95c2-739d4fefdf6a
+
+	measure unique2033 = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[2033],0))
+		formatString: 0
+		lineageTag: 4e851ad8-4c46-455f-8730-6e0b38cea7c8
+
+	measure uniqueTotal = sumx(distinct('Additional Places'[URN/Unique Ref]),FIRSTNONBLANK('Additional Places'[Total Pupil Increase ],0))
+		formatString: 0
+		lineageTag: 7e4e5b65-0174-47ae-b160-013b4ae45bb0
+
+	column 'Local Authority'
+		dataType: string
+		lineageTag: bdb23a9f-7cc0-4bfc-8c24-4a217db9fcd2
+		summarizeBy: none
+		sourceColumn: Local Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Area Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: d02b0c79-abdd-4513-b433-87c964acb312
+		summarizeBy: sum
+		sourceColumn: Planning Area Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Area'
+		dataType: string
+		lineageTag: 0e56abd8-b17d-4b88-a722-5388b0171684
+		summarizeBy: none
+		sourceColumn: Planning Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: d9eba6f9-a7ff-4ba0-aafb-9534ab28b44a
+		summarizeBy: none
+		sourceColumn: School URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'URN/Unique Ref'
+		dataType: string
+		lineageTag: 9f11fa30-7741-47b6-ab30-63f6f479bb4d
+		summarizeBy: none
+		sourceColumn: URN/Unique Ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 7910c888-c1f1-42ad-ba34-8e6b7471aedf
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: int64
+		formatString: 0
+		lineageTag: e474762d-10d6-482c-8ced-6573d07d7be8
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+	column Northing
+		dataType: int64
+		formatString: 0
+		lineageTag: aece5a9f-2369-44e0-b16a-36a77b63b926
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: 2bc35645-36d9-462b-bf62-ca949deda7cd
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		lineageTag: 899f3fe3-deba-4a16-b321-be27a9582043
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Urban/rural description'
+		dataType: string
+		lineageTag: 7c6d8972-5c1f-405e-ba0f-c42e88f052bb
+		summarizeBy: none
+		sourceColumn: Urban/rural description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Radius From Affected School (Miles)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 10f45d68-e3e7-4114-8a42-1f9ebde1d77a
+		summarizeBy: sum
+		sourceColumn: Radius From Affected School (Miles)
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 0a2fa91e-9d1e-4716-8474-a7761bd0a824
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Type (Expansion/ Reduction/ New Build)'
+		dataType: string
+		lineageTag: 70eba2d5-b46c-43a5-9bbe-f83b57ee82a4
+		summarizeBy: none
+		sourceColumn: Type (Expansion/ Reduction/ New Build)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Pupil Increase '
+		dataType: int64
+		formatString: 0
+		lineageTag: a7f1568d-eb97-4beb-9d14-cd99afba5f98
+		summarizeBy: sum
+		sourceColumn: "Total Pupil Increase "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pupil Numbers Unknown (TBC)'
+		dataType: string
+		lineageTag: 0b2fe0f4-5d55-4420-a1b0-617b0bc31704
+		summarizeBy: none
+		sourceColumn: Pupil Numbers Unknown (TBC)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Form of Entry Change'
+		dataType: string
+		lineageTag: 19b51ef7-8155-40d6-8740-481ecebf6ae7
+		summarizeBy: none
+		sourceColumn: Form of Entry Change
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Affected School Name'
+		dataType: string
+		lineageTag: 9e8340c0-8dbf-4c91-a68c-68028a22343f
+		summarizeBy: none
+		sourceColumn: Affected School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2020
+		dataType: int64
+		formatString: 0
+		lineageTag: f6564ea9-c3ba-4a5c-8c6b-6261af947846
+		summarizeBy: sum
+		sourceColumn: 2020
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2021
+		dataType: int64
+		formatString: 0
+		lineageTag: 18e1a15b-95ea-4872-9d33-2fb7a4487725
+		summarizeBy: sum
+		sourceColumn: 2021
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2022
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c0b551a-bb90-4c08-a0dc-53a05fe15ff0
+		summarizeBy: sum
+		sourceColumn: 2022
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2023
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ef33de3-4363-4c62-8ffc-c715064ae1ee
+		summarizeBy: sum
+		sourceColumn: 2023
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2024
+		dataType: int64
+		formatString: 0
+		lineageTag: cd4b1e2a-069a-4c80-ab6c-a7065bca2ac6
+		summarizeBy: sum
+		sourceColumn: 2024
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2025
+		dataType: int64
+		formatString: 0
+		lineageTag: 0494352e-7a6a-4b39-b26f-a501e10ee794
+		summarizeBy: sum
+		sourceColumn: 2025
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2026
+		dataType: int64
+		formatString: 0
+		lineageTag: 51f821de-db3b-4d03-97d9-d9005a2d73f8
+		summarizeBy: sum
+		sourceColumn: 2026
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2027
+		dataType: int64
+		formatString: 0
+		lineageTag: a9fad879-6ca0-429b-ac7e-ce64255de0e4
+		summarizeBy: sum
+		sourceColumn: 2027
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2028
+		dataType: int64
+		formatString: 0
+		lineageTag: 76aed399-07fc-41f3-a1be-ad9887b66b2b
+		summarizeBy: sum
+		sourceColumn: 2028
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2029
+		dataType: int64
+		formatString: 0
+		lineageTag: 1743fac1-f05c-46d5-8ffd-492c4331601a
+		summarizeBy: sum
+		sourceColumn: 2029
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2030
+		dataType: int64
+		formatString: 0
+		lineageTag: 080af311-af20-4718-90f9-a0cecf723928
+		summarizeBy: sum
+		sourceColumn: 2030
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2031
+		dataType: int64
+		formatString: 0
+		lineageTag: 2beaa44f-b1c9-4b24-84c4-8a83c37e7c87
+		summarizeBy: sum
+		sourceColumn: 2031
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2032
+		dataType: int64
+		formatString: 0
+		lineageTag: c907549f-dd3d-4726-9a37-44a3b5244202
+		summarizeBy: sum
+		sourceColumn: 2032
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2033
+		dataType: double
+		lineageTag: 634b94d3-ef49-4e80-bbbf-90df552b6df8
+		summarizeBy: sum
+		sourceColumn: 2033
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Programmes of Type (Expansion/Reduction)'
+		dataType: int64
+		formatString: 0
+		lineageTag: f239fbbf-dcc3-4f95-a560-33eb103958ad
+		summarizeBy: sum
+		sourceColumn: Programmes of Type (Expansion/Reduction)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Unknown'
+		dataType: string
+		lineageTag: a7f51294-5a56-4eba-9eaa-87509d237edf
+		summarizeBy: none
+		sourceColumn: Date Unknown
+
+		annotation SummarizationSetBy = Automatic
+
+	column 2034
+		dataType: double
+		lineageTag: b1a0e375-5873-4af6-830d-d62eea94155d
+		summarizeBy: sum
+		sourceColumn: 2034
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Additional Places' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Copy of Diocese of Shrewsbury - Additional Places - Combined for PowerBi.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (21)", each #"Transform File (21)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Filtered Hidden Files2" = Table.SelectRows(#"Renamed Columns1", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function2" = Table.AddColumn(#"Filtered Hidden Files2", "Transform File (22)", each #"Transform File (22)"([Content])),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Invoke Custom Function2", {"Transform File (22)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (22)", Table.ColumnNames(#"Transform File (22)"(#"Sample File (22)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Column2", type text}, {"Column3", type any}, {"Column4", type text}, {"Column5", type any}, {"Column6", type any}, {"Column7", type text}, {"Column8", type text}, {"Column9", type any}, {"Column10", type any}, {"Column11", type any}, {"Column12", type any}, {"Column13", type text}, {"Column14", type any}, {"Column15", type text}, {"Column16", type text}, {"Column17", type any}, {"Column18", type text}, {"Column19", type text}, {"Column20", type any}, {"Column21", type text}, {"Column22", Int64.Type}, {"Column23", Int64.Type}, {"Column24", Int64.Type}, {"Column25", Int64.Type}, {"Column26", Int64.Type}, {"Column27", Int64.Type}, {"Column28", Int64.Type}, {"Column29", Int64.Type}, {"Column30", Int64.Type}, {"Column31", Int64.Type}, {"Column32", Int64.Type}, {"Column33", Int64.Type}, {"Column34", Int64.Type}, {"Column35", Int64.Type}, {"Column36", Int64.Type}, {"Column37", type text}, {"Column38", type text}, {"Column39", type text}, {"Column40", type text}, {"Column41", type text}, {"Column42", type text}, {"Column43", type text}, {"Column44", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column37", "Column38", "Column39", "Column40", "Column41", "Column42", "Column43", "Column44"}),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Removed Columns", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"Local Authority", type text}, {"Planning Area Number", Int64.Type}, {"Planning Area", type text}, {"School URN", Int64.Type}, {"URN/Unique Ref", type any}, {"Affected School Name", type text}, {"School Name", type text}, {"Easting", Int64.Type}, {"Northing", Int64.Type}, {"Longitude", type number}, {"Latitude", type number}, {"Urban/rural description", type text}, {"Radius From Affected School (Miles)", Int64.Type}, {"Phase", type text}, {"Type (Expansion/ Reduction/ New Build)", type text}, {"Total Pupil Increase ", Int64.Type}, {"Pupil Numbers Unknown (TBC)", type text}, {"Form of Entry Change", type text}, {"Programmes of Type (Expansion/Reduction)", Int64.Type}, {"Date Unknown", type text}, {"2020", Int64.Type}, {"2021", Int64.Type}, {"2022", Int64.Type}, {"2023", Int64.Type}, {"2024", Int64.Type}, {"2025", Int64.Type}, {"2026", Int64.Type}, {"2027", Int64.Type}, {"2028", Int64.Type}, {"2029", Int64.Type}, {"2030", Int64.Type}, {"2031", Int64.Type}, {"2032", Int64.Type}, {"2033", type number}, {"2034", type number}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

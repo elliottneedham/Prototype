@@ -1,0 +1,219 @@
+table Pupil_Home_Locations_Appended
+	lineageTag: 1f01a59f-d0b0-4186-b6d4-39640998e31c
+
+	column AcademicYear
+		dataType: int64
+		formatString: 0
+		lineageTag: e1988196-e602-4b14-b8ba-27d57bfb9213
+		summarizeBy: sum
+		sourceColumn: AcademicYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column Current_URN
+		dataType: string
+		lineageTag: 066af69c-3ef8-45bf-a031-b7b7db356aac
+		summarizeBy: none
+		sourceColumn: Current_URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: c5ea76a3-d3f9-481d-9229-10295db0f2e1
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column NCYearActual
+		dataType: string
+		lineageTag: e59269c1-4f46-4eb5-bd67-c7cf533f2a84
+		summarizeBy: none
+		sourceColumn: NCYearActual
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA21
+		dataType: string
+		lineageTag: 276e1ad4-4de5-4667-845d-757d0f814aee
+		summarizeBy: none
+		sourceColumn: LSOA21
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: double
+		lineageTag: 643753a3-83e5-4fef-b937-88f5bb64cfee
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Local_Authority
+		dataType: string
+		lineageTag: c2231272-9771-4f43-9ae8-b64ebdeda5d9
+		summarizeBy: none
+		sourceColumn: School_Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_District
+		dataType: string
+		lineageTag: fdd3ac86-0810-498e-82dd-caf3bbfbe94a
+		summarizeBy: none
+		sourceColumn: School_District
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_Name_
+		dataType: string
+		lineageTag: 2ff6eb53-7d31-44de-ba10-d86fe75e4390
+		summarizeBy: none
+		sourceColumn: School_Name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_Easting
+		dataType: double
+		lineageTag: 6856ca1c-e4b4-4ff3-9fa6-faa4a20c0e65
+		summarizeBy: sum
+		sourceColumn: School_Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Northing
+		dataType: double
+		lineageTag: 8478c7ca-1394-4ec5-b933-820103dea849
+		summarizeBy: sum
+		sourceColumn: School_Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Longitude
+		dataType: double
+		lineageTag: bb729c14-ecbc-4706-8c18-ef62b217dea6
+		summarizeBy: sum
+		sourceColumn: School_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Latitude
+		dataType: double
+		lineageTag: 92be6dbb-e82b-4efa-bfa8-a02643e49ee2
+		summarizeBy: sum
+		sourceColumn: School_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Easting
+		dataType: double
+		lineageTag: f4805488-1728-434e-a5f1-85da642ae452
+		summarizeBy: sum
+		sourceColumn: Home_Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Northing
+		dataType: double
+		lineageTag: dae18821-b83b-4222-90fd-67ba44d9db75
+		summarizeBy: sum
+		sourceColumn: Home_Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Longitude
+		dataType: double
+		lineageTag: 442c3bce-36d2-438d-be28-79260f2b7cb4
+		summarizeBy: sum
+		sourceColumn: Home_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Latitude
+		dataType: double
+		lineageTag: a3220d90-bc80-4852-99fc-973cf2c5458d
+		summarizeBy: sum
+		sourceColumn: Home_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Travel_Distance__m_
+		dataType: double
+		lineageTag: b0264312-b027-4aea-9805-d52cf6af338e
+		summarizeBy: sum
+		sourceColumn: Travel_Distance__m_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Travel_Distance_miles_
+		dataType: double
+		lineageTag: b71e26ce-1834-4031-920f-380a46a9b559
+		summarizeBy: sum
+		sourceColumn: Travel_Distance_miles_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Banded_Travel_Distance__miles_
+		dataType: string
+		lineageTag: 4a05f84d-65c8-47dc-b57d-b1f7cfc9cbde
+		summarizeBy: none
+		sourceColumn: Banded_Travel_Distance__miles_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Home_Local_Authority
+		dataType: string
+		lineageTag: 6a2494fe-d974-4394-a5d8-13101fed11bc
+		summarizeBy: none
+		sourceColumn: Home_Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Home_District
+		dataType: string
+		lineageTag: 11d9a18a-5936-43a4-83b3-cdb95e8b0149
+		summarizeBy: none
+		sourceColumn: Home_District
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rationalised_School_Type
+		dataType: string
+		lineageTag: cbf199d8-8aea-4c70-8bb1-5c844211cfea
+		summarizeBy: none
+		sourceColumn: Rationalised_School_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Pupil_Home_Locations_Appended = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Pupil_Home_Locations_Appended = Source{[Schema="dbo",Item="Pupil_Home_Locations_Appended"]}[Data]
+				in
+				    dbo_Pupil_Home_Locations_Appended
+

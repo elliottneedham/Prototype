@@ -1,0 +1,105 @@
+table 02_Establishment_Caseload_No_DSG_Matched
+	lineageTag: 8b0cd707-b155-4a81-be3a-80fdec65044d
+	sourceLineageTag: [dbo].[02_Establishment_Caseload_No_DSG_Matched]
+
+	column establishment_group
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: eab44baf-8879-44af-8b59-9ebc33bc1fa4
+		sourceLineageTag: establishment_group
+		summarizeBy: none
+		sourceColumn: establishment_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column establishment_type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 7ddfec10-b3ed-4047-b14a-8e61ac5b9c30
+		sourceLineageTag: establishment_type
+		summarizeBy: none
+		sourceColumn: establishment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column ehcp_or_statement
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e2f75677-3d03-429e-90ed-86d66db73076
+		sourceLineageTag: ehcp_or_statement
+		summarizeBy: none
+		sourceColumn: ehcp_or_statement
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 731185a4-0c32-4a39-aa9f-3d29263fe4ee
+		sourceLineageTag: Year
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column DSG_Management_Plan_Type
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e6e9087d-638c-43d1-995d-cd439c8ede79
+		sourceLineageTag: DSG_Management_Plan_Type
+		summarizeBy: none
+		sourceColumn: DSG_Management_Plan_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 94f79e1e-8117-4a9d-bb60-49c15fd01ff3
+		sourceLineageTag: old_la_code
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 99435dc7-3901-4fa8-bdc0-1b83474e411f
+		sourceLineageTag: la_name
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column adjusted_pupils
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 610f4819-8209-4e92-8b4b-c2e456455f94
+		sourceLineageTag: adjusted_pupils
+		summarizeBy: sum
+		sourceColumn: adjusted_pupils
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: b0f38ce7-8435-457d-9d93-4056f5d7fd29
+		sourceLineageTag: Benchmark_Comparison
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 02_Establishment_Caseload_No_DSG_Matched = entity
+		mode: directLake
+		source
+			entityName: 02_Establishment_Caseload_No_DSG_Matched
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+

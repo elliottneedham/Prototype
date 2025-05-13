@@ -1,0 +1,389 @@
+table 'Asset Info'
+	excludeFromModelRefresh
+	lineageTag: 3244c00c-a47d-429c-a2a0-48976b569cdf
+
+	measure Parishcount = Countx(distinct('Asset Info'[Parish]),FIRSTNONBLANK('Asset Info'[GESA],0))
+		formatString: 0
+		lineageTag: d916b36f-a3e6-45e5-b5a5-f9cfe8e2eee2
+
+	measure Deanerycount = Countx(distinct('Asset Info'[Deanery]),FIRSTNONBLANK('Asset Info'[GESA],0))
+		formatString: 0
+		lineageTag: 78798b40-67a0-49e4-8c23-04d6ffffa3fa
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 5526e46f-1e71-4a23-bbc3-215bb5fa9381
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lookup
+		dataType: string
+		lineageTag: 59c52946-f623-4bcf-98d5-02d20ebe72dc
+		summarizeBy: none
+		sourceColumn: Lookup
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Category'
+		dataType: string
+		lineageTag: b96cf09a-7ff8-4b09-bae6-ac12a441a926
+		summarizeBy: none
+		sourceColumn: Asset Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Sub Category'
+		dataType: string
+		lineageTag: d4c92181-e7ac-45a6-8f7f-9e764e4cd959
+		summarizeBy: none
+		sourceColumn: Asset Sub Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Type'
+		dataType: string
+		lineageTag: 069dc7c9-522a-442c-9f4b-4defbf6c06f5
+		summarizeBy: none
+		sourceColumn: Asset Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Authority'
+		dataType: string
+		lineageTag: a53fc641-7cf8-4166-9727-7380aa74fbf6
+		summarizeBy: none
+		sourceColumn: Local Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parish
+		dataType: string
+		lineageTag: 09a8dc4c-1c58-4542-8f17-a0b0a41803a9
+		summarizeBy: none
+		sourceColumn: Parish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: 6a6df931-9d7d-422b-a2e6-2ca55890489b
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Asset Name'
+		dataType: string
+		lineageTag: 4a19f53c-af26-47d5-b655-7064c6b927eb
+		summarizeBy: none
+		sourceColumn: Asset Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: 5e2f0793-fdb5-4703-8124-c61e55c6a0ff
+		summarizeBy: none
+		sourceColumn: URN
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GIAS URN Check'
+		dataType: string
+		lineageTag: 1cf1bd0a-2a53-4c6b-822b-80fc64311178
+		summarizeBy: none
+		sourceColumn: GIAS URN Check
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Title Number'
+		dataType: string
+		lineageTag: 1a862783-c994-4f5b-b890-de2073be1ccf
+		summarizeBy: none
+		sourceColumn: Title Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Diocesan Ownership'
+		dataType: string
+		lineageTag: 8746f3e4-89dc-4667-a741-0d7fe3c75bfb
+		summarizeBy: none
+		sourceColumn: Diocesan Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column Postcode
+		dataType: string
+		lineageTag: b7890a49-7694-402d-8157-3d6c02e313a9
+		summarizeBy: none
+		sourceColumn: Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: aaa4687b-a062-4a32-afbe-ed2031424fea
+		summarizeBy: sum
+		sourceColumn: Current URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Count of URN'
+		dataType: string
+		lineageTag: 159bdc1a-70e4-4689-bee4-fd1b92002720
+		summarizeBy: none
+		sourceColumn: Count of URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: int64
+		formatString: 0
+		lineageTag: 9931fc92-d513-4cc9-9b35-30c08a4ebb3e
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+	column Northing
+		dataType: int64
+		formatString: 0
+		lineageTag: 74224082-ab05-4a56-a361-593577aac192
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA
+		dataType: string
+		lineageTag: c39f9d58-9d0b-4c00-ac86-b75452d89cc7
+		summarizeBy: none
+		sourceColumn: LSOA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: string
+		lineageTag: 40766372-4413-4564-b8ed-9cd9745cc9c7
+		summarizeBy: none
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: e1a10a1b-b306-427c-a306-559e28056183
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column GESA
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e6801e8-131f-4046-807f-7cd4a5cf753c
+		summarizeBy: sum
+		sourceColumn: GESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'BSS House'
+		dataType: string
+		lineageTag: 2a07dcdb-4f38-438e-9b43-872ee0165f98
+		summarizeBy: none
+		sourceColumn: BSS House
+
+		annotation SummarizationSetBy = Automatic
+
+	column AWP
+		dataType: string
+		lineageTag: a4288b46-35d0-4074-89d1-0b44f1f21fb1
+		summarizeBy: none
+		sourceColumn: AWP
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area of AWP'
+		dataType: string
+		lineageTag: 594a82d3-da6b-4671-88f2-94d8dabbc18f
+		summarizeBy: none
+		sourceColumn: Area of AWP
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_25
+		dataType: string
+		lineageTag: 96d07b14-8de2-4cd5-b2b9-4bf26fd96856
+		summarizeBy: none
+		sourceColumn: field_25
+
+		annotation SummarizationSetBy = Automatic
+
+	column field_26
+		dataType: string
+		lineageTag: c08be3ef-d5c9-49cc-8ba4-7b14a9a9c63b
+		summarizeBy: none
+		sourceColumn: field_26
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: b16e35ab-655b-41e7-9e0b-b7110d26bd78
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: b608e461-38df-4cb7-9722-94a9b1f9f8a1
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column timestamp
+		dataType: string
+		lineageTag: b2d437ee-b317-422b-8337-26704fb396ff
+		summarizeBy: none
+		sourceColumn: timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column begin
+		dataType: string
+		lineageTag: a1af586f-955c-4fe4-be18-4f98ef38e072
+		summarizeBy: none
+		sourceColumn: begin
+
+		annotation SummarizationSetBy = Automatic
+
+	column end
+		dataType: string
+		lineageTag: 9ec495ff-2e64-4703-941f-5df67f0d1dc3
+		summarizeBy: none
+		sourceColumn: end
+
+		annotation SummarizationSetBy = Automatic
+
+	column altitudeMode
+		dataType: string
+		lineageTag: 5b69f96b-b531-4fc0-b818-def19e013009
+		summarizeBy: none
+		sourceColumn: altitudeMode
+
+		annotation SummarizationSetBy = Automatic
+
+	column tessellate
+		dataType: int64
+		formatString: 0
+		lineageTag: b786559b-f011-401c-ac3d-aeeac623b4a7
+		summarizeBy: sum
+		sourceColumn: tessellate
+
+		annotation SummarizationSetBy = Automatic
+
+	column extrude
+		dataType: int64
+		formatString: 0
+		lineageTag: bc902131-861b-4d00-a1bd-64a1fae84b54
+		summarizeBy: sum
+		sourceColumn: extrude
+
+		annotation SummarizationSetBy = Automatic
+
+	column visibility
+		dataType: int64
+		formatString: 0
+		lineageTag: ca984344-c87a-4ee6-89f1-18fa5f304ff9
+		summarizeBy: sum
+		sourceColumn: visibility
+
+		annotation SummarizationSetBy = Automatic
+
+	column drawOrder
+		dataType: string
+		lineageTag: 3573d595-a20f-485e-9fbf-4e8930651bef
+		summarizeBy: none
+		sourceColumn: drawOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column icon
+		dataType: string
+		lineageTag: 71bc6f73-21fe-4fe0-80a5-3fe91d7537e6
+		summarizeBy: none
+		sourceColumn: icon
+
+		annotation SummarizationSetBy = Automatic
+
+	column layer
+		dataType: string
+		lineageTag: 97a82778-dfa4-4713-b17d-e34cba2aa81f
+		summarizeBy: none
+		sourceColumn: layer
+
+		annotation SummarizationSetBy = Automatic
+
+	column path
+		dataType: string
+		lineageTag: f052ca26-c13f-4fed-8566-946ecd332452
+		summarizeBy: none
+		sourceColumn: path
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area in acres' = [GESA] / 4046.856
+		lineageTag: 2dd2c77b-a449-4587-850e-91a68e4bca7c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: string
+		lineageTag: b177ced9-d5af-4717-968e-5877aba027d1
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: string
+		lineageTag: 6df5f60c-2354-4c7b-a4b8-51c6340135b5
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Asset Info' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Assets Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (8)", each #"Transform File (8)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (8)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (8)", Table.ColumnNames(#"Transform File (8)"(#"Sample File (8)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Lookup", type text}, {"Asset Category", type text}, {"Asset Sub Category", type text}, {"Asset Type", type text}, {"Local Authority", type text}, {"Parish", type text}, {"Deanery", type text}, {"Asset Name", type text}, {"URN", Int64.Type}, {"GIAS URN Check", type text}, {"Title Number", type text}, {"Diocesan Ownership", type text}, {"Postcode", type text}, {"Current URN", Int64.Type}, {"Count of URN", type any}, {"Easting", Int64.Type}, {"Northing", Int64.Type}, {"LSOA", type text}, {"Tenure", type text}, {"Phase", type text}, {"GESA", Int64.Type}, {"BSS House", type text}, {"AWP", type text}, {"Area of AWP", type any}, {"field_25", type any}, {"field_26", type text}, {"Name", type text}, {"description", type text}, {"timestamp", type any}, {"begin", type any}, {"end", type any}, {"altitudeMode", type any}, {"tessellate", Int64.Type}, {"extrude", Int64.Type}, {"visibility", Int64.Type}, {"drawOrder", type any}, {"icon", type any}, {"layer", type text}, {"path", type text}}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Changed Type", "Custom", each if [Deanery] = "Birkenhead and East Wirral" then 1 else if [Deanery] = "Central Cheshire" then 2 else if [Deanery] = "Stockport and Tameside" then 6 else if [Deanery] = "Shrewsbury and West Shropshire" then 8 else if [Deanery] = "Wallesley and West Wirral" then 3 else if [Deanery] = "Warrington and Runcorn" then 4 else if [Deanery] = "South Trafford and Wythenshawe" then 5 else if [Deanery] = "Ellesmere Port and Chester" then 7 else if [Deanery] = "Malpas" then 9 else null, type number),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Added Conditional Column",{{"Custom", Int64.Type}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Changed Type1", each true),
+				    #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows1",{"Custom"}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Removed Columns", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

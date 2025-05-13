@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Diocese of Shrewsbury Dashboard Rev 002 @ 15 09 24"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "98971c44-f929-8abd-4b56-d6a6a0d86b91"
+  }
+}

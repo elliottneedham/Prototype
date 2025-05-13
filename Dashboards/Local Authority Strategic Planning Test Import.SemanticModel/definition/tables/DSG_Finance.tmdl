@@ -1,0 +1,488 @@
+table DSG_Finance
+	lineageTag: 1eedbd88-7e13-4218-a5be-183c4ea85d97
+
+	measure Average_Cost_DSG = ```
+			
+			VAR FCS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        AVERAGE(DSG_Finance[average_cost_per_pupil]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        AVERAGE(DSG_Finance[average_cost_per_pupil])
+			    )
+			```
+		lineageTag: aeebea6b-ca41-4b33-8fa6-d7150d9b51c8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_Cumulative = ```
+			
+			VAR FCS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS3"
+			
+			VAR Y202425CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y202425CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y202425CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR Y203031CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Cumulative_Pupil_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203031CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Cumulative_Pupil_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y203031CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Cumulative_Pupil_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"  
+			    )
+			
+			VAR TCMECS1 = (Y202425CS1 + Y203031CS1 < 1) && TYCS1 = 0
+			VAR TCMECS2 = (Y202425CS2 + Y203031CS2 < 1) && TYCS2 = 0
+			VAR TCMECS3 = (Y202425CS3 + Y203031CS3 < 1) && TYCS3 = 0
+			
+			RETURN
+			    IF(
+			        FCS1 && TCMECS1 || FCS2 && TCMECS2 || FCS3 && TCMECS3,
+			        BLANK(),
+			        SUM(DSG_Finance[Cumulative_Pupil_Change])
+			    )
+			```
+		lineageTag: f5741274-b1b6-4eac-a85c-9a5db51f63ac
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_DSG = ```
+			
+			VAR FCS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(DSG_Finance[aggregated_DSG_pupils])
+			    )
+			```
+		lineageTag: 2665396c-86ce-496f-933b-0dac4e6ca25d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Pupils_Yearly_Change = ```
+			
+			VAR FCS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS3"
+			
+			VAR Y202425CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y202425CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y202425CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        DSG_Finance[Year] = 202425,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR Y203031CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Pupil_Yearly_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203031CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Pupil_Yearly_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )
+			
+			VAR Y203031CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[Pupil_Yearly_Change]),
+			        DSG_Finance[Year] = 203031,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_pupils]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"  
+			    )
+			
+			
+			VAR TCMECS1 = (Y202425CS1 + (7 *Y203031CS1) <= 1) && TYCS1 = 0
+			VAR TCMECS2 = (Y202425CS2 + (7 *Y203031CS2) <= 1) && TYCS2 = 0
+			VAR TCMECS3 = (Y202425CS3 + (7 *Y203031CS3) <= 1) && TYCS3 = 0
+			
+			RETURN
+			    IF(
+			        FCS1 && TCMECS1 || FCS2 && TCMECS2 || FCS3 && TCMECS3,
+			        BLANK(),
+			        SUM(DSG_Finance[Pupil_Yearly_Change])
+			    )
+			```
+		lineageTag: 4c761313-3052-4389-b14f-dd96eaa578ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Total_Value_DSG = ```
+			
+			VAR FCS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(DSG_Finance[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        ALL(DSG_Finance[Year]),
+			        DSG_Finance[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(DSG_Finance[aggregated_DSG_value]),
+			        DSG_Finance[Year] = 203132,
+			        DSG_Finance[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(DSG_Finance[aggregated_DSG_value])
+			    )
+			```
+		lineageTag: 6ed808c0-7589-44bb-8fb2-66d0e133ea10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Sheet
+		dataType: string
+		lineageTag: d195571e-146e-4ff4-ad19-47df74fb57a7
+		summarizeBy: none
+		sourceColumn: Sheet
+
+		annotation SummarizationSetBy = Automatic
+
+	column old_la_code
+		dataType: string
+		lineageTag: 85abeee3-19b4-4b0d-b2da-bfd20cff4620
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 187c3a26-0c47-4de4-8320-63eefab825e6
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: f2549156-d1ec-47d3-be5b-c911d8096344
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_cost_per_pupil
+		dataType: double
+		lineageTag: eeb1611c-b48d-4e3a-8d53-5c0b758293c7
+		summarizeBy: sum
+		sourceColumn: average_cost_per_pupil
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 76d1346d-018f-476e-a0d7-181729bbb70e
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pupil_Yearly_Change
+		dataType: double
+		lineageTag: 390be0dc-b8c3-4c8d-aeb9-7fe666edebea
+		summarizeBy: sum
+		sourceColumn: Pupil_Yearly_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aggregated_DSG_pupils
+		dataType: double
+		lineageTag: 5700ec7d-bdcb-48fa-b6c5-d5dc2cc35906
+		summarizeBy: sum
+		sourceColumn: aggregated_DSG_pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aggregated_DSG_value
+		dataType: double
+		lineageTag: 25530e13-6e07-4d37-bf00-0af97968d319
+		summarizeBy: sum
+		sourceColumn: aggregated_DSG_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cumulative_Pupil_Change
+		dataType: double
+		lineageTag: 3872e593-0f03-43c7-8d27-cf4ca48e28a0
+		summarizeBy: sum
+		sourceColumn: Cumulative_Pupil_Change
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DSG_Finance = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_DSG_Finance = Source{[Schema="dbo",Item="DSG_Finance"]}[Data]
+				in
+				    dbo_DSG_Finance
+

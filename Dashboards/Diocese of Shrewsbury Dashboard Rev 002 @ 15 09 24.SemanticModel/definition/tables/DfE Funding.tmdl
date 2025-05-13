@@ -1,0 +1,211 @@
+table 'DfE Funding'
+	lineageTag: f1ff0f34-70f8-4853-aab2-de6feb928f8a
+
+	measure uniqueprimarybasicneed = sumx(distinct('DfE Funding'[Primary Planning Area Code]),FIRSTNONBLANK('DfE Funding'[2023/24 to 2025/26 - Primary Basic Need Capital],0))
+		formatString: 0
+		lineageTag: 62a07032-0dcc-45e4-a881-854322e8145a
+
+	measure uniquesecondarybasicneed = sumx(distinct('DfE Funding'[Secondary Planning Area Code]),FIRSTNONBLANK('DfE Funding'[2023/24 to 2025/26 - Secondary Basic Need Capital],0))
+		formatString: 0
+		lineageTag: f2e2a052-684c-4d6b-98ff-60cbe5b6fb48
+
+	measure uniquehighneeds = sumx(distinct('DfE Funding'[Local Authority]),FIRSTNONBLANK('DfE Funding'[2023/24 to 2024/25 High Needs Capital],0))
+		formatString: 0
+		lineageTag: 2bc84d0a-f953-4f9f-a876-1a227c49c69c
+
+	measure uniqueearlyyears = sumx(distinct('DfE Funding'[Local Authority]),FIRSTNONBLANK('DfE Funding'[2023/24 Early Years Capital],0))
+		formatString: 0
+		lineageTag: b4a91fed-f284-48a3-a953-dd2469969754
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 49ce4bca-9f04-4df4-a581-c7355250a95b
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: int64
+		formatString: 0
+		lineageTag: 529b1b44-0651-4f1d-b456-31432ce72ca9
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 24488353-810f-413f-95db-bc553ccc722a
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Authority'
+		dataType: string
+		lineageTag: 1582f111-1f62-4a59-be1d-76c6da7fe7a8
+		summarizeBy: none
+		sourceColumn: Local Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: 0f8660d8-0325-46e3-b6b1-f2d9f156ddd3
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Place Planning  Area'
+		dataType: string
+		lineageTag: bac47a8b-d699-4c4a-8a7f-7bad016eac1c
+		summarizeBy: none
+		sourceColumn: LA Place Planning  Area
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Planning Place Instance'
+		dataType: int64
+		formatString: 0
+		lineageTag: 05ad5386-ad31-44d1-9108-a5b1ed9f2052
+		summarizeBy: none
+		sourceColumn: Planning Place Instance
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Type'
+		dataType: string
+		lineageTag: 5a48ac6b-3173-4e74-9703-ef1d63ae7929
+		summarizeBy: none
+		sourceColumn: School Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Future Trust'
+		dataType: string
+		lineageTag: 61dd168a-4103-49dd-b3af-882cdf9b0d1c
+		summarizeBy: none
+		sourceColumn: Future Trust
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ofsted
+		dataType: string
+		lineageTag: 37c36635-aaac-4f57-925a-590f8ce92f88
+		summarizeBy: none
+		sourceColumn: Ofsted
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAN
+		dataType: double
+		lineageTag: ecedc7da-6d1b-43ab-9a01-a1a59094aacf
+		summarizeBy: none
+		sourceColumn: PAN
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Primary Planning Area Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c68558f-4678-4bee-9986-51b431d96cde
+		summarizeBy: none
+		sourceColumn: Primary Planning Area Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Secondary Planning Area Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: c606c448-40b3-430a-845d-e6cfa6e6cba2
+		summarizeBy: none
+		sourceColumn: Secondary Planning Area Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Primary Planning Area Name'
+		dataType: string
+		lineageTag: 277d5d1f-8aee-49f8-b174-75d8225ca744
+		summarizeBy: none
+		sourceColumn: Primary Planning Area Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Secondary Planning Area Name'
+		dataType: string
+		lineageTag: 0d93c8de-5d3f-44fa-b783-2fddac49b6ab
+		summarizeBy: none
+		sourceColumn: Secondary Planning Area Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2023/24 to 2025/26 - Primary Basic Need Capital'
+		dataType: int64
+		formatString: 0
+		lineageTag: f48bda40-3a92-4bfd-843c-dfffe10648e4
+		summarizeBy: none
+		sourceColumn: 2023/24 to 2025/26 - Primary Basic Need Capital
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2023/24 to 2025/26 - Secondary Basic Need Capital'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2283ea0b-6bbc-47db-8ac6-1afe33b1ae07
+		summarizeBy: none
+		sourceColumn: 2023/24 to 2025/26 - Secondary Basic Need Capital
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2023/24 to 2024/25 High Needs Capital'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cd5bb4d-525c-4b61-bd5b-e5f3a02e043d
+		summarizeBy: none
+		sourceColumn: 2023/24 to 2024/25 High Needs Capital
+
+		annotation SummarizationSetBy = User
+
+	column '2023/24 Early Years Capital'
+		dataType: int64
+		formatString: 0
+		lineageTag: 69dfee43-4706-4ceb-8552-5eaceec90aac
+		summarizeBy: none
+		sourceColumn: 2023/24 Early Years Capital
+
+		annotation SummarizationSetBy = User
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 8adaf482-ed00-47e1-ab0e-a4e862b49444
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'DfE Funding' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewbury Basic and High Needs and early Years Capital Funding - Rev 001 @ 15 09 24.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (14)", each #"Transform File (14)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (14)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (14)", Table.ColumnNames(#"Transform File (14)"(#"Sample File (14)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"URN", Int64.Type}, {"School Name", type text}, {"Local Authority", type text}, {"Deanery", type text}, {"LA Place Planning  Area", type text}, {"Planning Place Instance", Int64.Type}, {"School Type", type text}, {"Future Trust", type text}, {"Ofsted", type text}, {"PAN", type number}, {"Primary Planning Area Code", Int64.Type}, {"Secondary Planning Area Code", Int64.Type}, {"Primary Planning Area Name", type text}, {"Secondary Planning Area Name", type text}, {"2024/25 to 2025/26 - Primary Basic Need Capital", Int64.Type}, {"2024/25 to 2025/26 - Secondary Basic Need Capital", Int64.Type}, {"2023/24 to 2024/25 High Needs Capital", Int64.Type}, {"2023/24 Early Years Capital", Int64.Type}}),
+				    #"Added Index" = Table.AddIndexColumn(#"Changed Type", "Index", 1, 1, Int64.Type),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Index",{{"2024/25 to 2025/26 - Primary Basic Need Capital", "2023/24 to 2025/26 - Primary Basic Need Capital"}, {"2024/25 to 2025/26 - Secondary Basic Need Capital", "2023/24 to 2025/26 - Secondary Basic Need Capital"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,29 @@
+table Year_Index
+	lineageTag: 4347621f-3b89-4ad9-98d1-de9e48d05ecc
+
+	column Year
+		dataType: string
+		lineageTag: b3fc30d9-dd5f-4ae9-8b37-27ad5147150b
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ce9805f-72eb-4d75-8aa1-dac165242466
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Year_Index = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Year_Index = Source{[Schema="dbo",Item="Year_Index"]}[Data]
+				in
+				    dbo_Year_Index
+

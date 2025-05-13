@@ -1,0 +1,238 @@
+table 'Pupil Projections'
+	lineageTag: 4a5a6534-3253-4504-9762-6e814a576c41
+
+	measure sumofuniqueCDP = sumx(distinct('Pupil Projections'[LA Planning Place Area ]),FIRSTNONBLANK('Pupil Projections'[Centrally Delivered Places ],0))
+		formatString: 0
+		lineageTag: 4fab6490-83c0-43a8-a453-e2fd89f177a5
+
+	measure sumofuniqueHIF = sumx(distinct('Pupil Projections'[LA Planning Place Area ]),FIRSTNONBLANK('Pupil Projections'[Housing Infrastructure Fund Places  ],0))
+		formatString: 0
+		lineageTag: 23df2bfb-beda-4407-8661-6cc5bf93a402
+
+	measure sumofuniqueHDC = sumx(distinct('Pupil Projections'[LA Planning Place Area ]),FIRSTNONBLANK('Pupil Projections'[Housing Developer Contribution Places ],0))
+		formatString: 0
+		lineageTag: 1f89d836-68e7-43df-a657-8d3b3a769723
+
+	measure sumofuniqueLAP = sumx(distinct('Pupil Projections'[LA Planning Place Area ]),FIRSTNONBLANK('Pupil Projections'[LA Planned Places ],0))
+		formatString: 0
+		lineageTag: 031bc47a-909a-4ec7-a861-a198ed978909
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: 24c4ea55-666b-46ea-8f60-86da2f9c3106
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column urn
+		dataType: int64
+		formatString: 0
+		lineageTag: 16694222-7be4-4f39-997c-2a7772f6c821
+		summarizeBy: none
+		sourceColumn: urn
+
+		annotation SummarizationSetBy = User
+
+	column 'school name '
+		dataType: string
+		lineageTag: 890fb3c6-8024-476e-a12c-e30850fa4aa2
+		summarizeBy: none
+		sourceColumn: "school name "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Local Authority '
+		dataType: string
+		lineageTag: 9740bcbf-42ac-44fb-be1e-356cc186a466
+		summarizeBy: none
+		sourceColumn: "Local Authority "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: 71a535fe-2237-4992-8ad8-0d9102105838
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Planning Place Area '
+		dataType: string
+		lineageTag: c99f12ad-29a5-4084-8246-c55ec2b47d30
+		summarizeBy: none
+		sourceColumn: "LA Planning Place Area "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Type '
+		dataType: string
+		lineageTag: 047846a4-271f-40d6-9186-57246af9541a
+		summarizeBy: none
+		sourceColumn: "School Type "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Future Trust '
+		dataType: string
+		lineageTag: 279b159d-284d-4ea2-bc95-b58973850382
+		summarizeBy: none
+		sourceColumn: "Future Trust "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ofsted '
+		dataType: string
+		lineageTag: 1ad629e8-3d88-4140-9ee6-09f55ed6d6f2
+		summarizeBy: none
+		sourceColumn: "Ofsted "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pan
+		dataType: int64
+		lineageTag: 26898dfa-e184-41bd-810c-7c61e715efbc
+		summarizeBy: none
+		sourceColumn: Pan
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Year '
+		dataType: int64
+		formatString: 0
+		lineageTag: ec602240-0f68-48cb-b4c9-76c239a15534
+		summarizeBy: none
+		sourceColumn: "Year "
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = User
+
+	column 'Pupil Catholicity %'
+		dataType: decimal
+		lineageTag: 994e75a4-6057-4ba2-b3be-860d9d1b828f
+		summarizeBy: none
+		sourceColumn: Pupil Catholicity %
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Surplus places '
+		dataType: int64
+		formatString: 0
+		lineageTag: 522fa4f3-bd95-45cc-95e3-d593c3a83518
+		summarizeBy: sum
+		sourceColumn: "Surplus places "
+
+		annotation SummarizationSetBy = Automatic
+
+	column '% Surplus Places '
+		dataType: double
+		lineageTag: ef7e4457-cd86-4e55-a5f7-ceeb192a95ea
+		summarizeBy: none
+		sourceColumn: "% Surplus Places "
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'LA Planned Places '
+		dataType: int64
+		formatString: 0
+		lineageTag: 46ec6e3a-4a82-4976-b842-e1240082151c
+		summarizeBy: sum
+		sourceColumn: "LA Planned Places "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Centrally Delivered Places '
+		dataType: int64
+		formatString: 0
+		lineageTag: 21e0297a-63bb-4346-800f-74c2d7abf800
+		summarizeBy: sum
+		sourceColumn: "Centrally Delivered Places "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Housing Developer Contribution Places '
+		dataType: int64
+		formatString: 0
+		lineageTag: 8316a586-e17b-4ce5-8e21-d73cac8e409e
+		summarizeBy: sum
+		sourceColumn: "Housing Developer Contribution Places "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Housing Infrastructure Fund Places  '
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d2a7943-2734-45a8-b297-f10c3460987b
+		summarizeBy: sum
+		sourceColumn: "Housing Infrastructure Fund Places  "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Planned Places '
+		dataType: int64
+		formatString: 0
+		lineageTag: a15060b0-6a23-4561-a6dd-17bff22fcd0b
+		summarizeBy: sum
+		sourceColumn: "Total Planned Places "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pupil Catholicity (%)' = [Pupil Catholicity %] * 100
+		dataType: decimal
+		lineageTag: 98505c1a-d8d3-4030-8311-b054d6a6efab
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '(%) Surplus Places' = [% Surplus Places ] * 100
+		dataType: decimal
+		lineageTag: 338281a7-8aed-4388-aa0a-8de824886a68
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Pupil Projections' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Diocese of Shrewsbury Pupil Place Planning Risks & Opportunities - Rev 001 @ 17 07 24.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (10)", each #"Transform File (10)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (10)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (10)", Table.ColumnNames(#"Transform File (10)"(#"Sample File (10)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"urn", Int64.Type}, {"school name ", type text}, {"Local Authority ", type text}, {"Deanery", type text}, {"LA Planning Place Area ", type text}, {"School Type ", type text}, {"Future Trust ", type text}, {"Ofsted ", type text}, {"Pan", type number}, {"Year ", Int64.Type}, {"Pupil Catholicity %", type number}, {"Surplus places ", type any}, {"% Surplus Places ", type any}, {"LA Planned Places ", type any}, {"Centrally Delivered Places ", type any}, {"Housing Developer Contribution Places ", type any}, {"Housing Infrastructure Fund Places  ", type any}, {"Total Planned Places ", type any}, {"Column19", type any}, {"Column20", type any}, {"Column21", type any}, {"Column22", type any}, {"Column23", type any}, {"Column24", type any}, {"Column25", type any}, {"Column26", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column19", "Column20", "Column21", "Column22", "Column23", "Column24", "Column25", "Column26"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Removed Columns",{{"% Surplus Places ", type number}}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Changed Type1","Null",0,Replacer.ReplaceValue,{"Surplus places "}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,0,Replacer.ReplaceValue,{"Surplus places "}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,0,Replacer.ReplaceValue,{"% Surplus Places ", "LA Planned Places ", "Centrally Delivered Places ", "Housing Developer Contribution Places ", "Housing Infrastructure Fund Places  ", "Total Planned Places "}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Replaced Value2", each true),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Filtered Rows1",{{"LA Planned Places ", Int64.Type}, {"Centrally Delivered Places ", Int64.Type}, {"Housing Developer Contribution Places ", Int64.Type}, {"Housing Infrastructure Fund Places  ", Int64.Type}, {"Total Planned Places ", Int64.Type}, {"Surplus places ", Int64.Type}, {"Pan", Int64.Type}}),
+				    #"Filtered Rows2" = Table.SelectRows(#"Changed Type2", each true)
+				in
+				    #"Filtered Rows2"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

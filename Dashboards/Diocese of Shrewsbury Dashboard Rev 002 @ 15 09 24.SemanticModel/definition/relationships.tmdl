@@ -1,0 +1,60 @@
+relationship f1089553-58b7-2810-1552-980b501c51c2
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Section 106'.URN
+	toColumn: 'Asset Info'.URN
+
+relationship 0971e6ad-2417-51de-82df-c5415821edc8
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Asset Info'.URN
+	toColumn: 'Pupil Projections'.urn
+
+relationship AutoDetected_905e4870-b80b-4aab-bb6d-a6305f8d5a6d
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Pupil Projections'.'Year '
+	toColumn: 'Year index'.year
+
+relationship AutoDetected_e5845388-0d23-4a5a-af7f-549d99c60153
+	fromColumn: 'Mass Attendance'.Index
+	toColumn: 'Year index'.index
+
+relationship AutoDetected_97d5f91b-bc27-4b06-bcff-9bd59837b8aa
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Asset Info'.URN
+	toColumn: 'DfE Funding'.URN
+
+relationship 6d701cf9-818e-6b15-8fae-31f76b60a88b
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Pupil Home Locations Appended'.URN
+	toColumn: 'Asset Info'.URN
+
+relationship d32ae622-bbeb-7457-f9e0-fd2316834a79
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Pupil Home Locations Appended'.'Banded Travel Distance (miles)'
+	toColumn: Table.Column1
+
+relationship d0cff0c1-18d5-fe3d-1828-de9f335fe1d5
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Additional Places'.'School URN'
+	toColumn: 'Asset Info'.URN
+
+relationship 5046e0b6-22b7-6290-7553-46e7f373e570
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Pupil Home Locations Appended'.NCYearActual
+	toColumn: 'Year Sort'.'Year Group'
+
+relationship 25a88940-ee70-84ef-6082-caf5aa4d431a
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Additional Places'.'School URN'
+	toColumn: 'Info Links'.'School URN'
+
+relationship f3d5df64-9981-7f9c-7fbc-b36869da322c
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Pupil Projections'.Deanery
+	toColumn: 'Deanery Projections'.Deanery
+

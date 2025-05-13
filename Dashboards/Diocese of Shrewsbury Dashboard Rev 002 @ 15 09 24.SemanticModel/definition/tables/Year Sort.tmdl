@@ -1,0 +1,34 @@
+table 'Year Sort'
+	lineageTag: 5e212cf7-f1fa-429e-8716-26cfc51c8a23
+
+	column 'Year Group'
+		dataType: string
+		lineageTag: 7a1e6c38-6a5b-4c8e-b663-fa3afe6f71bc
+		summarizeBy: none
+		sourceColumn: Year Group
+		sortByColumn: Index
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 75e7cdd0-4fda-4637-ab5d-bde18a87d577
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Year Sort' = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Lc67DYAwDIThXVynwHkzAC0FFVKU/dfAd0f3yZbzZy273JK57RTMwUzemBYR00o+oUZh3SlsB1VCk6qhk2p4/CA7qNAAFZqgQieoUJyE/xQ/qJij5so5eq7gC0Zxfw==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Year Group" = _t, Index = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Year Group", type text}, {"Index", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

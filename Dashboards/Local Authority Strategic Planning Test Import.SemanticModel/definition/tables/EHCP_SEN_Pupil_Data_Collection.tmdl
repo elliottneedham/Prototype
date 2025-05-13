@@ -1,0 +1,396 @@
+table EHCP_SEN_Pupil_Data_Collection
+	lineageTag: 3807b821-2821-4a88-afc0-ac1cad77b21a
+
+	column Unique_Client_Name
+		dataType: string
+		lineageTag: 474862e8-7c49-4e0f-9852-b60bfc271222
+		summarizeBy: none
+		sourceColumn: Unique_Client_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Original_Data
+		dataType: string
+		lineageTag: e099ce9d-b755-44a1-bad6-7baf04e8d224
+		summarizeBy: none
+		sourceColumn: Original_Data
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_Latest_SEN_Code_of_Practice_Stage_Description
+		dataType: string
+		lineageTag: 235785d3-c8b3-450b-9420-d30817804563
+		summarizeBy: none
+		sourceColumn: CYP_Latest_SEN_Code_of_Practice_Stage_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_Education_System_Ref
+		dataType: string
+		lineageTag: d42ea7d2-df6d-4575-ba20-5d67054886e6
+		summarizeBy: none
+		sourceColumn: CYP_Education_System_Ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column Count_of_CYP_Education_Systen_Ref
+		dataType: int64
+		formatString: 0
+		lineageTag: b05f544f-d759-4f57-b494-188bf3350f6d
+		summarizeBy: sum
+		sourceColumn: Count_of_CYP_Education_Systen_Ref
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_Age_in_Years_
+		dataType: int64
+		formatString: 0
+		lineageTag: cda0b8c6-950f-4379-98eb-b115d89c61e3
+		summarizeBy: sum
+		sourceColumn: CYP_Age_in_Years_
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age_Group
+		dataType: string
+		lineageTag: 4ce2c5ac-7f24-4cd6-b0b5-f45a82fcb0db
+		summarizeBy: none
+		sourceColumn: Age_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_NC_Year
+		dataType: string
+		lineageTag: e00608c1-ca4e-4480-aa51-4f1431d4f6cb
+		summarizeBy: none
+		sourceColumn: CYP_NC_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_SEN_Primary_Need_Code
+		dataType: string
+		lineageTag: d7c404dd-1ecb-45a1-9d27-db9b3c1a7c9d
+		summarizeBy: none
+		sourceColumn: CYP_SEN_Primary_Need_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_SEN_Primary_Need_Description
+		dataType: string
+		lineageTag: ff8049db-0ae3-4179-8caa-1dc029b201e0
+		summarizeBy: none
+		sourceColumn: CYP_SEN_Primary_Need_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column NEET?
+		dataType: string
+		lineageTag: 7614d915-cf06-4cbd-b156-d403d166d42c
+		summarizeBy: none
+		sourceColumn: NEET?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Home_Postcode
+		dataType: string
+		lineageTag: 83d9c4f1-7f38-4bc7-be32-e1abf22958b7
+		summarizeBy: none
+		sourceColumn: Home_Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Education_Placement_LA
+		dataType: string
+		lineageTag: 889a51dc-1f66-4ab5-8e32-487574767bc6
+		summarizeBy: none
+		sourceColumn: Education_Placement_LA
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: f097b370-e38a-4b3a-9584-cb0394f892ec
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_Name
+		dataType: string
+		lineageTag: eee77d18-86c3-45b7-bfa0-936abc616d18
+		summarizeBy: none
+		sourceColumn: School_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_Postcode
+		dataType: string
+		lineageTag: 5de34e19-8ae8-42c8-bd46-00d8be9566e1
+		summarizeBy: none
+		sourceColumn: School_Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resource_Provision?
+		dataType: string
+		lineageTag: 3105fd25-3c14-4e7e-ac23-10db9c322829
+		summarizeBy: none
+		sourceColumn: Resource_Provision?
+
+		annotation SummarizationSetBy = Automatic
+
+	column SEN_Unit?
+		dataType: string
+		lineageTag: 92eff8b6-7acc-4683-8a71-3057f54eb14d
+		summarizeBy: none
+		sourceColumn: SEN_Unit?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 1st_Planner_Establishment_Type
+		dataType: string
+		lineageTag: 43439eaa-225f-4567-898c-545a67e97b90
+		summarizeBy: none
+		sourceColumn: 1st_Planner_Establishment_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIAS_TypeOfEstablishment__name_
+		dataType: string
+		lineageTag: 71c1f130-c447-4aed-b2f4-7c46d6b41181
+		summarizeBy: none
+		sourceColumn: GIAS_TypeOfEstablishment__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column GIAS__EstablishmentTypeGroup__name_
+		dataType: string
+		lineageTag: a5359139-69a2-4d71-96ce-47b12d4ff6ec
+		summarizeBy: none
+		sourceColumn: GIAS__EstablishmentTypeGroup__name_
+
+		annotation SummarizationSetBy = Automatic
+
+	column DfE_SEN2_Category_Description
+		dataType: string
+		lineageTag: 0fd270bc-06c4-46cc-9bbb-ee2c15833280
+		summarizeBy: none
+		sourceColumn: DfE_SEN2_Category_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESFA_Placement_Category
+		dataType: string
+		lineageTag: 29bac347-b1fa-49fa-b0fe-617bba5506f0
+		summarizeBy: none
+		sourceColumn: ESFA_Placement_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESFA_Placement_sub_Category__If_Other_
+		dataType: string
+		lineageTag: 075baea7-e680-4d50-8f2d-735b43404396
+		summarizeBy: none
+		sourceColumn: ESFA_Placement_sub_Category__If_Other_
+
+		annotation SummarizationSetBy = Automatic
+
+	column SCAP_Planning_Area_Description
+		dataType: string
+		lineageTag: 9818181c-e5e4-4c08-affe-d0ea145ff146
+		summarizeBy: none
+		sourceColumn: SCAP_Planning_Area_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_DfE_SEN2_LA
+		dataType: string
+		lineageTag: e63ed3bd-7029-4404-a28b-777aad0fc976
+		summarizeBy: none
+		sourceColumn: CYP_DfE_SEN2_LA
+
+		annotation SummarizationSetBy = Automatic
+
+	column CYP_SEN_Funding_LA
+		dataType: string
+		lineageTag: c862edc3-e9ea-4612-aeac-2d5c0f4dedea
+		summarizeBy: none
+		sourceColumn: CYP_SEN_Funding_LA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transfer_Local_Authority
+		dataType: string
+		lineageTag: 3dd5ef4d-c078-4411-b371-d86349d097e3
+		summarizeBy: none
+		sourceColumn: Transfer_Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actual_E3_Cost_for_Each_FY
+		dataType: double
+		lineageTag: f6795f26-3974-4d16-a904-be0bd410e349
+		summarizeBy: sum
+		sourceColumn: Actual_E3_Cost_for_Each_FY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column E3_Top_Up_Banding
+		dataType: string
+		lineageTag: 33de4423-e61b-4260-9443-05a407061675
+		summarizeBy: none
+		sourceColumn: E3_Top_Up_Banding
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funding_Source
+		dataType: string
+		lineageTag: ac50fb52-db84-4952-88db-154bb6f6c6ed
+		summarizeBy: none
+		sourceColumn: Funding_Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Residential_Settings
+		dataType: string
+		lineageTag: ed6efd20-58ff-46f9-b01a-866ee15a2833
+		summarizeBy: none
+		sourceColumn: Residential_Settings
+
+		annotation SummarizationSetBy = Automatic
+
+	column Personal_Budget_Taken_Up
+		dataType: string
+		lineageTag: adc005b8-0f19-4046-a10f-46fdcfe3c854
+		summarizeBy: none
+		sourceColumn: Personal_Budget_Taken_Up
+
+		annotation SummarizationSetBy = Automatic
+
+	column School_Easting
+		dataType: double
+		lineageTag: 356d092b-dada-4278-a4a4-c3f1eaef0f88
+		summarizeBy: sum
+		sourceColumn: School_Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Northing
+		dataType: double
+		lineageTag: 35fb7215-1325-4ff3-a530-2f3b9b534779
+		summarizeBy: sum
+		sourceColumn: School_Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Longitude
+		dataType: double
+		lineageTag: efeb311f-4d36-40be-b8d9-0bf48b4b8e77
+		summarizeBy: sum
+		sourceColumn: School_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column School_Latitude
+		dataType: double
+		lineageTag: 4c547ae5-bc6b-4b0d-9a6c-7acba9afe02f
+		summarizeBy: sum
+		sourceColumn: School_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Local_Authority
+		dataType: string
+		lineageTag: 72eb633b-91fc-468f-97fd-d2a53109df72
+		summarizeBy: none
+		sourceColumn: Home_Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column Home_Easting
+		dataType: double
+		lineageTag: 1b70e35f-4bc3-44cc-97a1-3cb94e56cd36
+		summarizeBy: sum
+		sourceColumn: Home_Easting
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Northing
+		dataType: double
+		lineageTag: 7615cded-18d7-47db-8872-883079806fc2
+		summarizeBy: sum
+		sourceColumn: Home_Northing
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Longitude
+		dataType: double
+		lineageTag: c5e49d83-1530-4bc0-993b-cfde14526d67
+		summarizeBy: sum
+		sourceColumn: Home_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Home_Latitude
+		dataType: double
+		lineageTag: 69e741df-93cb-41ea-a2f1-4a6ff6d37d19
+		summarizeBy: sum
+		sourceColumn: Home_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Distance_Travelled__m_
+		dataType: double
+		lineageTag: 3ae86623-f7d6-4dac-8ef7-9a8f7f723ee6
+		summarizeBy: sum
+		sourceColumn: Distance_Travelled__m_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Distance_Travelled__miles_
+		dataType: double
+		lineageTag: 55e28652-44c6-4334-84e3-74cb424fdaed
+		summarizeBy: sum
+		sourceColumn: Distance_Travelled__miles_
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Banded_Travel_Distance__miles_
+		dataType: string
+		lineageTag: 189dbbcd-c459-49df-b8fd-de3448f02741
+		summarizeBy: none
+		sourceColumn: Banded_Travel_Distance__miles_
+
+		annotation SummarizationSetBy = Automatic
+
+	partition EHCP_SEN_Pupil_Data_Collection = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_EHCP_SEN_Pupil_Data_Collection = Source{[Schema="dbo",Item="EHCP_SEN_Pupil_Data_Collection"]}[Data]
+				in
+				    dbo_EHCP_SEN_Pupil_Data_Collection
+

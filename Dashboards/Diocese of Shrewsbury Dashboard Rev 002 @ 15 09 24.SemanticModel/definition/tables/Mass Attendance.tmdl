@@ -1,0 +1,107 @@
+table 'Mass Attendance'
+	lineageTag: 0dd238d8-52f0-4b78-9cb4-a143f37c6a24
+
+	column '1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx'
+		dataType: string
+		lineageTag: eb803a26-5704-4328-baca-9e5237931a49
+		summarizeBy: none
+		sourceColumn: 1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: 51ae2e72-6760-47d0-b3e4-2aa6ae7f6469
+		summarizeBy: none
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b563cc48-96ad-4067-963e-e2192de933b0
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diocese
+		dataType: string
+		lineageTag: ee20e618-e5f6-4b9a-9ec2-8ac638e3225b
+		summarizeBy: none
+		sourceColumn: Diocese
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deanery
+		dataType: string
+		lineageTag: f86b923e-8b71-4c7a-88c3-98737dfc8398
+		summarizeBy: none
+		sourceColumn: Deanery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parish
+		dataType: string
+		lineageTag: 64223c20-9ab7-4205-b7ab-7b8a8e3b2beb
+		summarizeBy: none
+		sourceColumn: Parish
+
+		annotation SummarizationSetBy = Automatic
+
+	column Town
+		dataType: string
+		lineageTag: 098083e8-ea8c-4bc5-b3d5-2a2b788c92c5
+		summarizeBy: none
+		sourceColumn: Town
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 163e798f-a0d8-47f7-9323-68be82df7999
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mass Attendees'
+		dataType: string
+		lineageTag: 1b65c7eb-a194-460d-b727-a62aef3dc2a0
+		summarizeBy: none
+		sourceColumn: Mass Attendees
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Mass Attendance' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (11)", each #"Transform File (11)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (11)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (11)", Table.ColumnNames(#"Transform File (11)"(#"Sample File (11)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"Column1", type any}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}, {"Column6", Int64.Type}, {"Column7", Int64.Type}, {"Column8", Int64.Type}, {"Column9", Int64.Type}, {"Column10", type number}, {"Column11", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column11"}),
+				    #"Added Index" = Table.AddIndexColumn(#"Removed Columns", "Index", 1, 1, Int64.Type),
+				    #"Promoted Headers" = Table.PromoteHeaders(#"Added Index", [PromoteAllScalars=true]),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx", type text}, {"ID", Int64.Type}, {"Diocese", type text}, {"Deanery", type text}, {"Parish", type text}, {"Town", type text}, {"201920", Int64.Type}, {"202021", Int64.Type}, {"202122", Int64.Type}, {"202223", Int64.Type}, {"202324", type number}, {"1", Int64.Type}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type1",{"1"}),
+				    #"Added Index1" = Table.AddIndexColumn(#"Removed Columns1", "Index", 0, 1, Int64.Type),
+				    #"Removed Columns2" = Table.RemoveColumns(#"Added Index1",{"Index"}),
+				    #"Added Index2" = Table.AddIndexColumn(#"Removed Columns2", "Index", 1, 1, Int64.Type),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Added Index2", {"1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx", "ID", "Diocese", "Deanery", "Parish", "Town", "Index"}, "Attribute", "Value"),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Unpivoted Columns",{"1st Planner 2024 Strategic Planning Power BI Data Sheets.xlsx", "Index", "ID", "Diocese", "Deanery", "Parish", "Town", "Attribute", "Value"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"Value", "Mass Attendees"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

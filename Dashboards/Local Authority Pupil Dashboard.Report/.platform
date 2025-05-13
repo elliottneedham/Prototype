@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Local Authority Pupil Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ea87585f-0238-95ec-432a-60f28f434915"
+  }
+}

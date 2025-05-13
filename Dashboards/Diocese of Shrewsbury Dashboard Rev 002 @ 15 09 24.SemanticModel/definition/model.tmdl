@@ -1,0 +1,226 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from Query1'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (2)'
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 'Transform File from Query1 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2'
+
+	annotation PBI_QueryGroupOrder = 4
+
+queryGroup 'Transform File from Query2\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (2)'
+
+	annotation PBI_QueryGroupOrder = 6
+
+queryGroup 'Transform File from Query2 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query4'
+
+	annotation PBI_QueryGroupOrder = 8
+
+queryGroup 'Transform File from Query4\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (3)'
+
+	annotation PBI_QueryGroupOrder = 10
+
+queryGroup 'Transform File from Query1 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (4)'
+
+	annotation PBI_QueryGroupOrder = 14
+
+queryGroup 'Transform File from Query1 (4)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (3)'
+
+	annotation PBI_QueryGroupOrder = 16
+
+queryGroup 'Transform File from Query2 (3)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query3'
+
+	annotation PBI_QueryGroupOrder = 18
+
+queryGroup 'Transform File from Query3\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query4 (2)'
+
+	annotation PBI_QueryGroupOrder = 20
+
+queryGroup 'Transform File from Query4 (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (5)'
+
+	annotation PBI_QueryGroupOrder = 22
+
+queryGroup 'Transform File from Query1 (5)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (6)'
+
+	annotation PBI_QueryGroupOrder = 24
+
+queryGroup 'Transform File from Query1 (6)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (7)'
+
+	annotation PBI_QueryGroupOrder = 26
+
+queryGroup 'Transform File from Query1 (7)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (8)'
+
+	annotation PBI_QueryGroupOrder = 28
+
+queryGroup 'Transform File from Query1 (8)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (4)'
+
+	annotation PBI_QueryGroupOrder = 30
+
+queryGroup 'Transform File from Query2 (4)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (9)'
+
+	annotation PBI_QueryGroupOrder = 32
+
+queryGroup 'Transform File from Query1 (9)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (10)'
+
+	annotation PBI_QueryGroupOrder = 34
+
+queryGroup 'Transform File from Query1 (10)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (11)'
+
+	annotation PBI_QueryGroupOrder = 36
+
+queryGroup 'Transform File from Query1 (11)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (12)'
+
+	annotation PBI_QueryGroupOrder = 38
+
+queryGroup 'Transform File from Query1 (12)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Pupil Home Locations'
+
+	annotation PBI_QueryGroupOrder = 40
+
+queryGroup 'Transform File from Query1 (13)'
+
+	annotation PBI_QueryGroupOrder = 41
+
+queryGroup 'Transform File from Query1 (13)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Additional Places'
+
+	annotation PBI_QueryGroupOrder = 43
+
+queryGroup 'Transform File from Additional Places\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (14)'
+
+	annotation PBI_QueryGroupOrder = 45
+
+queryGroup 'Transform File from Query1 (14)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query2 (5)'
+
+	annotation PBI_QueryGroupOrder = 45
+
+queryGroup 'Transform File from Query2 (5)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from Query1 (15)'
+
+	annotation PBI_QueryGroupOrder = 47
+
+queryGroup 'Transform File from Query1 (15)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Sample File","Parameter1","Transform Sample File","Transform File","Parameter2","Transform Sample File (2)","Sample File (2)","Transform File (2)","Parameter3","Transform Sample File (3)","Sample File (3)","Transform File (3)","Parameter4","Transform Sample File (4)","Sample File (4)","Transform File (4)","Parameter5","Transform Sample File (5)","Sample File (5)","Transform File (5)","Sample File (6)","Parameter6","Transform Sample File (6)","Transform File (6)","Asset Info","Parameter8","Transform Sample File (8)","Sample File (8)","Transform File (8)","Section 106","Parameter9","Transform Sample File (9)","Sample File (9)","Transform File (9)","Pupil Projections","Parameter10","Transform Sample File (10)","Sample File (10)","Transform File (10)","Year index","Mass Attendance","Parameter11","Transform Sample File (11)","Sample File (11)","Transform File (11)","Parameter12","Transform Sample File (12)","Sample File (12)","Transform File (12)","Deanery Projections","Parameter13","Transform Sample File (13)","Sample File (13)","Transform File (13)","DfE Funding","Parameter14","Transform Sample File (14)","Sample File (14)","Transform File (14)","E1 to R","Parameter15","Transform Sample File (15)","Sample File (15)","Transform File (15)","Y1 to Y2","Parameter16","Transform Sample File (16)","Sample File (16)","Transform File (16)","Y3 to Y6","Parameter17","Transform Sample File (17)","Sample File (17)","Transform File (17)","Y7 to Y9","Parameter18","Transform Sample File (18)","Sample File (18)","Transform File (18)","Y10 to Y11","Parameter19","Transform Sample File (19)","Sample File (19)","Transform File (19)","Y12 to Y14","Parameter20","Transform Sample File (20)","Sample File (20)","Transform File (20)","Pupil Home Locations Appended","Table","Additional Places","Parameter21","Transform Sample File (21)","Sample File (21)","Transform File (21)","Parameter22","Transform Sample File (22)","Sample File (22)","Transform File (22)","Year Sort","Info Links","Parameter23","Transform Sample File (23)","Sample File (23)","Transform File (23)","Parameter7","Transform Sample File (7)","Sample File (7)","Transform File (7)","Local Developments","Parameter24","Transform Sample File (24)","Sample File (24)","Transform File (24)"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.136.1478.0 (24.09)
+
+ref table 'Asset Info'
+ref table 'Section 106'
+ref table 'Pupil Projections'
+ref table 'Year index'
+ref table 'Mass Attendance'
+ref table 'Deanery Projections'
+ref table 'DfE Funding'
+ref table 'Pupil Home Locations Appended'
+ref table Table
+ref table 'Additional Places'
+ref table 'Year Sort'
+ref table 'Info Links'
+ref table 'Local Developments'
+
+ref cultureInfo en-US
+

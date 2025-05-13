@@ -1,0 +1,20 @@
+table Title_Number_Lookup
+	lineageTag: 8303b195-efb4-4e53-8e87-8690f5535b43
+
+	column Name
+		dataType: string
+		lineageTag: f01354d4-c096-4df1-abb6-52ec58396217
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Title_Number_Lookup = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Title_Number_Lookup = Source{[Schema="dbo",Item="Title_Number_Lookup"]}[Data]
+				in
+				    dbo_Title_Number_Lookup
+

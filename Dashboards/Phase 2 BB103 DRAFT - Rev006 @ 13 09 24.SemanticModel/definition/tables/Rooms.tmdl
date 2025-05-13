@@ -1,0 +1,170 @@
+table Rooms
+	lineageTag: daac5f11-d7b1-46bd-9bd2-a9782b9d8c47
+
+	column 'School Name'
+		dataType: string
+		lineageTag: 0940822d-7bae-464a-8e68-4c5728eec7e0
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: 926afc8b-7ffb-4d18-b581-93cae7ace48e
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Block Name'
+		dataType: string
+		lineageTag: 3c5b582c-cc68-4827-9a11-cd062b041585
+		summarizeBy: none
+		sourceColumn: Block Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Floor
+		dataType: string
+		lineageTag: 8d04d89c-713b-4b01-93f0-52e1ec4b9850
+		summarizeBy: none
+		sourceColumn: Floor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LA Room Nr'
+		dataType: string
+		lineageTag: 06b11cad-d2ab-4dc4-89a6-86538d82d256
+		summarizeBy: none
+		sourceColumn: LA Room Nr
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Room Nr'
+		dataType: string
+		lineageTag: 54bb87cf-f3fc-4242-9932-62aebebbdbbb
+		summarizeBy: none
+		sourceColumn: School Room Nr
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Original Name (as Supplied by LA/School)'
+		dataType: string
+		lineageTag: fa333195-8d4f-4512-91a1-37938baef5b7
+		summarizeBy: none
+		sourceColumn: Original Name (as Supplied by LA/School)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Room Type'
+		dataType: string
+		lineageTag: ca7f49b9-8803-46c0-ac26-f48c4cf0c7b1
+		summarizeBy: none
+		sourceColumn: Room Type
+		sortByColumn: 'Room Type Sort Order'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Room Use'
+		dataType: string
+		lineageTag: 2a40959e-5c84-400f-b073-9f01d5266375
+		summarizeBy: none
+		sourceColumn: Room Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 644d9ee9-ebf5-41d6-9912-2f812358c76b
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Used by Others'
+		dataType: string
+		lineageTag: eaa805aa-00d6-4ed6-99ad-3b8cb795fff2
+		summarizeBy: none
+		sourceColumn: Used by Others
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Out of Use'
+		dataType: string
+		lineageTag: 485a9ace-a3c7-4a5a-94ad-b30838a643ba
+		summarizeBy: none
+		sourceColumn: Out of Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Used by Other or Out of Use'
+		dataType: string
+		lineageTag: 17151465-ce2f-47d0-a725-db0ef6b4b7f7
+		summarizeBy: none
+		sourceColumn: Used by Other or Out of Use
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'In Temp Accom'
+		dataType: string
+		lineageTag: a3daba7d-9fe6-4426-9c08-b3c3f7848597
+		summarizeBy: none
+		sourceColumn: In Temp Accom
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area (m²)'
+		dataType: string
+		lineageTag: 57a10b12-6c84-4eea-8d0e-d25d6af2e155
+		summarizeBy: none
+		sourceColumn: Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Room Type Sort Order'
+		dataType: string
+		lineageTag: a3c325c4-3f0d-4f95-abcf-a76a1390f26d
+		summarizeBy: none
+		sourceColumn: Room Type Sort Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: eafeb2d9-392f-4afd-aec6-fdea808f78e4
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Key Column'
+		dataType: string
+		lineageTag: f45afcd5-7603-47d1-9439-989899eefcc7
+		summarizeBy: none
+		sourceColumn: Key Column
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rooms = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master Sufficiency Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (3)", each #"Transform File (3)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (3)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (3)", Table.ColumnNames(#"Transform File (3)"(#"Sample File (3)"))),
+				    #"Added Custom" = Table.AddColumn(#"Expanded Table Column1", "Room Type Sort Order", each if [Room Type] = "Classroom Areas" then 1 else if [Room Type] = "Specialist Practical Areas" then 2 else if [Room Type]="Hall Studio and Dining Areas" or [Room Type]="Hall Areas" then 3 else if [Room Type] = "Learning Resource Areas" then 4 else if [Room Type] = "Staff and Admin Areas" then 5 else if [Room Type] = "Teaching Storage Areas" then 6 else if [Room Type] = "Non Teaching Storage Areas" then 7 else if [Room Type] = "Kitchen Areas" then 8 else if [Room Type] = "Toilet Areas" then 9 else if [Room Type] = "Plant Areas" then 10 else if [Room Type] = "Circulation Areas" then 11 else if [Room Type] = "Partiotions" then 12 else if [Room Type] = "Float" then 13 else if [Room Type] = "Used by Others/Out of Use" then 14 else if [Room Type] = "ICT and Business Areas" then 1.1 else if [Room Type] = "Science Areas" then 1.2 else if [Room Type] = "Creative Arts" then 1.3 else if [Room Type] = "Design and Tech Areas" then 1.4 else if [Room Type] = "PE Basic Teaching Area" then 1.5 else if [Room Type] = "Art and DT Resource Areas" then 4.1 else if [Room Type] = "SEN and Support Areas" then 4.2 else null),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Added Custom", "Key Column", each Text.Combine({Text.From([URN], "en-GB"), " - ", [LA Room Nr]}), type text)
+				in
+				    #"Inserted Merged Column"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

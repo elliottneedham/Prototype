@@ -1,0 +1,151 @@
+table Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements
+	lineageTag: 46af3368-36a6-4917-ad89-cd2616267356
+
+	measure Pupil_Numbers_LA_Funded = ```
+			
+			VAR FCS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS1"
+			VAR FCS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS2"
+			VAR FCS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "Forecast - CS3"
+			VAR ECS1 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "A - CS1 - Exemplar Stat Neighbour LAs"
+			VAR ECS2 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "B - CS2 - Exemplar Regional LAs"
+			VAR ECS3 = SELECTEDVALUE(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison]) = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			        
+			VAR TYCS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "A - CS1 - Exemplar Stat Neighbour LAs"
+			    )
+			
+			VAR TYCS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "B - CS2 - Exemplar Regional LAs"
+			    )
+			
+			VAR TYCS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        ALL(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "C - CS3 - Exemplar LAs with Same Deprivation Level"
+			    )       
+			
+			VAR Y203132CS1 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "Forecast - CS1"
+			    )
+			
+			VAR Y203132CS2 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "Forecast - CS2"
+			    )    
+			
+			VAR Y203132CS3 = 
+			    CALCULATE(
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils]),
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Year] = 203132,
+			        Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[Benchmark_Comparison] = "Forecast - CS3"
+			    )
+			    
+			VAR ECS1Blank = (TYCS1 = 0)
+			VAR ECS2Blank = (TYCS2 = 0)
+			VAR ECS3Blank = (TYCS3 = 0)
+			
+			VAR FCS1Blank = (TYCS1 = 0 && Y203132CS1 = 0)
+			VAR FCS2Blank = (TYCS2 = 0 && Y203132CS2 = 0)
+			VAR FCS3Blank = (TYCS3 = 0 && Y203132CS3 = 0)
+			
+			RETURN
+			    IF(
+			        (ECS1 && ECS1Blank) || (FCS1 && FCS1Blank) ||
+			        (ECS2 && ECS2Blank) || (FCS2 && FCS2Blank) ||
+			        (ECS3 && ECS3Blank) || (FCS3 && FCS3Blank),
+			        BLANK(),
+			        SUM(Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements[pupils])
+			    )
+			```
+		lineageTag: 85da7472-dd53-4761-ae32-2f0a10b87b8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column old_la_code
+		dataType: string
+		lineageTag: 3afd3d2f-c24d-4831-b1bd-5eb1031248c5
+		summarizeBy: none
+		sourceColumn: old_la_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column la_name
+		dataType: string
+		lineageTag: 220809cf-22ad-4888-a4e2-20f2402b7046
+		summarizeBy: none
+		sourceColumn: la_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Benchmark_Comparison
+		dataType: string
+		lineageTag: 4ad99af6-b8d7-4143-99c7-690f887497f0
+		summarizeBy: none
+		sourceColumn: Benchmark_Comparison
+
+		annotation SummarizationSetBy = Automatic
+
+	column pupils
+		dataType: double
+		lineageTag: abecb9a0-ae3c-4c91-bb71-d6c9dd83c5b9
+		summarizeBy: sum
+		sourceColumn: pupils
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: f71a5011-2196-4cb9-b604-4f0c9a4be1eb
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column setting_type
+		dataType: string
+		lineageTag: b65dfd3d-3186-412c-bb00-033d2776921d
+		summarizeBy: none
+		sourceColumn: setting_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column placement_reason
+		dataType: string
+		lineageTag: e1a80caf-cb63-40de-a83a-8cda02995095
+		summarizeBy: none
+		sourceColumn: placement_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column Custom
+		dataType: string
+		lineageTag: 609346ff-78dd-4c20-b274-c078e829ac4d
+		summarizeBy: none
+		sourceColumn: Custom
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements = Source{[Schema="dbo",Item="Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements"]}[Data]
+				in
+				    dbo_Full_Comparison_Projection_and_Forecasting_AP_LA_Funded_Placements
+

@@ -1,0 +1,171 @@
+table External_Area_Table
+	lineageTag: a5838f9c-5364-4938-867e-570b330fa899
+
+	column Client
+		dataType: string
+		lineageTag: b9c65ab4-10c1-485a-ab08-71ef2bcfec3f
+		summarizeBy: none
+		sourceColumn: Client
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Category
+		dataType: string
+		lineageTag: 64c70648-492d-4035-a772-3ad91161a641
+		summarizeBy: none
+		sourceColumn: Asset_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Sub_Category
+		dataType: string
+		lineageTag: a8d49d22-f22d-44e4-a6a0-f086ef1f2c8d
+		summarizeBy: none
+		sourceColumn: Asset_Sub_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Local_Authority
+		dataType: string
+		lineageTag: 762ac1b3-d919-4390-8a04-6fd475abfab1
+		summarizeBy: none
+		sourceColumn: Local_Authority
+
+		annotation SummarizationSetBy = Automatic
+
+	column URN
+		dataType: string
+		lineageTag: b53cd021-8e39-4e47-9f94-a3781e02f3a4
+		summarizeBy: none
+		sourceColumn: URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Asset_Name
+		dataType: string
+		lineageTag: 6d52d23e-db80-488f-ae9a-60b77a0f676f
+		summarizeBy: none
+		sourceColumn: Asset_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title_Number
+		dataType: string
+		lineageTag: f6f07f9c-bda1-4fdb-8138-54bfcb502233
+		summarizeBy: none
+		sourceColumn: Title_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ownership
+		dataType: string
+		lineageTag: c58845e9-d829-4734-9294-955cbd693314
+		summarizeBy: none
+		sourceColumn: Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column Postcode
+		dataType: string
+		lineageTag: 62bb5dc4-013f-4a89-a60d-0993a4b61d61
+		summarizeBy: none
+		sourceColumn: Postcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Easting
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bd0aeeb-0f1f-4f83-9835-7a9c537b6f45
+		summarizeBy: sum
+		sourceColumn: Easting
+
+		annotation SummarizationSetBy = Automatic
+
+	column Northing
+		dataType: int64
+		formatString: 0
+		lineageTag: 19617e6e-5bc8-4fae-b450-8d699a6fbbeb
+		summarizeBy: sum
+		sourceColumn: Northing
+
+		annotation SummarizationSetBy = Automatic
+
+	column LSOA
+		dataType: string
+		lineageTag: fc0bb037-1325-4451-b9bd-861b013fd1c2
+		summarizeBy: none
+		sourceColumn: LSOA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tenure
+		dataType: string
+		lineageTag: 614843f5-bb85-4df2-93bb-21883600e911
+		summarizeBy: none
+		sourceColumn: Tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: c8b2d605-81fd-464e-862b-12ff533924ef
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column GESA
+		dataType: int64
+		formatString: 0
+		lineageTag: 58b9e194-b42c-4b80-a93b-294b16e29fac
+		summarizeBy: sum
+		sourceColumn: GESA
+
+		annotation SummarizationSetBy = Automatic
+
+	column primary_planning_area_code
+		dataType: double
+		lineageTag: 676935c3-1816-4f4d-814b-234971a78149
+		summarizeBy: sum
+		sourceColumn: primary_planning_area_code
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column secondary_planning_area_code
+		dataType: double
+		lineageTag: 853c2f20-ae5f-4994-a8f1-76d3efa1bda9
+		summarizeBy: sum
+		sourceColumn: secondary_planning_area_code
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Primary_Planning_Area_Name
+		dataType: string
+		lineageTag: 30249c16-535a-40b4-ae24-198bb83238cc
+		summarizeBy: none
+		sourceColumn: Primary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Secondary_Planning_Area_Name
+		dataType: string
+		lineageTag: 1b6c2338-e3ec-4991-ad89-43658e674779
+		summarizeBy: none
+		sourceColumn: Secondary_Planning_Area_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition External_Area_Table = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("zhy37jcw26quzfiun7rrsrwc7q-mtr6qabpalfeldtgvae7cdnpzu.datawarehouse.fabric.microsoft.com", "Insites_Lakehouse_Gold"),
+				    dbo_External_Area_Table = Source{[Schema="dbo",Item="External_Area_Table"]}[Data]
+				in
+				    dbo_External_Area_Table
+

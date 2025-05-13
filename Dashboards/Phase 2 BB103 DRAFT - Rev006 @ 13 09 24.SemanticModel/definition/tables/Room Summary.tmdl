@@ -1,0 +1,258 @@
+table 'Room Summary'
+	lineageTag: 37fbb413-50c5-49e3-9466-ec96b1449b65
+
+	column 'Source.Name'
+		dataType: string
+		lineageTag: b2cc5453-d328-4cb9-8ef1-bb7f206de8fe
+		summarizeBy: none
+		sourceColumn: Source.Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School Name'
+		dataType: string
+		lineageTag: cccc3155-0d96-4da0-bdaa-f8b396f2e37f
+		summarizeBy: none
+		sourceColumn: School Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'School URN'
+		dataType: int64
+		formatString: 0
+		lineageTag: cbaa59cf-78e4-4aee-81f8-ab9b8ba80fe1
+		summarizeBy: none
+		sourceColumn: School URN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phase
+		dataType: string
+		lineageTag: 92e15e2c-3b77-45f3-ad84-69a1455a3029
+		summarizeBy: none
+		sourceColumn: Phase
+
+		annotation SummarizationSetBy = Automatic
+
+	column Attribute
+		dataType: string
+		lineageTag: 1663441d-bd11-4ffe-bea4-3192be63c488
+		summarizeBy: none
+		sourceColumn: Attribute
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Type'
+		dataType: string
+		lineageTag: 035d0c57-696f-4557-90b3-18055c30380c
+		summarizeBy: none
+		sourceColumn: Data Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Position
+		dataType: string
+		lineageTag: 9e3ed504-c291-43a8-92b1-c4b7c6ad9391
+		summarizeBy: none
+		sourceColumn: Position
+		sortByColumn: 'Sort Order for Position'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unsorted Nr. of Spaces'
+		dataType: int64
+		formatString: 0
+		lineageTag: c8607630-ddef-4f3a-8bb3-202e94e76189
+		summarizeBy: sum
+		sourceColumn: Unsorted Nr. of Spaces
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unsorted Areas'
+		dataType: string
+		lineageTag: a75aa6b7-4840-47cf-b1be-f9383e7ff753
+		summarizeBy: none
+		sourceColumn: Unsorted Areas
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Room Type'
+		dataType: string
+		lineageTag: 1fa4e2b9-74d4-46bf-91fb-1cce5686fbb5
+		summarizeBy: none
+		sourceColumn: Room Type
+		sortByColumn: 'Sort Order for Room Type'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nr. of Spaces'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c2e35d3-0577-4fb9-9382-3349d90369e5
+		summarizeBy: sum
+		sourceColumn: Nr. of Spaces
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area (m²)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 687e97bf-e480-4c38-af93-9c16eea912cf
+		summarizeBy: sum
+		sourceColumn: Area (m²)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Order for Room Type'
+		dataType: double
+		formatString: 0.00
+		lineageTag: bf39c671-af34-44ad-9946-00fba4641e25
+		summarizeBy: sum
+		sourceColumn: Sort Order for Room Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sort Order for Position'
+		dataType: double
+		lineageTag: 97c8df02-44bb-455e-8548-d79b30102570
+		summarizeBy: sum
+		sourceColumn: Sort Order for Position
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NewColumn =
+			
+			VAR CurrentURN = 'Room Summary'[School URN]
+			VAR CurrentKey = 'Room Summary'[Room Type]
+			VAR CurrentPosition = 'Room Summary'[Position]
+			VAR CurrentDataType = 'Room Summary'[Data Type]
+			VAR CurrentAreaValue = 'Room Summary'[Area (m²)]
+			
+			VAR ActualValue =
+			    CALCULATE(
+			        MAX('Room Summary'[Area (m²)]),
+			        FILTER(
+			            'Room Summary',
+			            'Room Summary'[School URN] = CurrentURN &&
+			            'Room Summary'[Room Type] = CurrentKey &&
+			            'Room Summary'[Position] = "Actual"
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    CurrentKey = "Used by Others/Out of Use" &&
+			    (CurrentPosition = "NOR" || CurrentPosition = "PAN" || CurrentPosition = "FPAN"),
+			    ActualValue/4,
+			    IF(
+			    CurrentDataType = "Areas" &&
+			    (CurrentPosition = "NOR" || CurrentPosition = "PAN" || CurrentPosition = "FPAN"),
+			    ActualValue - CurrentAreaValue,
+			    BLANK()
+			))
+		formatString: 0
+		lineageTag: df045aab-5f8d-41a4-a3da-38b4d1d8420e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Diff Nr of Spaces' =
+			
+			VAR CurrentURN = 'Room Summary'[School URN]
+			VAR CurrentKey = 'Room Summary'[Room Type]
+			VAR CurrentPosition = 'Room Summary'[Position]
+			VAR CurrentDataType = 'Room Summary'[Data Type]
+			VAR CurrentAreaValue = 'Room Summary'[Nr. of Spaces]
+			
+			VAR ActualValue =
+			    CALCULATE(
+			        MAX('Room Summary'[Nr. of Spaces]),
+			        FILTER(
+			            'Room Summary',
+			            'Room Summary'[School URN] = CurrentURN &&
+			            'Room Summary'[Room Type] = CurrentKey &&
+			            'Room Summary'[Position] = "Actual"
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    CurrentKey = "Used by Others/Out of Use",
+			    BLANK(),
+			    IF(
+			    CurrentDataType = "NR. of Spaces" &&
+			    (CurrentPosition = "NOR" || CurrentPosition = "PAN" || CurrentPosition = "FPAN"),
+			    ActualValue - CurrentAreaValue,
+			    BLANK()
+			))
+		formatString: 0
+		lineageTag: 4980ed08-eda9-4b24-a9c3-fe5b3a21b4c3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Room Summary' = m
+		mode: import
+		source =
+				let
+				    Source = SharePoint.Files("https://1stplanner1.sharepoint.com/sites/1stPlannerInsites/", [ApiVersion = 15]),
+				    #"Filtered Rows" = Table.SelectRows(Source, each ([Name] = "Master Sufficiency Data.xlsx")),
+				    #"Filtered Hidden Files1" = Table.SelectRows(#"Filtered Rows", each [Attributes]?[Hidden]? <> true),
+				    #"Invoke Custom Function1" = Table.AddColumn(#"Filtered Hidden Files1", "Transform File (5)", each #"Transform File (5)"([Content])),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Invoke Custom Function1", {"Name", "Source.Name"}),
+				    #"Removed Other Columns1" = Table.SelectColumns(#"Renamed Columns1", {"Source.Name", "Transform File (5)"}),
+				    #"Expanded Table Column1" = Table.ExpandTableColumn(#"Removed Other Columns1", "Transform File (5)", Table.ColumnNames(#"Transform File (5)"(#"Sample File (5)"))),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Expanded Table Column1",{{"Source.Name", type text}, {"School Name", type text}, {"School URN", Int64.Type}, {"Phase", type text}, {"Pri - NOR - Classroom Nr. of Spaces", Int64.Type}, {"Pri - NOR - Specialist Practical Nr. of Spaces", Int64.Type}, {"Pri - NOR - Hall Studio and Dining Nr. of Spaces", Int64.Type}, {"Pri - NOR - Learning Resource Nr. of Spaces", Int64.Type}, {"Pri - NOR - Staff and Admin Nr. of Spaces", Int64.Type}, {"Pri - NOR - Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - NOR - Non Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - NOR - Kitchen Nr. of Spaces", Int64.Type}, {"Pri - NOR - Toilet Nr. of Spaces", Int64.Type}, {"Pri - NOR - Plant Nr. of Spaces", Int64.Type}, {"Pri - NOR - Circulation Nr. of Spaces", Int64.Type}, {"Pri - NOR - Partitions @ 0% Nr. of Spaces", type text}, {"Pri - NOR - Area Not on CAD Nr. of Spaces", type text}, {"Pri - NOR - Float Nr. of Spaces", type text}, {"Pri - NOR - Used by Others/Out of Use Nr. of Spaces", type text}, {"Pri - PAN - Classroom Nr. of Spaces", Int64.Type}, {"Pri - PAN - Specialist Practical Nr. of Spaces", Int64.Type}, {"Pri - PAN - Hall Studio and Dining Nr. of Spaces", Int64.Type}, {"Pri - PAN - Learning Resource Nr. of Spaces", Int64.Type}, {"Pri - PAN - Staff and Admin Nr. of Spaces", Int64.Type}, {"Pri - PAN - Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - PAN - Non Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - PAN - Kitchen Nr. of Spaces", Int64.Type}, {"Pri - PAN - Toilet Nr. of Spaces", Int64.Type}, {"Pri - PAN - Plant Nr. of Spaces", Int64.Type}, {"Pri - PAN - Circulation Nr. of Spaces", Int64.Type}, {"Pri - PAN - Partitions @ 0% Nr. of Spaces", type text}, {"Pri - PAN - Area Not on CAD Nr. of Spaces", type text}, {"Pri - PAN - Float Nr. of Spaces", type text}, {"Pri - PAN - Used by Others/Out of Use Nr. of Spaces", type text}, {"Pri - FPAN - Classroom Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Specialist Practical Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Hall Studio and Dining Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Learning Resource Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Staff and Admin Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Non Teaching Storage Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Kitchen Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Toilet Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Plant Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Circulation Nr. of Spaces", Int64.Type}, {"Pri - FPAN - Partitions @ 0% Nr. of Spaces", type text}, {"Pri - FPAN - Area Not on CAD Nr. of Spaces", type text}, {"Pri - FPAN - Float Nr. of Spaces", type text}, {"Pri - FPAN - Used by Others/Out of Use Nr. of Spaces", type text}, {"Pri - NOR - Classroom Areas", Int64.Type}, {"Pri - NOR - Specialist Practical Areas", Int64.Type}, {"Pri - NOR - Hall Studio and Dining Areas", Int64.Type}, {"Pri - NOR - Learning Resource Areas", Int64.Type}, {"Pri - NOR - Staff and Admin Areas", Int64.Type}, {"Pri - NOR - Teaching Storage Areas", Int64.Type}, {"Pri - NOR - Non Teaching Storage Areas", Int64.Type}, {"Pri - NOR - Kitchen Areas", Int64.Type}, {"Pri - NOR - Toilet Areas", type number}, {"Pri - NOR - Plant Areas", type number}, {"Pri - NOR - Circulation Areas", Int64.Type}, {"Pri - NOR - Partitions @ 0%", Int64.Type}, {"Pri - NOR - Area Not on CAD", type text}, {"Pri - NOR - Float Areas", type number}, {"Pri - NOR - Used by Others/Out of Use", type text}, {"Pri - PAN - Classroom Areas", Int64.Type}, {"Pri - PAN - Specialist Practical Areas", Int64.Type}, {"Pri - PAN - Hall Studio and Dining Areas", Int64.Type}, {"Pri - PAN - Learning Resource Areas", Int64.Type}, {"Pri - PAN - Staff and Admin Areas", Int64.Type}, {"Pri - PAN - Teaching Storage Areas", Int64.Type}, {"Pri - PAN - Non Teaching Storage Areas", Int64.Type}, {"Pri - PAN - Kitchen Areas", Int64.Type}, {"Pri - PAN - Toilet Areas", type number}, {"Pri - PAN - Plant Areas", type number}, {"Pri - PAN - Circulation Areas", Int64.Type}, {"Pri - PAN - Partitions @ 0%", Int64.Type}, {"Pri - PAN - Area Not on CAD", type text}, {"Pri - PAN - Float Areas", type number}, {"Pri - PAN - Used by Others/Out of Use", type text}, {"Pri - FPAN - Classroom Areas", Int64.Type}, {"Pri - FPAN - Specialist Practical Areas", Int64.Type}, {"Pri - FPAN - Hall Studio and Dining Areas", Int64.Type}, {"Pri - FPAN - Learning Resource Areas", Int64.Type}, {"Pri - FPAN - Staff and Admin Areas", Int64.Type}, {"Pri - FPAN - Teaching Storage Areas", Int64.Type}, {"Pri - FPAN - Non Teaching Storage Areas", Int64.Type}, {"Pri - FPAN - Kitchen Areas", Int64.Type}, {"Pri - FPAN - Toilet Areas", type number}, {"Pri - FPAN - Plant Areas", type number}, {"Pri - FPAN - Circulation Areas", Int64.Type}, {"Pri - FPAN - Partitions @ 0%", Int64.Type}, {"Pri - FPAN - Area Not on CAD", type text}, {"Pri - FPAN - Float Areas", Int64.Type}, {"Pri - FPAN - Used by Others/Out of Use", type text}, {"Pri - Classroom Areas", type number}, {"Pri - Specialist Practical Areas", type number}, {"Pri - Hall Studio and Dining Areas", type number}, {"Pri - Learning Resource Areas", type number}, {"Pri - Staff and Admin Areas", type number}, {"Pri - Teaching Storage Areas", type number}, {"Pri - Non Teaching Storage Areas", type number}, {"Pri - Kitchen Areas", type number}, {"Pri - Toilet Areas", type number}, {"Pri - Plant Areas", type number}, {"Pri - Circulation Areas", type number}, {"Pri - Partitions @ 0%", Int64.Type}, {"Pri - Area Not on CAD", Int64.Type}, {"Pri - Float Areas", Int64.Type}, {"Pri - Used by Others/Out of Use", type number}, {"Pri - Classroom Areas_1", Int64.Type}, {"Pri - Specialist Practical Areas_2", Int64.Type}, {"Pri - Hall Studio and Dining Areas_3", Int64.Type}, {"Pri - Learning Resource Areas_4", Int64.Type}, {"Pri - Staff and Admin Areas_5", Int64.Type}, {"Pri - Teaching Storage Areas_6", Int64.Type}, {"Pri - Non Teaching Storage Areas_7", Int64.Type}, {"Pri - Kitchen Areas_8", Int64.Type}, {"Pri - Toilet Areas_9", Int64.Type}, {"Pri - Plant Areas_10", Int64.Type}, {"Pri - Circulation Areas_11", Int64.Type}, {"Pri - Partitions @ 0%_12", Int64.Type}, {"Pri - Area Not on CAD_13", Int64.Type}, {"Pri - Float Areas_14", Int64.Type}, {"Pri - Used by Others/Out of Use_15", Int64.Type}, {"Sec - NOR - Classroom Nr. Of Spaces", Int64.Type}, {"Sec - NOR - ICT and Business Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Science Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Creative Art Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Design and Tech Nr. Of Spaces", Int64.Type}, {"Sec - NOR - PE Basic Teaching Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Hall Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Learning Resource Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Art and DT Resource Nr. Of Spaces", Int64.Type}, {"Sec - NOR - SEN and Support Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Staff and Admin Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Non Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Kitchen Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Toilet Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Plant Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Circulation Nr. Of Spaces", Int64.Type}, {"Sec - NOR - Partitions Nr. Of Spaces", type text}, {"Sec - NOR - Area Not on CAD Nr. Of Spaces", type text}, {"Sec - NOR - Float Nr. Of Spaces", type text}, {"Sec - NOR - Used by Others/Out of Use Nr. Of Spaces", type text}, {"Sec - PAN - Classroom Nr. Of Spaces", Int64.Type}, {"Sec - PAN - ICT and Business Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Science Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Creative Art Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Design and Tech Nr. Of Spaces", Int64.Type}, {"Sec - PAN - PE Basic Teaching Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Hall Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Learning Resource Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Art and DT Resource Nr. Of Spaces", Int64.Type}, {"Sec - PAN - SEN and Support Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Staff and Admin Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Non Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Kitchen Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Toilet Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Plant Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Circulation Nr. Of Spaces", Int64.Type}, {"Sec - PAN - Partitions Nr. Of Spaces", type text}, {"Sec - PAN - Area Not on CAD Nr. Of Spaces", type text}, {"Sec - PAN - Float Nr. Of Spaces", type text}, {"Sec - PAN - Used by Others/Out of Use Nr. Of Spaces", type text}, {"Sec - FPAN - Classroom Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - ICT and Business Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Science Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Creative Art Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Design and Tech Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - PE Basic Teaching Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Hall Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Learning Resource Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Art and DT Resource Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - SEN and Support Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Staff and Admin Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Non Teaching Storage Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Kitchen Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Toilet Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Plant Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Circulation Nr. Of Spaces", Int64.Type}, {"Sec - FPAN - Partitions Nr. Of Spaces", type text}, {"Sec - FPAN - Area Not on CAD Nr. Of Spaces", type text}, {"Sec - FPAN - Float Nr. Of Spaces", type text}, {"Sec - FPAN - Used by Others/Out of Use Nr. Of Spaces", type text}, {"Sec - NOR - Classroom Areas", Int64.Type}, {"Sec - NOR - ICT and Business Areas", Int64.Type}, {"Sec - NOR - Science Areas", Int64.Type}, {"Sec - NOR - Creative Art Areas", Int64.Type}, {"Sec - NOR - Design and Tech Areas", Int64.Type}, {"Sec - NOR - PE Basic Teaching Areas", Int64.Type}, {"Sec - NOR - Hall Areas", Int64.Type}, {"Sec - NOR - Learning Resource Areas", Int64.Type}, {"Sec - NOR - Art and DT Resource Areas", Int64.Type}, {"Sec - NOR - SEN and Support Areas", Int64.Type}, {"Sec - NOR - Staff and Admin Areas", Int64.Type}, {"Sec - NOR - Teaching Storage Areas", Int64.Type}, {"Sec - NOR - Non Teaching Storage Areas", Int64.Type}, {"Sec - NOR - Kitchen Areas", Int64.Type}, {"Sec - NOR - Toilet Areas", Int64.Type}, {"Sec - NOR - Plant Areas", Int64.Type}, {"Sec - NOR - Circulation Areas", Int64.Type}, {"Sec - NOR - Partitions Areas", Int64.Type}, {"Sec - NOR - Area Not on CAD Areas", type text}, {"Sec - NOR - Float Areas", Int64.Type}, {"Sec - NOR - Used by Others/Out of Use Areas", type text}, {"Sec - PAN - Classroom Areas", Int64.Type}, {"Sec - PAN - ICT and Business Areas", Int64.Type}, {"Sec - PAN - Science Areas", Int64.Type}, {"Sec - PAN - Creative Art Areas", Int64.Type}, {"Sec - PAN - Design and Tech Areas", Int64.Type}, {"Sec - PAN - PE Basic Teaching Areas", Int64.Type}, {"Sec - PAN - Hall Areas", Int64.Type}, {"Sec - PAN - Learning Resource Areas", Int64.Type}, {"Sec - PAN - Art and DT Resource Areas", Int64.Type}, {"Sec - PAN - SEN and Support Areas", Int64.Type}, {"Sec - PAN - Staff and Admin Areas", Int64.Type}, {"Sec - PAN - Teaching Storage Areas", Int64.Type}, {"Sec - PAN - Non Teaching Storage Areas", Int64.Type}, {"Sec - PAN - Kitchen Areas", Int64.Type}, {"Sec - PAN - Toilet Areas", Int64.Type}, {"Sec - PAN - Plant Areas", Int64.Type}, {"Sec - PAN - Circulation Areas", type number}, {"Sec - PAN - Partitions Areas", Int64.Type}, {"Sec - PAN - Area Not on CAD Areas", type text}, {"Sec - PAN - Float Areas", Int64.Type}, {"Sec - PAN - Used by Others/Out of Use Areas", type text}, {"Sec - FPAN - Classroom Areas", Int64.Type}, {"Sec - FPAN - ICT and Business Areas", Int64.Type}, {"Sec - FPAN - Science Areas", Int64.Type}, {"Sec - FPAN - Creative Art Areas", Int64.Type}, {"Sec - FPAN - Design and Tech Areas", Int64.Type}, {"Sec - FPAN - PE Basic Teaching Areas", Int64.Type}, {"Sec - FPAN - Hall Areas", Int64.Type}, {"Sec - FPAN - Learning Resource Areas", Int64.Type}, {"Sec - FPAN - Art and DT Resource Areas", Int64.Type}, {"Sec - FPAN - SEN and Support Areas", Int64.Type}, {"Sec - FPAN - Staff and Admin Areas", Int64.Type}, {"Sec - FPAN - Teaching Storage Areas", Int64.Type}, {"Sec - FPAN - Non Teaching Storage Areas", Int64.Type}, {"Sec - FPAN - Kitchen Areas", type number}, {"Sec - FPAN - Toilet Areas", Int64.Type}, {"Sec - FPAN - Plant Areas", Int64.Type}, {"Sec - FPAN - Circulation Areas", Int64.Type}, {"Sec - FPAN - Partitions Areas", Int64.Type}, {"Sec - FPAN - Area Not on CAD Areas", type text}, {"Sec - FPAN - Float Areas", Int64.Type}, {"Sec - FPAN - Used by Others/Out of Use Areas", type text}, {"Sec - Classroom Areas", type number}, {"Sec - ICT and Business Areas", type number}, {"Sec - Science Areas", type number}, {"Sec - Creative Art Areas", type number}, {"Sec - Design and Tech Areas", type number}, {"Sec - PE Basic Teaching Areas", Int64.Type}, {"Sec - Hall Areas", type number}, {"Sec - Learning Resource Areas", Int64.Type}, {"Sec - Art and DT Resource Areas", type number}, {"Sec - SEN and Support Areas", type number}, {"Sec - Staff and Admin Areas", type number}, {"Sec - Teaching Storage Areas", type number}, {"Sec - Non Teaching Storage Areas", type number}, {"Sec - Kitchen Areas", type number}, {"Sec - Toilet Areas", type number}, {"Sec - Plant Areas", type number}, {"Sec - Circulation Areas", type number}, {"Sec - Partitions @ 0%", Int64.Type}, {"Sec - Area Not on CAD", Int64.Type}, {"Sec - Float Areas", Int64.Type}, {"Sec - Used by Others/Out of Use", type number}, {"Sec - Classroom Areas_16", Int64.Type}, {"Sec - ICT and Business Areas_17", Int64.Type}, {"Sec - Science Areas_18", Int64.Type}, {"Sec - Creative Art Areas_19", Int64.Type}, {"Sec - Design and Tech Areas_20", Int64.Type}, {"Sec - PE Basic Teaching Areas_21", Int64.Type}, {"Sec - Hall Areas_22", Int64.Type}, {"Sec - Learning Resource Areas_23", Int64.Type}, {"Sec - Art and DT Resource Areas_24", Int64.Type}, {"Sec - SEN and Support Areas_25", Int64.Type}, {"Sec - Staff and Admin Areas_26", Int64.Type}, {"Sec - Teaching Storage Areas_27", Int64.Type}, {"Sec - Non Teaching Storage Areas_28", Int64.Type}, {"Sec - Kitchen Areas_29", Int64.Type}, {"Sec - Toilet Areas_30", Int64.Type}, {"Sec - Plant Areas_31", Int64.Type}, {"Sec - Circulation Areas_32", Int64.Type}, {"Sec - Partitions @ 0%_33", Int64.Type}, {"Sec - Area Not on CAD_34", Int64.Type}, {"Sec - Float Areas_35", Int64.Type}, {"Sec - Used by Others/Out of Use_36", Int64.Type}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"Pri - Classroom Areas", "Pri - Actual - Classroom Areas"}, {"Pri - Specialist Practical Areas", "Pri - Actual - Specialist Practical Areas"}, {"Pri - Hall Studio and Dining Areas", "Pri - Actual - Hall Studio and Dining Areas"}, {"Pri - Learning Resource Areas", "Pri - Actual - Learning Resource Areas"}, {"Pri - Staff and Admin Areas", "Pri - Actual - Staff and Admin Areas"}, {"Pri - Teaching Storage Areas", "Pri - Actual - Teaching Storage Areas"}, {"Pri - Non Teaching Storage Areas", "Pri - Actual - Non Teaching Storage Areas"}, {"Pri - Kitchen Areas", "Pri - Actual - Kitchen Areas"}, {"Pri - Toilet Areas", "Pri - Actual - Toilet Areas"}, {"Pri - Plant Areas", "Pri - Actual - Plant Areas"}, {"Pri - Circulation Areas", "Pri - Actual - Circulation Areas"}, {"Pri - Partitions @ 0%", "Pri - Actual - Partitions @ 0% Areas"}, {"Pri - Area Not on CAD", "Pri - Actual - Area Not on CAD Areas"}, {"Pri - Float Areas", "Pri - Actual - Float Areas"}, {"Pri - Used by Others/Out of Use", "Pri - Actual - Used by Others/Out of Use Areas"}, {"Pri - FPAN - Partitions @ 0%", "Pri - FPAN - Partitions @ 0% Areas"}, {"Pri - FPAN - Area Not on CAD", "Pri - FPAN - Area Not on CAD Areas"}, {"Pri - FPAN - Used by Others/Out of Use", "Pri - FPAN - Used by Others/Out of Use Areas"}, {"Pri - NOR - Partitions @ 0%", "Pri - NOR - Partitions @ 0% Areas"}, {"Pri - NOR - Area Not on CAD", "Pri - NOR - Area Not on CAD Areas"}, {"Pri - NOR - Used by Others/Out of Use", "Pri - NOR - Used by Others/Out of Use Areas"}, {"Pri - PAN - Partitions @ 0%", "Pri - PAN - Partitions @ 0% Areas"}, {"Pri - PAN - Area Not on CAD", "Pri - PAN - Area Not on CAD Areas"}, {"Pri - PAN - Used by Others/Out of Use", "Pri - PAN - Used by Others/Out of Use Areas"}, {"Pri - Classroom Areas_1", "Pri - Actual - Classroom Areas Nr. of Spaces"}, {"Pri - Specialist Practical Areas_2", "Pri - Actual - Specialist Practical Areas Nr. of Spaces"}, {"Pri - Hall Studio and Dining Areas_3", "Pri - Actual - Hall Studio and Dining Areas Nr. of Spaces"}, {"Pri - Learning Resource Areas_4", "Pri - Actual - Learning Resource Areas Nr. of Spaces"}, {"Pri - Staff and Admin Areas_5", "Pri - Actual - Staff and Admin Areas Nr. of Spaces"}, {"Pri - Teaching Storage Areas_6", "Pri - Actual - Teaching Storage Areas Nr. of Spaces"}, {"Pri - Non Teaching Storage Areas_7", "Pri - Actual - Non Teaching Storage Areas Nr. of Spaces"}, {"Pri - Kitchen Areas_8", "Pri - Actual - Kitchen Areas Nr. of Spaces"}, {"Pri - Toilet Areas_9", "Pri - Actual - Toilet Areas Nr. of Spaces"}, {"Pri - Plant Areas_10", "Pri - Actual - Plant Areas Nr. of Spaces"}, {"Pri - Circulation Areas_11", "Pri - Actual - Circulation Areas Nr. of Spaces"}, {"Pri - Partitions @ 0%_12", "Pri - Actual - Partitions @ 0% Nr. of Spaces"}, {"Pri - Area Not on CAD_13", "Pri - Actual - Area Not on CAD Nr. of Spaces"}, {"Pri - Float Areas_14", "Pri - Actual - Float Areas Nr. of Spaces"}, {"Pri - Used by Others/Out of Use_15", "Pri - Actual - Used by Others/Out of Use Nr. of Spaces"}, {"Sec - Classroom Areas", "Sec - Actual - Classroom Areas"}, {"Sec - ICT and Business Areas", "Sec - Actual - ICT and Business Areas"}, {"Sec - Science Areas", "Sec - Actual - Science Areas"}, {"Sec - Creative Art Areas", "Sec - Actual - Creative Art Areas"}, {"Sec - Design and Tech Areas", "Sec - Actual - Design and Tech Areas"}, {"Sec - PE Basic Teaching Areas", "Sec - Actual - PE Basic Teaching Areas"}, {"Sec - Hall Areas", "Sec - Actual - Hall Areas"}, {"Sec - Learning Resource Areas", "Sec - Actual - Learning Resource Areas"}, {"Sec - Art and DT Resource Areas", "Sec - Actual - Art and DT Resource Areas"}, {"Sec - SEN and Support Areas", "Sec - Actual - SEN and Support Areas"}, {"Sec - Staff and Admin Areas", "Sec - Actual - Staff and Admin Areas"}, {"Sec - Teaching Storage Areas", "Sec - Actual - Teaching Storage Areas"}, {"Sec - Non Teaching Storage Areas", "Sec - Actual - Non Teaching Storage Areas"}, {"Sec - Kitchen Areas", "Sec - Actual - Kitchen Areas"}, {"Sec - Toilet Areas", "Sec - Actual - Toilet Areas"}, {"Sec - Plant Areas", "Sec - Actual - Plant Areas"}, {"Sec - Circulation Areas", "Sec - Actual - Circulation Areas"}, {"Sec - Partitions @ 0%", "Sec - Actual - Partitions @ 0% Areas"}, {"Sec - Area Not on CAD", "Sec - Actual - Area Not on CAD Areas"}, {"Sec - Used by Others/Out of Use", "Sec - Actual - Used by Others/Out of Use Areas"}, {"Sec - Float Areas", "Sec - Actual - Float Areas"}, {"Sec - Classroom Areas_16", "Sec - Actual - Classroom Areas Nr. of Spaces"}, {"Sec - ICT and Business Areas_17", "Sec - Actual - ICT and Business Areas Nr. of Spaces"}, {"Sec - Science Areas_18", "Sec - Actual - Science Areas Nr. of Spaces"}, {"Sec - Creative Art Areas_19", "Sec - Actual - Creative Art Areas Nr. of Spaces"}, {"Sec - Design and Tech Areas_20", "Sec - Actual - Design and Tech Areas Nr. of Spaces"}, {"Sec - PE Basic Teaching Areas_21", "Sec - Actual - PE Basic Teaching Areas Nr. of Spaces"}, {"Sec - Hall Areas_22", "Sec - Actual - Hall Areas Nr. of Spaces"}, {"Sec - Learning Resource Areas_23", "Sec - Actual - Learning Resource Areas Nr. of Spaces"}, {"Sec - Art and DT Resource Areas_24", "Sec - Actual - Art and DT Resource Areas Nr. of Spaces"}, {"Sec - SEN and Support Areas_25", "Sec - Actual - SEN and Support Areas Nr. of Spaces"}, {"Sec - Staff and Admin Areas_26", "Sec - Actual - Staff and Admin Areas Nr. of Spaces"}, {"Sec - Teaching Storage Areas_27", "Sec - Actual - Teaching Storage Areas Nr. of Spaces"}, {"Sec - Non Teaching Storage Areas_28", "Sec - Actual - Non Teaching Storage Areas Nr. of Spaces"}, {"Sec - Kitchen Areas_29", "Sec - Actual - Kitchen Areas Nr. of Spaces"}, {"Sec - Toilet Areas_30", "Sec - Actual - Toilet Areas Nr. of Spaces"}, {"Sec - Plant Areas_31", "Sec - Actual - Plant Areas Nr. of Spaces"}, {"Sec - Circulation Areas_32", "Sec - Actual - Circulation Areas Nr. of Spaces"}, {"Sec - Partitions @ 0%_33", "Sec - Actual - Partitions @ 0% Nr. of Spaces"}, {"Sec - Area Not on CAD_34", "Sec - Actual - Area Not on CAD Nr. of Spaces"}, {"Sec - Float Areas_35", "Sec - Actual - Float Areas Nr. of Spaces"}, {"Sec - Used by Others/Out of Use_36", "Sec - Actual - Used by Others/Out of Use Nr. of Spaces"}}),
+				    #"Unpivoted Columns" = Table.UnpivotOtherColumns(#"Renamed Columns", {"Source.Name", "School Name", "School URN", "Phase"}, "Attribute", "Value"),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Unpivoted Columns", "Attribute", "Attribute - Copy"),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Duplicated Column", "Value", "Value - Copy"),
+				    #"Inserted Text Between Delimiters" = Table.AddColumn(#"Duplicated Column1", "Text Between Delimiters", each Text.BetweenDelimiters([Attribute], " ", " ", 1, 0), type text),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Inserted Text Between Delimiters",{{"Text Between Delimiters", "Position"}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns2",{"Attribute - Copy"}),
+				    #"Added Custom Column" = Table.AddColumn(#"Removed Columns", "Custom", each let splitAttribute = Splitter.SplitTextByDelimiter(" -", QuoteStyle.None)([Attribute]), splitAttribute2 = Splitter.SplitTextByDelimiter(" - ", QuoteStyle.None)([Attribute]), splitsplitAttribute22 = Splitter.SplitTextByDelimiter(". ", QuoteStyle.None)(splitAttribute2{2}?), splitAttribute3 = Splitter.SplitTextByDelimiter(". ", QuoteStyle.None)([Attribute]), splitAttribute4 = List.Reverse(Splitter.SplitTextByDelimiter(". ", QuoteStyle.None)([Attribute])) in Text.Combine({Text.Reverse(Text.Middle(Text.Reverse(splitAttribute{1}?), 6)), Text.Reverse(Text.Middle(Text.Reverse(splitsplitAttribute22{0}?), 2)), Text.Middle(Text.Upper(splitAttribute3{1}?), 5, 1), Text.Middle(splitAttribute4{1}?, 1, 1), Text.Reverse(Text.Middle(Text.Reverse([Attribute]), 1, 1)), Text.Middle(splitAttribute3{1}?, 5, 1), Text.Middle([Source.Name], 7, 1)}), type text),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Added Custom Column"," @ 0% AreaS","",Replacer.ReplaceText,{"Custom"}),
+				    #"Inserted Trimmed Text" = Table.AddColumn(#"Replaced Value1", "Trim", each Text.Trim([Custom]), type text),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Inserted Trimmed Text","Use Areas","Use",Replacer.ReplaceText,{"Trim"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2","CAD Areas","CAD",Replacer.ReplaceText,{"Trim"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Replaced Value3","Aeeas","Areas",Replacer.ReplaceText,{"Trim"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Replaced Value",{{"Trim", "Room Type"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns3",{"Custom"}),
+				    #"Added Custom Column1" = Table.AddColumn(#"Removed Columns1", "Custom", each let splitAttribute = List.Reverse(Splitter.SplitTextByDelimiter(". ", QuoteStyle.None)([Attribute])), splitAttribute2 = Splitter.SplitTextByDelimiter("Nr", QuoteStyle.None)([Attribute]), splitAttribute3 = List.Reverse(Splitter.SplitTextByDelimiter(" ", QuoteStyle.None)([Attribute])) in Text.Combine({Text.End(splitAttribute{1}?, 2), Text.Start(splitAttribute2{1}?, 5), splitAttribute3{0}?}), type text),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Added Custom Column1",{{"Custom", "Data Type"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns4",{"Source.Name", "School Name", "School URN", "Phase", "Attribute", "Data Type", "Position", "Room Type", "Value", "Value - Copy"}),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Reordered Columns",{{"Value", "Unsorted Nr. of Spaces"}, {"Value - Copy", "Unsorted Areas"}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns5",{{"Unsorted Nr. of Spaces", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type1", "Custom", each if [Data Type] = "Nr. of Spaces" then [Unsorted Nr. of Spaces] else null),
+				    #"Added Custom1" = Table.AddColumn(#"Added Custom", "Custom.1", each if [Data Type] = "Areas" then [Unsorted Areas] else null),
+				    #"Renamed Columns6" = Table.RenameColumns(#"Added Custom1",{{"Custom", "Nr. of Spaces"}, {"Custom.1", "Area (m²)"}}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns6",{{"Nr. of Spaces", Int64.Type}, {"Area (m²)", Int64.Type}}),
+				    #"Replaced Value5" = Table.ReplaceValue(#"Changed Type2","Partitions Areas","Partitions",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value6" = Table.ReplaceValue(#"Replaced Value5","CAD Areas","CAD",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value7" = Table.ReplaceValue(#"Replaced Value6","Use Areas","Use",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value8" = Table.ReplaceValue(#"Replaced Value7"," @ 0% Areas","",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value8","Areas AeeaS","Areas",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value9" = Table.ReplaceValue(#"Replaced Value4","AeeaS","Areas",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value10" = Table.ReplaceValue(#"Replaced Value9","AreaS","Areas",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value11" = Table.ReplaceValue(#"Replaced Value10","Areas Areas","Areas",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value12" = Table.ReplaceValue(#"Replaced Value11","CAD Areas","CAD",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value13" = Table.ReplaceValue(#"Replaced Value12","Use Areas","Use",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value14" = Table.ReplaceValue(#"Replaced Value13","Partitions Areas","Partitions",Replacer.ReplaceText,{"Room Type"}),
+				    #"Replaced Value15" = Table.ReplaceValue(#"Replaced Value14"," @ 0% Areas","",Replacer.ReplaceText,{"Room Type"}),
+				    #"Added Conditional Column" = Table.AddColumn(#"Replaced Value15", "Custom", each if [Room Type] = "Classroom Areas" then 1 else if [Room Type] = "Specialist Practical Areas" then 2 else if [Room Type] = "Hall Studio and Dining Areas" then 3 else if [Room Type] = "Learning Resource Areas" then 4 else if [Room Type] = "Staff and Admin Areas" then 5 else if [Room Type] = "Teaching Storage Areas" then 6 else if [Room Type] = "Non Teaching Storage Areas" then 7 else if [Room Type] = "Kitchen Areas" then 8 else if [Room Type] = "Toilet Areas" then 9 else if [Room Type] = "Plant Areas" then 10 else if [Room Type] = "Circulation Areas" then 11 else if [Room Type] = "Partitions" then 12 else if [Room Type] = "Area Not on CAD" then 15 else if [Room Type] = "Float Areas" then 13 else if [Room Type] = "Used by Others/Out of Use" then 14 else if [Room Type] = "ICT and Business Areas" then 2 else if [Room Type] = "Science Areas" then 2.1 else if [Room Type] = "Creative Art Areas" then 2.2 else if [Room Type] = "Design and Tech Areas" then 2.3 else if [Room Type] = "PE Basic Teaching Areas" then 2.4 else if [Room Type] = "Hall Areas" then 3 else if [Room Type] = "Art and DT Resource Areas" then 4.1 else if [Room Type] = "SEN and Support Areas" then 4.2 else null, type number),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Added Conditional Column", "Custom.1", each if [Position] = "NOR" then 2 else if [Position] = "PAN" then 3 else if [Position] = "FPAN" then 4 else if [Position] = "Actual" then 1 else null, type number),
+				    #"Renamed Columns7" = Table.RenameColumns(#"Added Conditional Column1",{{"Custom", "Sort Order for Room Type"}, {"Custom.1", "Sort Order for Position"}}),
+				    #"Filtered Rows1" = Table.SelectRows(#"Renamed Columns7", each true)
+				in
+				    #"Filtered Rows1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
