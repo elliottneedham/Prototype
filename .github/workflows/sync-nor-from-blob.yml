@@ -12,13 +12,24 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      # other steps...
+      - name: Ensure output folder exists
+        run: mkdir -p public/data
+
+      - name: Download CSV from Azure Blob
+        run: |
+          echo "📥 Downloading NoR CSV from Azure Blob..."
+          curl -L "https://fabricdashdata.blob.core.windows.net/exports/nor_data_combined.csv" -o public/data/nor_data_combined.csv
+          echo "✅ Download complete. Contents:"
+          ls -lh public/data/
 
       - name: Commit and push if changed
         shell: bash
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          echo "🔍 Checking file exists before commit..."
+          test -f public/data/nor_data_combined.csv || (echo "❌ File missing"; exit 1)
 
           git add public/data/nor_data_combined.csv || echo "⚠️ Nothing to add"
           git status
