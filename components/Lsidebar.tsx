@@ -29,8 +29,12 @@ const Lsidebar: React.FC<LsidebarProps> = ({ isOpen }) => {
         <li>
          <Link href="/school-profile">School Level Profile</Link>
         </li>
-        <li>Morgan Rogers</li>
-        <li>Semenyo</li>
+        <li>Dashboard 2</li>
+        <li>Dashboard 3</li>
+        <li>Dashboard 4</li>
+        <li>Dashboard 5</li>
+        <li>Dashboard 6</li>
+       
       </ul>
     </aside>
   );

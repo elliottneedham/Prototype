@@ -1,137 +1,160 @@
-import React, { useState } from 'react';
+'use client';
 
-// Define the message type so TypeScript knows sender must be 'user' or 'bot'
-type ChatMessage = {
-  sender: 'user' | 'bot';
-  text: string;
-};
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 const Bot = () => {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [messages, setMessages] = useState<{ from: 'user' | 'bot'; text: string }[]>([]);
   const [input, setInput] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
 
-  const handleSend = () => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleSend = async () => {
     if (!input.trim()) return;
 
-    const userMessage: ChatMessage = { sender: 'user', text: input };
-    const mockResponse: ChatMessage = {
-      sender: 'bot',
-      text: "I'm Bot! Once data is connected, I'll answer this with insight and clarity.",
-    };
+    const userMessage = { from: 'user', text: input } as const;
+    setMessages((prev) => [...prev, userMessage]);
 
-    setMessages((prev) => [...prev, userMessage, mockResponse]);
+    const botReply = await generateBotResponse(input);
+    setMessages((prev) => [...prev, { from: 'bot', text: botReply } as const]);
     setInput('');
   };
 
-  return (
+  const generateBotResponse = async (query: string): Promise<string> => {
+    const lower = query.toLowerCase();
+    if (lower.includes('nor')) return 'NoR = Number on Roll (aka student count).';
+    return "I'm in dev mode — live data coming soon!";
+  };
+
+  const UI = (
     <div
       style={{
         position: 'fixed',
         bottom: '20px',
         right: '20px',
-        width: isOpen ? '320px' : '60px',
-        height: isOpen ? '420px' : '60px',
-        borderRadius: '16px',
-        backgroundColor: isOpen ? '#FFFFFF' : '#111',
-        color: 'white',
-        boxShadow: '0 0 12px rgba(0,0,0,0.3)',
-        overflow: 'hidden',
-        transition: 'all 0.3s ease-in-out',
-        zIndex: 999,
+        zIndex: 99999,
       }}
     >
-      {isOpen ? (
-        <>
-          <div style={{ padding: '10px', backgroundColor: '#111', fontWeight: 'bold' }}>
-            💬 Bot – Ask about your data
+      {!open ? (
+        <button
+          onClick={() => setOpen(true)}
+          style={{
+            backgroundColor: 'black',
+            color: 'white',
+            padding: '12px 20px',
+            borderRadius: '999px',
+            boxShadow: '0 0 12px rgba(0,0,0,0.5)',
+            fontSize: '14px',
+            cursor: 'pointer',
+          }}
+        >
+          💬 Ask Bot
+        </button>
+      ) : (
+        <div
+          style={{
+            width: '320px',
+            height: '400px',
+            backgroundColor: '#000',
+            color: '#fff',
+            borderRadius: '20px',
+            display: 'flex',
+            flexDirection: 'column',
+            boxShadow: '0 0 30px rgba(0,0,0,0.4)',
+            overflow: 'hidden',
+            fontFamily: 'Inter, sans-serif',
+          }}
+        >
+          {/* Header */}
+          <div
+            style={{
+              backgroundColor: '#111',
+              padding: '12px 16px',
+              fontWeight: 'bold',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              borderBottom: '1px solid #222',
+            }}
+          >
+            <span>Bot</span>
+            <button
+              onClick={() => setOpen(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#aaa',
+                fontSize: '16px',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
           </div>
-          <div style={{ flex: 1, padding: '10px', height: '290px', overflowY: 'auto' }}>
-            {messages.map((msg, idx) => (
+
+          {/* Messages */}
+          <div
+            style={{
+              flex: 1,
+              padding: '12px',
+              overflowY: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+            }}
+          >
+            {messages.map((m, i) => (
               <div
-                key={idx}
+                key={i}
                 style={{
-                  marginBottom: '10px',
-                  textAlign: msg.sender === 'user' ? 'right' : 'left',
+                  alignSelf: m.from === 'user' ? 'flex-end' : 'flex-start',
+                  backgroundColor: m.from === 'user' ? '#1f1f1f' : '#333',
+                  padding: '8px 12px',
+                  borderRadius: '12px',
+                  maxWidth: '70%',
+                  fontSize: '14px',
                 }}
               >
-                <span
-                  style={{
-                    backgroundColor: msg.sender === 'user' ? '#007bff' : '#333',
-                    color: 'white',
-                    padding: '6px 10px',
-                    borderRadius: '16px',
-                    display: 'inline-block',
-                    maxWidth: '80%',
-                  }}
-                >
-                  {msg.text}
-                </span>
+                {m.text}
               </div>
             ))}
           </div>
-          <div style={{ display: 'flex', borderTop: '1px solid #333' }}>
+
+          {/* Footer */}
+          <div
+            style={{
+              backgroundColor: '#111',
+              padding: '8px',
+              borderTop: '1px solid #222',
+            }}
+          >
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask Bot..."
+              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+              placeholder="Ask me anything..."
               style={{
-                flex: 1,
+                width: '100%',
                 padding: '10px',
-                background: '#000',
+                borderRadius: '10px',
                 border: 'none',
+                backgroundColor: '#222',
                 color: '#fff',
+                fontSize: '14px',
+                outline: 'none',
               }}
             />
-            <button
-              onClick={handleSend}
-              style={{
-                background: '#007bff',
-                border: 'none',
-                padding: '0 14px',
-                color: '#fff',
-              }}
-            >
-              ➤
-            </button>
           </div>
-        </>
-      ) : (
-        <button
-          onClick={() => setIsOpen(true)}
-          style={{
-            width: '100%',
-            height: '100%',
-            background: 'transparent',
-            border: 'none',
-            color: 'white',
-            fontSize: '24px',
-            cursor: 'pointer',
-          }}
-        >
-          💬
-        </button>
-      )}
-
-      {isOpen && (
-        <button
-          onClick={() => setIsOpen(false)}
-          style={{
-            position: 'absolute',
-            top: '5px',
-            right: '8px',
-            background: 'transparent',
-            border: 'none',
-            color: '#999',
-            fontSize: '16px',
-            cursor: 'pointer',
-          }}
-        >
-          ×
-        </button>
+        </div>
       )}
     </div>
   );
+
+  return mounted ? createPortal(UI, document.body) : null;
 };
 
 export default Bot;
