@@ -2,7 +2,7 @@ name: Sync NoR CSV from Azure Blob
 
 on:
   schedule:
-    - cron: "0 6 * * 1"  # Runs weekly at 06:00 every Monday
+    - cron: "0 6 * * 1"  # Weekly on Mondays at 06:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -12,20 +12,26 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      - name: Create data directory if missing
+        run: mkdir -p public/data
+
       - name: Download CSV from Azure Blob
         run: |
           curl -L "https://fabricdashdata.blob.core.windows.net/exports/nor_data_combined.csv" -o public/data/nor_data_combined.csv
+          echo "✅ Downloaded file:"
+          ls -lh public/data/nor_data_combined.csv
+          echo "📄 Preview:"
+          head -n 5 public/data/nor_data_combined.csv
 
       - name: Commit and push if changed
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/data/nor_data_combined.csv
 
-          # Only commit if the file actually changed
-          if ! git diff --quiet --exit-code; then
+          if git diff --cached --quiet; then
+            echo "✅ No changes to commit."
+          else
             git commit -m "🔄 Sync NoR CSV from Azure Blob"
             git push
-          else
-            echo "✅ No changes — nothing to commit."
           fi
