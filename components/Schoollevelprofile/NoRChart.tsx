@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -17,38 +17,47 @@ type NoRChartProps = {
 const NoRChart = ({ data }: NoRChartProps) => {
   const hasData = Array.isArray(data) && data.length > 0;
 
-  const parsedData = hasData
-    ? data.map((item) => ({
-        ...item,
-        Year: String(item.Year),
-        "Early Years": parseFloat(item["Early Years"] || 0),
-      }))
-    : [];
+  // Fixed Power BI categories
+  const categories = [
+    "Early Years",
+    "Infant",
+    "Junior",
+    "Secondary",
+    "Post 16"
+  ];
 
   return (
     <div className="w-full p-4">
-      <h2 className="text-xl font-semibold mb-2">(NoR)</h2>
+      <h2 className="text-xl font-semibold mb-2">Historic/Projected NoR</h2>
 
       {!hasData ? (
-        <div className="text-gray-500">
-          Data is currently unavailable. The chart will appear once connection to Microsoft Fabric is finalised.
-        </div>
+        <div className="text-gray-500 animate-pulse">Loading data…</div>
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={parsedData}>
+        <ResponsiveContainer width="100%" height={400}>
+          <AreaChart data={data} stackOffset="none">
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="Year" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line
-              type="monotone"
-              dataKey="Early Years"
-              stroke="#3B82F6" // Tailwind blue-500
-              strokeWidth={2}
-              dot={{ r: 3 }}
+            <YAxis
+              tickFormatter={(val) => `${(val / 1_000_000).toFixed(1)}M`}
+              domain={[0, 9_000_000]} // adjust upper bound if needed
             />
-          </LineChart>
+            <Tooltip
+              formatter={(value: number, name: string) =>
+                `${(value as number).toLocaleString()} pupils — ${name}`
+              }
+            />
+            <Legend />
+            {categories.map((group, index) => (
+              <Area
+                key={group}
+                type="monotone"
+                dataKey={group}
+                stackId="1"
+                fill={`hsl(${index * 60}, 70%, 60%)`}
+                stroke="none"
+              />
+            ))}
+          </AreaChart>
         </ResponsiveContainer>
       )}
     </div>
