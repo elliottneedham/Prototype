@@ -23,4 +23,8 @@ jobs:
           ls -lh public/data/nor_data_combined.csv
 
       - name: ✅ Done (no commit — file too large for GitHub)
+<<<<<<< HEAD
         run: echo "🎉 Sync complete. File downloaded and ready for local/frontend use."
+=======
+        run: echo "🎉 Sync complete. File downloaded and ready for local/frontend use."
+>>>>>>> b32ec54d0839de8006a5fad01a992c648bb83d49
