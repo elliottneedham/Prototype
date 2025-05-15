@@ -4,7 +4,7 @@ import FilterBar from '../components/FilterBar';
 import dynamic from 'next/dynamic';
 import Bot from '../components/Bot';
 import styles from '../styles/SchoolProfile.module.css';
-import { getFabricData } from '../lib/getFabricData';
+import { fetchNorData } from "@/lib/nor/fetchNoRData";
 
 // Dynamic imports
 const UKMap = dynamic(() => import('../components/UKMap'), { ssr: false });
@@ -12,6 +12,13 @@ const NoRChart = dynamic(() => import('../components/Schoollevelprofile/NoRChart
   ssr: false,
   loading: () => <div>Loading NoRChart...</div>,
 });
+
+const SENChart = dynamic(() => import('../components/Schoollevelprofile/SENChart'), {
+  ssr: false,
+  loading: () => <div>Loading SENChart...</div>,
+});
+import { fetchSENData } from "@/lib/sen/fetchSENData";
+
 
 const titles = [
   '2023/24 Pupil Home Location',
@@ -30,15 +37,26 @@ const titles = [
 const SchoolProfile = () => {
   const [showFilters, setShowFilters] = useState(true);
   const [fabricData, setFabricData] = useState<any[]>([]);
+  const [senData, setSenData] = useState<any[]>([]);
+
 
   useEffect(() => {
-    getFabricData()
-      .then(setFabricData)
-      .catch((err) => {
-        console.error("Error fetching fabric data:", err);
-        setFabricData([]);
-      });
-  }, []);
+  fetchNorData()
+    .then(setFabricData)
+    .catch((err) => {
+      console.error("Error fetching NoR CSV data:", err);
+      setFabricData([]);
+    });
+
+  fetchSENData()
+    .then(setSenData)
+    .catch((err) => {
+      console.error("Error fetching SEN CSV data:", err);
+      setSenData([]);
+    });
+}, []);
+
+
 
   return (
     <>
@@ -68,15 +86,19 @@ const SchoolProfile = () => {
           <div key={index} className={styles.pane}>
             <h3 className="text-xl font-semibold mb-2">{titles[index]}</h3>
 
-            {index === 0 || index === 1 ? (
-              <div className={styles.ukMapContainer}>
-                <UKMap />
-              </div>
-            ) : index === 2 ? (
-              <Suspense fallback={<div>Loading NoRChart...</div>}>
-                <NoRChart data={fabricData} />
-              </Suspense>
-            ) : null}
+            {index === 2 && (
+  <Suspense fallback={<div>Loading NoRChart...</div>}>
+    <NoRChart data={fabricData} />
+  </Suspense>
+)}
+
+{index === 1 && (
+  <Suspense fallback={<div>Loading SENChart...</div>}>
+    <SENChart data={senData} />
+  </Suspense>
+)}
+
+
           </div>
         ))}
       </div>

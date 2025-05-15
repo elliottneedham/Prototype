@@ -116,6 +116,7 @@
     "object-assign": "^4.1.1",
     "on-change": "^4.0.2",
     "open": "^10.1.0",
+    "papaparse": "^5.5.2",
     "picocolors": "^1.0.0",
     "postcss": "^8.4.31",
     "potpack": "^1.0.2",
